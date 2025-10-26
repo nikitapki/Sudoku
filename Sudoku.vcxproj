@@ -124,12 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="LCG.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Sudoku.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.hpp" />
+    <ClInclude Include="Field.hpp" />
     <ClInclude Include="LCG.hpp" />
     <ClInclude Include="Manager.hpp" />
   </ItemGroup>
