@@ -1,6 +1,14 @@
-#include "LCG.hpp"
+#include "RandomLCG.hpp"
 
-unsigned int LCG::random(unsigned int seed, int min, int max) {
+RandomLCG::RandomLCG() {
+	installingSeed();
+}
+
+void RandomLCG::installingSeed() {
+	state = time(nullptr);
+}
+
+unsigned int RandomLCG::random(int min, int max) {
 
 	const unsigned int a = 1664525; // золотой стандарт для простых 32битных LCG
 	const unsigned int c = 1013904223; // золотой стандарт для простых 32битных LCG 
@@ -8,8 +16,4 @@ unsigned int LCG::random(unsigned int seed, int min, int max) {
 	state = (a * state + c);
 
 	return min + (state % (max - min + 1));
-}
-
-void LCG::setState(unsigned int seed) {
-	state = seed;
 }
