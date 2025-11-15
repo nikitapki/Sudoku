@@ -16,24 +16,39 @@
     <Filter Include="Исходные файлы\Core">
       <UniqueIdentifier>{d307d1ac-82b8-4361-9db0-ac0b971001b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Core">
+      <UniqueIdentifier>{994dabcc-00be-41c3-9e50-be69637e3459}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sudoku.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Manager.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
-    <ClCompile Include="LCG.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="Field.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomLCG.cpp">
+      <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Manager.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Cell.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
-    <ClInclude Include="LCG.hpp">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Field.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomLCG.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
