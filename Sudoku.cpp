@@ -11,7 +11,7 @@ int main() {
 
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
-			std::cout << gener.massive_sudoku[i][j] << " ";
+			std::cout << gener.grid[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}

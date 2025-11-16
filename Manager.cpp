@@ -1,36 +1,54 @@
 #include "Manager.hpp"
 
 // Контроллер комбинаций
-// Проверяет можно ли подставить значение по заданным координатам в заданном массиве
+// Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
 // (значение уже находится в массиве по заданным координатам)
-bool Manager::checkerCombinations(int coord_y, int coord_x, int massive_sudoku[][SIZE_SUDOKU]) {
-	bool result = true;
+bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 	// Проверка строки на повторы
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		if (massive_sudoku[coord_y][i] == massive_sudoku[coord_y][coord_x]) {
-			result = false;
+		if (grid[coord_y][i] == value) {
+			return false;
 		}
 	}
 	// Проверка столбца на повторы
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		if (massive_sudoku[i][coord_x] == massive_sudoku[coord_y][coord_x]) {
-			result = false;
+		if (grid[i][coord_x] == value) {
+			return false;
 		}
 	}
 	// Проверка квадрата 3на3 на повторы
-	int offsetCoord_y = coord_y % 3; // offset - смещение 
-	int offsetCoord_x = coord_x % 3;
-	for (int i = coord_y - offsetCoord_y; i <= coord_y + offsetCoord_y; i++) {
-		for (int j = coord_x - offsetCoord_x; j <= coord_x + offsetCoord_x; j++) {
-			if (massive_sudoku[i][j] == massive_sudoku[coord_y][coord_x]) {
-				result = false;
+	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
+	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
+	for (int i = offsetCoord_y; i <= offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
+		for (int j = offsetCoord_x; j <= offsetCoord_x + SIZE_SQUARE_SUDOKU; j++) {
+			if (grid[i][j] == value) {
+				return false;
 			}
 		}
 	}
-	
-	return result;
+
+	return true;
 }
 
-void Manager::generateMassiveNums() {
-	
+// Функция поиска первой пустой клетки (в которой находится 0)
+// Координаты клетки, записываются по адресу
+// Функция возвращает результат записи. Были ли найдены пустые клетки
+bool Manager::findEmpty(int* coord_y, int* coord_x) {
+	for (int i = 0; i < SIZE_SUDOKU; i++) {
+		for (int j = 0; j < SIZE_SUDOKU; j++) {
+			if (grid[i][j] == 0) {
+				*coord_y = i;
+				*coord_x = j;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Manager::fillGrid() {
+	int coord_y, coord_x;
+	while (findEmpty(&coord_y, &coord_x)) {
+
+	}
 }

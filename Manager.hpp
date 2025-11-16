@@ -7,22 +7,22 @@
 #include <iostream>
 #include <iomanip>
 
-#define SIZE_SUDOKU 10
+#define SIZE_SUDOKU 9
+#define SIZE_SQUARE_SUDOKU 3
 
 class Manager
 {
 private:
 	RandomLCG rand;
 
-	// Контроллер комбинаций
-	// Проверяет можно ли подставить значение по заданным координатам в заданном массиве
-	// (значение уже находится в массиве по заданным координатам)
-	bool checkerCombinations(int coord_y, int coord_x, int massive_sudoku[][SIZE_SUDOKU]);
+	bool checkerCombinations(int coord_y, int coord_x, int value);
+
+	bool findEmpty(int* coord_y, int* coord_x);
 
 public:
-	int massive_sudoku[SIZE_SUDOKU][SIZE_SUDOKU] = { 0 };
+	int grid[SIZE_SUDOKU][SIZE_SUDOKU] = { 0 };
 
-	void generateMassiveNums();
+	bool fillGrid();
 };
 
 #endif // !MANAGER_SUDOKU
