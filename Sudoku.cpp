@@ -7,10 +7,9 @@ int main() {
 	SetConsoleOutputCP(1251);
 	
 	Manager gener;
-	gener.generateMassiveNums();
-
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
+	gener.fillGrid();
+	for (int i = 0; i < SIZE_SUDOKU; i++) {
+		for (int j = 0; j < SIZE_SUDOKU; j++) {
 			std::cout << gener.grid[i][j] << " ";
 		}
 		std::cout << std::endl;

@@ -8,8 +8,11 @@ class RandomLCG
 private:
 	unsigned int state;
 
+	int counter = 0;
+
 	// Внутренняя реализация в самом классе, которая устанавливает Seed
 	void installingSeed();
+
 
 public:
 	// Устанавливает Seed для какого-то действия
@@ -20,6 +23,8 @@ public:
 
 	// Выбирает случайное натуральное число в заданном диапазоне от min (включительно) до max (включительно)
 	unsigned int random(int min, int max);
+
+	void randomReverseMassive(int* massiveNums, int lenMassive);
 };
 
 #endif // !LCG_RANDOM_GENERATOR
