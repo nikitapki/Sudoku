@@ -1,5 +1,6 @@
 #include "Manager.hpp"
 
+
 // Контроллер комбинаций
 // Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
 // (значение уже находится в массиве по заданным координатам)
@@ -30,6 +31,7 @@ bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 	return true;
 }
 
+
 // Функция поиска первой пустой клетки (в которой находится 0)
 // Координаты клетки, записываются по адресу
 // Функция возвращает результат записи. Были ли найдены пустые клетки
@@ -46,6 +48,7 @@ bool Manager::findEmpty(int* coord_y, int* coord_x) {
 	return false;
 }
 
+
 // Рекурсивная функция генерации таблицы судоку
 bool Manager::fillGrid() {
 	int coord_y, coord_x;
@@ -57,7 +60,7 @@ bool Manager::fillGrid() {
 
 	// Кандидаты для подстановки в поле судоку
 	// При добавлении возможности выбора размера поля судоку стоит изменить 
-	int candidates[SIZE_SUDOKU] = { 1,2,3,4,5,6,7,8,9 };
+	int *candidates = rand.randomGenerateReverseMassive(1, 9);
 
 	// Перемешивание чисел в массиве
 	rand.randomReverseMassive(candidates, SIZE_SUDOKU);
@@ -80,5 +83,11 @@ bool Manager::fillGrid() {
 			grid[coord_y][coord_x] = 0;
 		}
 	}
+
+	delete[] candidates;
+	candidates = NULL;
+
 	return false;
 }
+
+

@@ -25,6 +25,8 @@ public:
 	unsigned int random(int min, int max);
 
 	void randomReverseMassive(int* massiveNums, int lenMassive);
+
+	int* randomGenerateReverseMassive(int start, int end);
 };
 
 #endif // !LCG_RANDOM_GENERATOR
