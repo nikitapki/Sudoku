@@ -19,8 +19,8 @@ bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 	// ѕроверка квадрата 3на3 на повторы
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
-	for (int i = offsetCoord_y; i <= offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
-		for (int j = offsetCoord_x; j <= offsetCoord_x + SIZE_SQUARE_SUDOKU; j++) {
+	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
+		for (int j = offsetCoord_x; j < offsetCoord_x + SIZE_SQUARE_SUDOKU; j++) {
 			if (grid[i][j] == value) {
 				return false;
 			}
@@ -46,9 +46,39 @@ bool Manager::findEmpty(int* coord_y, int* coord_x) {
 	return false;
 }
 
+// –екурсивна€ функци€ генерации таблицы судоку
 bool Manager::fillGrid() {
 	int coord_y, coord_x;
-	while (findEmpty(&coord_y, &coord_x)) {
 
+	// ≈сли нету пустых €чеек возвращает true
+	if (!findEmpty(&coord_y, &coord_x)) {
+		return true;
 	}
+
+	//  андидаты дл€ подстановки в поле судоку
+	// ѕри добавлении возможности выбора размера пол€ судоку стоит изменить 
+	int candidates[SIZE_SUDOKU] = { 1,2,3,4,5,6,7,8,9 };
+
+	// ѕеремешивание чисел в массиве
+	rand.randomReverseMassive(candidates, SIZE_SUDOKU);
+
+	// ÷иклически перебираем всех кандидатов и если во врем€ перебора не было возвращено true,
+	// возвращаем false и рекурсией возвращаемс€ к подбору другого кандидата и другой комбинации таблицы
+	for (int i = 0; i < SIZE_SUDOKU; i++) {
+		int val = candidates[i];
+	
+		// ѕроверка заполнени€ таблицы
+		// (подходит ли кандидат, если нет рекурсивно возвращаем false и берем другого кандидата)
+		if (checkerCombinations(coord_y, coord_x, val)) {
+			grid[coord_y][coord_x] = val;
+
+			// –екурсивное возвращение true в случае полного заполнени€ таблицы
+			if (fillGrid()) {
+				return true;
+			}
+			// ≈сли не удалось заполнить таблицу по выбранному кандидату очищаем установленное значение
+			grid[coord_y][coord_x] = 0;
+		}
+	}
+	return false;
 }
