@@ -24,9 +24,6 @@
     <ClCompile Include="Sudoku.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Cell.cpp">
-      <Filter>Исходные файлы\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Field.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
@@ -36,11 +33,11 @@
     <ClCompile Include="RandomLCG.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cell.hpp">
-      <Filter>Файлы заголовков\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Field.hpp">
       <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
@@ -49,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="RandomLCG.hpp">
       <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

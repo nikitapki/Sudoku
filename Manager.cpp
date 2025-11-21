@@ -91,3 +91,33 @@ bool Manager::fillGrid() {
 }
 
 
+// Функция удаления ячеек по заданному количеству (служит как определение сложности судоку)
+// Реализовано посредствам девятеричной системы счисления и массива индексов
+void Manager::removeCells(int quantityRemoves) {
+	int* massiveIndexesGrid = rand.randomGenerateReverseMassive(1, 81);
+	for (int i = 0; i < quantityRemoves; i++) {
+		grid[(massiveIndexesGrid[i] - 1) / SIZE_SUDOKU][(massiveIndexesGrid[i] - 1) % SIZE_SUDOKU] = 0;
+	}
+}
+
+
+// Генерация игрового поля
+void Manager::generateNewGame(int quantityRemoves) {
+
+	// Заполнение нулями таблицы
+	for (int i = 0; i < SIZE_SUDOKU; ++i) {
+		memset(grid[i], 0, sizeof(grid[i]));
+	}
+	
+	// Заполняем поле псевдослучайной вариацией игры
+	fillGrid();
+
+	// Инициализирую объект класса Поле полностью заполненной корректной таблицей
+	gridCells.InitializeFullGrid(grid);
+
+	// Удаляем ячейки для подготовки игрового поля
+	removeCells(quantityRemoves);
+
+	// Дополняем объект класса Поле пустыми клетка, чтобы указать фиксированные и свободные ячейки
+	gridCells.InitializeGameRound(grid);
+}
