@@ -1,0 +1,2 @@
+#define SIZE_SUDOKU 9
+#define SIZE_SQUARE_SUDOKU 3
