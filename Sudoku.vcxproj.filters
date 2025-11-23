@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\Core">
       <UniqueIdentifier>{994dabcc-00be-41c3-9e50-be69637e3459}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\View">
+      <UniqueIdentifier>{41fd25aa-d68f-44f0-b8e1-e158cba019d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\View">
+      <UniqueIdentifier>{69cf2e41-6c59-4655-bb22-be7b0723bdbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sudoku.cpp">
@@ -36,6 +42,15 @@
     <ClCompile Include="Game.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Исходные файлы\View</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseHandler.cpp">
+      <Filter>Исходные файлы\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.hpp">
@@ -52,6 +67,15 @@
     </ClInclude>
     <ClInclude Include="Config.hpp">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.hpp">
+      <Filter>Файлы заголовков\View</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseHandler.hpp">
+      <Filter>Файлы заголовков\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
