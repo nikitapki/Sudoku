@@ -3,17 +3,23 @@
 
 #include <windows.h>
 
+#include "Config.hpp"
 #include "Manager.hpp"
 #include "MouseHandler.hpp"
 
-
+typedef struct {
+	int tableCoord;
+	int sudokuNumbersAvailableToInput;
+} typeCoordinate;
 
 class Renderer {
 
 public:
 	void drawElementaryField();
 
-	void translator—onsoleToTableCoords();
+	MouseHandler handlerMouse;
+
+	typeCoordinate translator—onsoleToTableCoords(PhysicCoordinateCell consoleCoord);
 
 	Manager field;
 

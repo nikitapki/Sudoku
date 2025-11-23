@@ -4,8 +4,8 @@ MouseHandler::MouseHandler() {
 	hStdin = GetStdHandle(STD_INPUT_HANDLE);
 
 	GetConsoleMode(hStdin, &mode);
-	SetConsoleMode(hStdin, mode | ENABLE_WINDOW_INPUT | 
-		ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS & ~ENABLE_QUICK_EDIT_MODE);
+	SetConsoleMode(hStdin, (mode | ENABLE_WINDOW_INPUT | 
+		ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS) & ~ENABLE_QUICK_EDIT_MODE);
 }
 
 PhysicCoordinateCell MouseHandler::clickToConsole() {
@@ -23,11 +23,14 @@ PhysicCoordinateCell MouseHandler::clickToConsole() {
 
                 if (isLeftClick) {
                     clickToField.x = mer.dwMousePosition.X;
-                    clickToField.x = mer.dwMousePosition.Y;
+                    clickToField.y = mer.dwMousePosition.Y;
+                    std::cout << "coord" << clickToField.x << " " << clickToField.y << std::endl;
 
-                    return clickToField;
+                    
                 }
             }
         }
 	}
+
+    return clickToField;
 }

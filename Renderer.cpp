@@ -1,9 +1,27 @@
 ﻿#include "Renderer.hpp"
 
-void translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord) {
-	if (consoleCoord.y >= 0 && consoleCoord.y <= 18) {
-		
+typeCoordinate translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord) {
+	
+	typeCoordinate result;
+
+	if (consoleCoord.y % 2 != 0 && consoleCoord.y <= 17 && consoleCoord.y >= 1) {
+		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
+			result.tableCoord = consoleCoord.y * SIZE_SUDOKU + consoleCoord.x;
+		}
 	}
+
+	if (consoleCoord.y == 20) {
+		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
+			result.sudokuNumbersAvailableToInput = consoleCoord.x + 1;
+		}
+	}
+
+	else {
+		result.tableCoord = -1;
+		result.sudokuNumbersAvailableToInput = -1;
+	}
+
+	return result;
 }
 
 // Отрисовка изначальной игры 
