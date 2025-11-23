@@ -31,13 +31,18 @@ private:
 	// Удаление ячеек для генерации самой игры
 	void removeCells(int quantityRemoves);
 
+public:
+
 	// Хранилище игрового поля
 	Field gridCells;
 
-public:
-
 	// Генерация игрового поля
 	void generateNewGame(int quantityRemoves);
+
+
+	// Пока разборка куда это поместить, будет временно здесь
+
+	bool processCellInput(int pos_y, int pos_x, int value);
 
 
 };

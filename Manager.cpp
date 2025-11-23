@@ -108,7 +108,7 @@ void Manager::generateNewGame(int quantityRemoves) {
 	for (int i = 0; i < SIZE_SUDOKU; ++i) {
 		memset(grid[i], 0, sizeof(grid[i]));
 	}
-	
+
 	// Заполняем поле псевдослучайной вариацией игры
 	fillGrid();
 
@@ -120,4 +120,18 @@ void Manager::generateNewGame(int quantityRemoves) {
 
 	// Дополняем объект класса Поле пустыми клетка, чтобы указать фиксированные и свободные ячейки
 	gridCells.InitializeGameRound(grid);
+}
+
+
+
+
+bool Manager::processCellInput(int pos_y, int pos_x, int value) {
+	int position = pos_y * SIZE_SUDOKU + pos_x;
+	bool result = true;
+
+	(gridCells.field[position].is_fixed || gridCells.field[position].value != value) 
+		? result = false 
+		: gridCells.field[position].is_fixed = true;
+	
+	return result;
 }
