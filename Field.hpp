@@ -3,6 +3,14 @@
 
 #include "Config.hpp"
 
+typedef struct Cell{
+	int value;
+	bool is_fixed;
+	bool is_selected = false;
+	int position_x;
+	int position_y;
+} Cell;
+
 class Field
 {
 private:
