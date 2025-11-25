@@ -32,7 +32,6 @@ private:
 	void removeCells(int quantityRemoves);
 
 public:
-
 	// Хранилище игрового поля
 	Field gridCells;
 

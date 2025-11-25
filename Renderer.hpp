@@ -13,15 +13,40 @@ typedef struct {
 } typeCoordinate;
 
 class Renderer {
+private:
+	typeCoordinate coordinate{ -1,-1 };
+
+	int inputValue = -1;
+
+	HANDLE hConsole;
+	COORD oldPos;
+	COORD pos{ 0,0 };
+
+	// Ñîõğàíåíèå èçíà÷àëüíîé ïîçèöèè êóğñîğà
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+	void correctionPosOnFieldFromDraw(PhysicCoordinateCell consoleCoord);
 
 public:
+	Manager& field;
+	MouseHandler& handlerClickes;
+
+
+	Renderer(Manager& field, MouseHandler& handlerClickes) :
+		field(field),
+		handlerClickes(handlerClickes) {
+	
+		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+		GetConsoleScreenBufferInfo(hConsole, &csbi);
+		oldPos = csbi.dwCursorPosition;
+	}
+
 	void drawElementaryField();
 
-	MouseHandler handlerMouse;
+	void translatorÑonsoleToTableCoords(PhysicCoordinateCell consoleCoord);
 
-	typeCoordinate translatorÑonsoleToTableCoords(PhysicCoordinateCell consoleCoord);
-
-	Manager field;
+	void drawValueCell();
 
 };
 

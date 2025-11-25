@@ -24,13 +24,9 @@ PhysicCoordinateCell MouseHandler::clickToConsole() {
                 if (isLeftClick) {
                     clickToField.x = mer.dwMousePosition.X;
                     clickToField.y = mer.dwMousePosition.Y;
-                    std::cout << "coord" << clickToField.x << " " << clickToField.y << std::endl;
-
-                    
+                    return clickToField;
                 }
             }
         }
 	}
-
-    return clickToField;
 }

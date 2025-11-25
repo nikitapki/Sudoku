@@ -1,30 +1,38 @@
 ﻿#include "Renderer.hpp"
 
-typeCoordinate translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord) {
-	
-	typeCoordinate result;
+void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell consoleCoord) {
+	int x = consoleCoord.x;
+
+	if (consoleCoord.x % 2 == 0) { }
+	else if (consoleCoord.x % 4 == 3) {
+		consoleCoord.x -= 1;
+	}
+	else if (consoleCoord.x % 4 == 1) {
+		consoleCoord.x += 1;
+	}
+}
+
+void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord) {
 
 	if (consoleCoord.y % 2 != 0 && consoleCoord.y <= 17 && consoleCoord.y >= 1) {
 		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
-			result.tableCoord = consoleCoord.y * SIZE_SUDOKU + consoleCoord.x;
+			coordinate.tableCoord = consoleCoord.y / 2 * SIZE_SUDOKU + consoleCoord.x / 4;
+			correctionPosOnFieldFromDraw(consoleCoord);
+
+			std::cout << coordinate.tableCoord;
 		}
 	}
 
 	if (consoleCoord.y == 20) {
 		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
-			result.sudokuNumbersAvailableToInput = consoleCoord.x + 1;
+			coordinate.sudokuNumbersAvailableToInput = consoleCoord.x / 4 + 1;
+			coordinate.tableCoord = -1;
 		}
 	}
-
-	else {
-		result.tableCoord = -1;
-		result.sudokuNumbersAvailableToInput = -1;
-	}
-
-	return result;
 }
 
 // Отрисовка изначальной игры 
+// Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
 	std::cout << u8"\
 ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗\n\
@@ -52,22 +60,6 @@ void Renderer::drawElementaryField() {
 ║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║\n\
 ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝\n";
 
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	// Сохранение изначальной позиции курсора
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	GetConsoleScreenBufferInfo(hConsole, &csbi);
-	COORD oldPos = csbi.dwCursorPosition;
-
-	COORD pos;
-
-	// Сделать правильное заполнение, затем сделать одиночное перемещение (вычисление какое значение переписывать)
-	//
-
-	// Перед вызовом нужно задать значения в таблицу
-
-	field.generateNewGame(15); // временно
-
 	int coordCell;
 	for (int i = 1; i < SIZE_SUDOKU * 2; i += 2) {
 		
@@ -84,4 +76,27 @@ void Renderer::drawElementaryField() {
 		}
 	}
 	SetConsoleCursorPosition(hConsole, oldPos);
+}
+
+void Renderer::drawValueCell() {
+
+	PhysicCoordinateCell consoleCoord = handlerClickes.clickToConsole();
+
+	translatorСonsoleToTableCoords(consoleCoord);
+
+	inputValue = coordinate.sudokuNumbersAvailableToInput;
+
+	if (coordinate.tableCoord != -1) {
+		if (inputValue == field.gridCells.field[coordinate.tableCoord].value) {
+			pos.X = consoleCoord.x;
+			pos.Y = consoleCoord.y;
+			SetConsoleCursorPosition(hConsole, pos);
+
+			if (!field.gridCells.field[coordinate.tableCoord].is_fixed) {
+				std::cout << "\b" << field.gridCells.field[coordinate.tableCoord].value;
+				field.gridCells.field[coordinate.tableCoord].is_fixed = true;
+			}
+		}
+		SetConsoleCursorPosition(hConsole, oldPos);
+	}
 }
