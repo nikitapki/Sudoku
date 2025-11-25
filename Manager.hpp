@@ -20,7 +20,6 @@ private:
 
 	// Функция поиска пустой клетки в таблице
 	bool findEmpty(int* coord_y, int* coord_x);
-	
 
 	// Сама таблица судоку (временное хранилище в дальнейшем переносится в Field)
 	int grid[SIZE_SUDOKU][SIZE_SUDOKU];

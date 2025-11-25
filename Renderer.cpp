@@ -1,31 +1,29 @@
 ﻿#include "Renderer.hpp"
 
-void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell consoleCoord) {
-	int x = consoleCoord.x;
+void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) {
+	int x = consoleCoord->x;
 
-	if (consoleCoord.x % 2 == 0) { }
-	else if (consoleCoord.x % 4 == 3) {
-		consoleCoord.x -= 1;
+	if (consoleCoord->x % 2 == 0) { }
+	else if (consoleCoord->x % 4 == 3) {
+		consoleCoord->x -= 1;
 	}
-	else if (consoleCoord.x % 4 == 1) {
-		consoleCoord.x += 1;
+	else if (consoleCoord->x % 4 == 1) {
+		consoleCoord->x += 1;
 	}
 }
 
-void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord) {
+void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord) {
 
-	if (consoleCoord.y % 2 != 0 && consoleCoord.y <= 17 && consoleCoord.y >= 1) {
-		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
-			coordinate.tableCoord = consoleCoord.y / 2 * SIZE_SUDOKU + consoleCoord.x / 4;
+	if (consoleCoord->y % 2 != 0 && consoleCoord->y <= 17 && consoleCoord->y >= 1) {
+		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= 36 && consoleCoord->x >= 1) {
+			coordinate.tableCoord = consoleCoord->y / 2 * SIZE_SUDOKU + consoleCoord->x / 4;
 			correctionPosOnFieldFromDraw(consoleCoord);
-
-			std::cout << coordinate.tableCoord;
 		}
 	}
 
-	if (consoleCoord.y == 20) {
-		if (consoleCoord.x % 4 != 0 && consoleCoord.x <= 36 && consoleCoord.x >= 1) {
-			coordinate.sudokuNumbersAvailableToInput = consoleCoord.x / 4 + 1;
+	if (consoleCoord->y == 20) {
+		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= 36 && consoleCoord->x >= 1) {
+			coordinate.sudokuNumbersAvailableToInput = consoleCoord->x / 4 + 1;
 			coordinate.tableCoord = -1;
 		}
 	}
@@ -82,7 +80,7 @@ void Renderer::drawValueCell() {
 
 	PhysicCoordinateCell consoleCoord = handlerClickes.clickToConsole();
 
-	translatorСonsoleToTableCoords(consoleCoord);
+	translatorСonsoleToTableCoords(&consoleCoord);
 
 	inputValue = coordinate.sudokuNumbersAvailableToInput;
 
@@ -93,7 +91,7 @@ void Renderer::drawValueCell() {
 			SetConsoleCursorPosition(hConsole, pos);
 
 			if (!field.gridCells.field[coordinate.tableCoord].is_fixed) {
-				std::cout << "\b" << field.gridCells.field[coordinate.tableCoord].value;
+				std::cout << field.gridCells.field[coordinate.tableCoord].value;
 				field.gridCells.field[coordinate.tableCoord].is_fixed = true;
 			}
 		}

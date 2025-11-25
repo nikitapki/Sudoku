@@ -25,7 +25,7 @@ private:
 	// Сохранение изначальной позиции курсора
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 
-	void correctionPosOnFieldFromDraw(PhysicCoordinateCell consoleCoord);
+	void correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord);
 
 public:
 	Manager& field;
@@ -44,7 +44,7 @@ public:
 
 	void drawElementaryField();
 
-	void translatorСonsoleToTableCoords(PhysicCoordinateCell consoleCoord);
+	void translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
 
 	void drawValueCell();
 
