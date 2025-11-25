@@ -25,11 +25,14 @@ private:
 	// Ñîõğàíåíèå èçíà÷àëüíîé ïîçèöèè êóğñîğà
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 
+	MouseHandler& handlerClickes;
+	Manager& field;
+
 	void correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord);
 
+	void translatorÑonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
+
 public:
-	Manager& field;
-	MouseHandler& handlerClickes;
 
 
 	Renderer(Manager& field, MouseHandler& handlerClickes) :
@@ -43,8 +46,6 @@ public:
 	}
 
 	void drawElementaryField();
-
-	void translatorÑonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
 
 	void drawValueCell();
 

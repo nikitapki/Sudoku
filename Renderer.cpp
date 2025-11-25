@@ -32,6 +32,7 @@ void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoor
 // Отрисовка изначальной игры 
 // Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
+
 	std::cout << u8"\
 ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗\n\
 ║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
@@ -82,18 +83,13 @@ void Renderer::drawValueCell() {
 
 	translatorСonsoleToTableCoords(&consoleCoord);
 
-	inputValue = coordinate.sudokuNumbersAvailableToInput;
-
 	if (coordinate.tableCoord != -1) {
-		if (inputValue == field.gridCells.field[coordinate.tableCoord].value) {
+		if (field.checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
 			pos.X = consoleCoord.x;
 			pos.Y = consoleCoord.y;
 			SetConsoleCursorPosition(hConsole, pos);
 
-			if (!field.gridCells.field[coordinate.tableCoord].is_fixed) {
-				std::cout << field.gridCells.field[coordinate.tableCoord].value;
-				field.gridCells.field[coordinate.tableCoord].is_fixed = true;
-			}
+			std::cout << field.gridCells.field[coordinate.tableCoord].value;
 		}
 		SetConsoleCursorPosition(hConsole, oldPos);
 	}

@@ -125,13 +125,13 @@ void Manager::generateNewGame(int quantityRemoves) {
 
 
 
-bool Manager::processCellInput(int pos_y, int pos_x, int value) {
-	int position = pos_y * SIZE_SUDOKU + pos_x;
+bool Manager::checkInputValueInCell(int coordinateCell, int inputValue) {
 	bool result = true;
 
-	(gridCells.field[position].is_fixed || gridCells.field[position].value != value) 
+	(gridCells.field[coordinateCell].is_fixed || gridCells.field[coordinateCell].value != inputValue) 
 		? result = false 
-		: gridCells.field[position].is_fixed = true;
+		: gridCells.field[coordinateCell].is_fixed = true;
+
 	
 	return result;
 }

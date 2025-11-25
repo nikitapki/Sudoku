@@ -37,10 +37,9 @@ public:
 	// √енераци€ игрового пол€
 	void generateNewGame(int quantityRemoves);
 
-
 	// ѕока разборка куда это поместить, будет временно здесь
 
-	bool processCellInput(int pos_y, int pos_x, int value);
+	bool checkInputValueInCell(int coordinateCell, int inputValue);
 
 
 };
