@@ -15,14 +15,6 @@ void RandomLCG::installingSeed() {
 
 // Функция поиска рандомного числа из заданного промежутка (не рассчитан на отрицательные числа)
 unsigned int RandomLCG::random(int min, int max) {
-	if (counter != max - min) {
-		counter++;
-	}
-	else {
-		counter = 0;
-		installingSeed();
-	}
-
 
 	const unsigned int a = 1664525; // золотой стандарт для простых 32битных LCG
 	const unsigned int c = 1013904223; // золотой стандарт для простых 32битных LCG 

@@ -7,6 +7,8 @@
 #include "Manager.hpp"
 #include "MouseHandler.hpp"
 
+// исправить событие уменьшение окна ( в будущем )
+
 typedef struct {
 	int tableCoord;
 	int sudokuNumbersAvailableToInput;
@@ -16,13 +18,17 @@ class Renderer {
 private:
 	typeCoordinate coordinate{ -1,-1 };
 
-	int inputValue = -1;
-
+	// Для отображения позиции курсора
 	HANDLE hConsole;
 	COORD oldPos;
 	COORD pos{ 0,0 };
 
-	// Сохранение изначальной позиции курсора
+	// Для отображения цвета
+	COORD coord;
+	WORD saved_attributes;
+	int pastValue = -1; // прошлое значение
+
+	// Сохранение изначальной позиции курсора и изначального цвета
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 
 	MouseHandler& handlerClickes;
@@ -31,6 +37,8 @@ private:
 	void correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord);
 
 	void translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
+
+	PhysicCoordinateCell translatorTableToConsoleCoords(int coordinateCell);
 
 public:
 

@@ -123,15 +123,12 @@ void Manager::generateNewGame(int quantityRemoves) {
 }
 
 
-
-
 bool Manager::checkInputValueInCell(int coordinateCell, int inputValue) {
 	bool result = true;
 
 	(gridCells.field[coordinateCell].is_fixed || gridCells.field[coordinateCell].value != inputValue) 
 		? result = false 
 		: gridCells.field[coordinateCell].is_fixed = true;
-
 	
 	return result;
 }

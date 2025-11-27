@@ -6,7 +6,6 @@
 typedef struct Cell{
 	int value;
 	bool is_fixed;
-	bool is_selected = false;
 	int position_x;
 	int position_y;
 } Cell;
@@ -20,6 +19,9 @@ private:
 public:
 	// Массив структур, хранящий игровое поле
 	Cell* field;
+
+	// Кол-во каждого значения, которое можно ввести в судоку
+	int quantityValues[SIZE_SUDOKU];
 
 	// Конструктор поля выделяет сразу память под поле
 	Field();

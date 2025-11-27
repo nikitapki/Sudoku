@@ -40,8 +40,6 @@ public:
 	// Пока разборка куда это поместить, будет временно здесь
 
 	bool checkInputValueInCell(int coordinateCell, int inputValue);
-
-
 };
 
 #endif // !MANAGER_SUDOKU

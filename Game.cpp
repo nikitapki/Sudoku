@@ -4,7 +4,7 @@
 Game::Game() : render(field, handlerClickes) {
 	bool endGame = false;
 
-	field.generateNewGame(10);
+	field.generateNewGame(21);
 	render.drawElementaryField();
 	while (!endGame) {
 		render.drawValueCell();

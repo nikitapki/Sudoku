@@ -32,7 +32,7 @@ void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoor
 // Отрисовка изначальной игры 
 // Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
-
+	
 	std::cout << u8"\
 ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗\n\
 ║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
@@ -82,6 +82,32 @@ void Renderer::drawValueCell() {
 	PhysicCoordinateCell consoleCoord = handlerClickes.clickToConsole();
 
 	translatorСonsoleToTableCoords(&consoleCoord);
+	
+	PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
+	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
+
+		coordinatesNotPermanent = translatorTableToConsoleCoords(i);
+		coord.X = coordinatesNotPermanent.x;
+		coord.Y = coordinatesNotPermanent.y;
+		SetConsoleCursorPosition(hConsole, coord);
+
+		GetConsoleScreenBufferInfo(hConsole, &csbi);
+		saved_attributes = csbi.wAttributes;
+
+		if (coordinate.sudokuNumbersAvailableToInput == field.gridCells.field[i].value && field.gridCells.field[i].is_fixed) {
+			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+
+			std::cout << "\b\b" << " " << field.gridCells.field[i].value << " ";
+
+			SetConsoleTextAttribute(hConsole, saved_attributes);
+		}
+		else {
+			if (pastValue == field.gridCells.field[i].value && field.gridCells.field[i].is_fixed) {
+				std::cout << "\b\b" << " " << field.gridCells.field[i].value << " ";
+			}
+		}
+	}
+	pastValue = coordinate.sudokuNumbersAvailableToInput;
 
 	if (coordinate.tableCoord != -1) {
 		if (field.checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
@@ -89,8 +115,20 @@ void Renderer::drawValueCell() {
 			pos.Y = consoleCoord.y;
 			SetConsoleCursorPosition(hConsole, pos);
 
-			std::cout << field.gridCells.field[coordinate.tableCoord].value;
+			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+
+			std::cout << "\b" << " " << field.gridCells.field[coordinate.tableCoord].value << " ";
+
+			SetConsoleTextAttribute(hConsole, saved_attributes);
 		}
-		SetConsoleCursorPosition(hConsole, oldPos);
 	}
+	SetConsoleCursorPosition(hConsole, oldPos);
+}
+
+PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell) {
+	PhysicCoordinateCell coord;
+	coord.y = coordinateCell / SIZE_SUDOKU * 2 + 1;
+	coord.x = coordinateCell % SIZE_SUDOKU * 4 + 3;
+
+	return coord;
 }
