@@ -100,6 +100,20 @@ void Manager::removeCells(int quantityRemoves) {
 	}
 }
 
+void Manager::InitializeCounterFixedCells() {
+	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
+		if (gridCells.field[i].is_fixed) {
+			gridCells.quantityValues[0] += 1;
+			gridCells.quantityValues[gridCells.field[i].value] += 1;
+		}
+	}
+}
+
+void Manager::counterFixedCells(int valueCell) {
+	gridCells.quantityValues[0] += 1;
+	gridCells.quantityValues[gridCells.field[valueCell].value] += 1;
+}
+
 
 // Генерация игрового поля
 void Manager::generateNewGame(int quantityRemoves) {
@@ -120,6 +134,9 @@ void Manager::generateNewGame(int quantityRemoves) {
 
 	// Дополняем объект класса Поле пустыми клетка, чтобы указать фиксированные и свободные ячейки
 	gridCells.InitializeGameRound(grid);
+
+	// Указываем количество зафиксированных(открытых пользователю) клеток
+	InitializeCounterFixedCells();
 }
 
 

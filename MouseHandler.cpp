@@ -10,7 +10,7 @@ MouseHandler::MouseHandler() {
 
 PhysicCoordinateCell MouseHandler::clickToConsole() {
 
-    PhysicCoordinateCell clickToField;
+    PhysicCoordinateCell clickToField{ 0,0 };
 
 	while (true) {
         ReadConsoleInput(hStdin, irInBuf, SIZE_BUF, &cNumRead);

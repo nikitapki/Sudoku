@@ -30,6 +30,9 @@ private:
 	// Удаление ячеек для генерации самой игры
 	void removeCells(int quantityRemoves);
 
+	// инициализируем счетчик, помещаем в него нашу вариацию игры
+	void InitializeCounterFixedCells();
+
 public:
 	// Хранилище игрового поля
 	Field gridCells;
@@ -38,8 +41,10 @@ public:
 	void generateNewGame(int quantityRemoves);
 
 	// Пока разборка куда это поместить, будет временно здесь
-
 	bool checkInputValueInCell(int coordinateCell, int inputValue);
+
+	// счетчик фиксированных значений
+	void counterFixedCells(int value);
 };
 
 #endif // !MANAGER_SUDOKU

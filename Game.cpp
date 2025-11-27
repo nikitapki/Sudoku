@@ -1,13 +1,24 @@
 #include "Game.hpp"
 
 // : render(field) - инициализация render полем(объектом класса) field
-Game::Game() : render(field, handlerClickes) {
-	bool endGame = false;
+Game::Game() 
+	: field(), 
+	handlerClickes(),
+	renderField(&field, &handlerClickes),
+	menu(&handlerClickes) {
 
-	field.generateNewGame(21);
-	render.drawElementaryField();
-	while (!endGame) {
-		render.drawValueCell();
-	}
-	
+	bool endRound = false, endGame = false;
+	do {
+		field.generateNewGame(menu.controlMenu());
+		renderField.drawElementaryField();
+
+		while (!endRound) {
+			renderField.drawValueCell();
+			if (field.gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
+				endRound = true;
+			}
+		}
+		renderField.ClearConsole();
+
+	} while (!endGame);
 }
