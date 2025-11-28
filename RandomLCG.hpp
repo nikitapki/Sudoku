@@ -1,5 +1,4 @@
-#ifndef LCG_RANDOM_GENERATOR
-#define LCG_RANDOM_GENERATOR
+#pragma once
 
 #include <ctime>
 
@@ -28,5 +27,3 @@ public:
 
 	int* randomGenerateReverseMassive(int start, int end);
 };
-
-#endif // !LCG_RANDOM_GENERATOR

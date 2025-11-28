@@ -1,5 +1,4 @@
-#ifndef CONTROL_GAME
-#define CONTROL_GAME
+#pragma once
 
 #include "Config.hpp"
 #include "Manager.hpp"
@@ -22,5 +21,3 @@ public:
 	Game();
 
 };
-
-#endif // !CONTROL_GAME

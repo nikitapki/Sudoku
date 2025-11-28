@@ -1,5 +1,4 @@
-#ifndef MANAGER_SUDOKU
-#define MANAGER_SUDOKU
+#pragma once 
 
 #include "RandomLCG.hpp"
 #include "Config.hpp"
@@ -46,5 +45,3 @@ public:
 	// счетчик фиксированных значений
 	void counterFixedCells(int value);
 };
-
-#endif // !MANAGER_SUDOKU

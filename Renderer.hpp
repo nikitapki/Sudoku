@@ -1,5 +1,4 @@
-#ifndef RENDERER_FIELD
-#define RENDERER_FIELD
+#pragma once
 
 #include <windows.h>
 
@@ -84,5 +83,3 @@ public:
 
 	void ClearConsole();
 };
-
-#endif // !RENDERER_FIELD

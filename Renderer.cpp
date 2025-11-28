@@ -5,10 +5,10 @@ void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) 
 
 	if (consoleCoord->x % 2 == 0) { }
 	else if (consoleCoord->x % 4 == 3) {
-		consoleCoord->x -= 1;
+		(consoleCoord->x)--;
 	}
 	else if (consoleCoord->x % 4 == 1) {
-		consoleCoord->x += 1;
+		(consoleCoord->x)--;
 	}
 }
 

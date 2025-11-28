@@ -1,5 +1,4 @@
-#ifndef MENU
-#define MENU
+#pragma once
 
 #include "Renderer.hpp"
 
@@ -11,5 +10,3 @@ public:
 
 	int controlMenu();
 };
-
-#endif // !MENU

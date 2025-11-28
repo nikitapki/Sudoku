@@ -1,5 +1,4 @@
-#ifndef FIELD
-#define FIELD
+#pragma once
 
 #include "Config.hpp"
 
@@ -37,5 +36,3 @@ public:
 		delete[] field;
 	}
 };
-
-#endif // !FIELD

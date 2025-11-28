@@ -1,5 +1,4 @@
-#ifndef PLAYER
-#define PLAYER
+#pragma once
 
 class Player
 {
@@ -7,5 +6,3 @@ public:
 	
 
 };
-
-#endif // !PLAYER

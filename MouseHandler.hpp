@@ -1,5 +1,4 @@
-#ifndef MOUSE_HANDLER
-#define MOUSE_HANDLER
+#pragma once
 
 #include "Config.hpp"
 
@@ -20,5 +19,3 @@ public:
 
 	PhysicCoordinateCell clickToConsole();
 };
-
-#endif // !MOUSE_HANDLER
