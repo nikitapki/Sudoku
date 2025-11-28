@@ -84,11 +84,27 @@ void Renderer::drawValueCell() {
 	PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
 	translatorСonsoleToTableCoords(&consoleCoord);
+
+	if (coordinate.tableCoord != pastValueCell) {
+		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
+			pos.X = consoleCoord.x;
+			pos.Y = consoleCoord.y;
+			SetConsoleCursorPosition(hConsole, pos);
+
+			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+
+			pastValueCell = coordinate.tableCoord;
+			field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
+
+			SetConsoleTextAttribute(hConsole, saved_attributes);
+		}
+	}
 	
 	PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
 	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 
 		coordinatesNotPermanent = translatorTableToConsoleCoords(i);
+
 		coord.X = coordinatesNotPermanent.x;
 		coord.Y = coordinatesNotPermanent.y;
 		SetConsoleCursorPosition(hConsole, coord);
@@ -104,27 +120,13 @@ void Renderer::drawValueCell() {
 			SetConsoleTextAttribute(hConsole, saved_attributes);
 		}
 		else {
-			if (pastValue == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
+			if (pastValueTableNumbers == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
 				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
 			}
 		}
 	}
-	pastValue = coordinate.sudokuNumbersAvailableToInput;
+	pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 
-	if (coordinate.tableCoord != -1) {
-		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
-			pos.X = consoleCoord.x;
-			pos.Y = consoleCoord.y;
-			SetConsoleCursorPosition(hConsole, pos);
-
-			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
-
-			field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
-			std::cout << "\b" << " " << field->gridCells.field[coordinate.tableCoord].value << " ";
-
-			SetConsoleTextAttribute(hConsole, saved_attributes);
-		}
-	}
 	SetConsoleCursorPosition(hConsole, oldPos);
 }
 

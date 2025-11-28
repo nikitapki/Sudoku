@@ -34,7 +34,8 @@ private:
 	// ƒл€ отображени€ цвета
 	COORD coord{ 0,0 };
 	WORD saved_attributes;
-	int pastValue = -1; // прошлое значение
+	int pastValueCell = -1; // прошлое значение 
+	int pastValueTableNumbers = -1;// прошлое значение таблицы с возможными значени€ми дл€ судоку
 
 	// —охранение изначальной позиции курсора и изначального цвета
 	CONSOLE_SCREEN_BUFFER_INFO csbi;

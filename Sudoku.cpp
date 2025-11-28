@@ -17,21 +17,4 @@ int main() {
 	SetConsoleCP(65001);
 	
 	Game startGame;
-
-	/*Manager gener;
-	gener.fillGrid();
-	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		for (int j = 0; j < SIZE_SUDOKU; j++) {
-			std::cout << gener.grid[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-	gener.removeCells(10);
-	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		for (int j = 0; j < SIZE_SUDOKU; j++) {
-			std::cout << gener.grid[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}*/
 }
