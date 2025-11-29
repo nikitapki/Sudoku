@@ -1,23 +1,27 @@
 #include "Manager.hpp"
 
-
-// Контроллер комбинаций
-// Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
-// (значение уже находится в массиве по заданным координатам)
-bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
-	// Проверка строки на повторы
+// Проверка строки на повторы
+bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
 		if (grid[coord_y][i] == value) {
 			return false;
 		}
 	}
-	// Проверка столбца на повторы
+	return true;
+}
+
+// Проверка столбца на повторы
+bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
 		if (grid[i][coord_x] == value) {
 			return false;
 		}
 	}
-	// Проверка квадрата 3на3 на повторы
+	return true;
+}
+
+// Проверка квадрата 3на3 на повторы
+bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
 	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
@@ -27,8 +31,16 @@ bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 			}
 		}
 	}
-
 	return true;
+}
+
+// Контроллер комбинаций
+// Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
+// (значение уже находится в массиве по заданным координатам)
+bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
+	return (checkerCombinationsFromRow(coord_y, value)) &&
+		(checkerCombinationsFromRow(coord_y, value)) &&
+		(checkerCombinationsFromRow(coord_y, value));
 }
 
 
@@ -103,8 +115,8 @@ void Manager::removeCells(int quantityRemoves) {
 void Manager::InitializeCounterFixedCells() {
 	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 		if (gridCells.field[i].is_fixed) {
-			gridCells.quantityValues[0] += 1;
-			gridCells.quantityValues[gridCells.field[i].value] += 1;
+			(gridCells.quantityValues[0])++;
+			(gridCells.quantityValues[gridCells.field[i].value])++;
 		}
 	}
 }
@@ -139,7 +151,8 @@ void Manager::generateNewGame(int quantityRemoves) {
 	InitializeCounterFixedCells();
 }
 
-
+// Проверка на введенное значение, если равны, то устанавливаем ячейку как фиксированную,
+// чтобы можно было отобразить значение
 bool Manager::checkInputValueInCell(int coordinateCell, int inputValue) {
 	bool result = true;
 

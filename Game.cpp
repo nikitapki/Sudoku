@@ -9,13 +9,21 @@ Game::Game()
 
 	bool endRound = false, endGame = false;
 	do {
-		field.generateNewGame(menu.controlMenu());
+		field.generateNewGame(menu.controlMenu(menu.startProgram));
+
+		roundStart = Clock::now();      // запомнили момент старта раунда
+
 		renderField.drawElementaryField();
 
 		while (!endRound) {
-			renderField.drawValueCell();
-			if (field.gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
-				endRound = true;
+			if (renderField.drawValueCell()) {
+				if (field.gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
+					endRound = true;
+				}
+			}
+			else {
+				field.generateNewGame(menu.controlMenu(menu.returnFromStartedGame));
+				renderField.drawElementaryField();
 			}
 		}
 		renderField.ClearConsole();

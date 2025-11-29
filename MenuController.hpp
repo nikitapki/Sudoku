@@ -8,5 +8,15 @@ public:
 
 	MenuController(MouseHandler* handler) : renderMenu(handler) { }
 
-	int controlMenu();
+	enum ModesRenderringMenu
+	{
+		startProgram = 0,
+		returnFromStartedGame = 1
+	};
+
+	int MenuForStartGame();
+
+	int MenuForReturnFromGame();
+
+	int controlMenu(int mode);
 };

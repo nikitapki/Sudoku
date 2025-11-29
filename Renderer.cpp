@@ -3,7 +3,7 @@
 void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) {
 	int x = consoleCoord->x;
 
-	if (consoleCoord->x % 2 == 0) { }
+	if (consoleCoord->x % 2 == 0) {}
 	else if (consoleCoord->x % 4 == 3) {
 		(consoleCoord->x)--;
 	}
@@ -14,31 +14,81 @@ void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) 
 
 void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord) {
 
-	if (consoleCoord->y % 2 != 0 && consoleCoord->y <= 17 && consoleCoord->y >= 1) {
-		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= 36 && consoleCoord->x >= 1) {
+	if (consoleCoord->y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK && 
+		consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+
+		if (consoleCoord->x >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
+			consoleCoord->x <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+			coordinate.buttonBack = true;
+		}
+	}
+
+	if (consoleCoord->y % 2 != 0 && consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU && 
+		consoleCoord->y >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
+		
+		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord->x >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 			coordinate.tableCoord = consoleCoord->y / 2 * SIZE_SUDOKU + consoleCoord->x / 4;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 
-	if (consoleCoord->y == 20) {
-		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= 36 && consoleCoord->x >= 1) {
+	if (consoleCoord->y == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
+
+		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU && 
+			consoleCoord->x >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 			coordinate.sudokuNumbersAvailableToInput = consoleCoord->x / 4 + 1;
-			coordinate.tableCoord = -1;
+			(coordinate.tableCoord)--;
 		}
 	}
 }
 
 // Отрисовка изначальной игры 
+// 
+// версия оформления
+// 
+// ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣             ╔═══╦═══╦═══╗\n\
+// ║   ║   ║   ║   ║   ║   ║   ║   ║   ║             ║ 1 ║ 2 ║ 3 ║\n\
+// ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣             ╠═══╬═══╬═══╣\n\
+// ║   ║   ║   ║   ║   ║   ║   ║   ║   ║             ║ 4 ║ 5 ║ 6 ║\n\
+// ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣             ╠═══╬═══╬═══╣\n\
+// ║   ║   ║   ║   ║   ║   ║   ║   ║   ║             ║ 7 ║ 8 ║ 9 ║\n\
+// ╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝             ╚═══╩═══╩═══╝\n";
+// 
+// 
+// БУДУЩАЯ ВЕРСИЯ \
+std::cout << u8"\
+╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ╔═════════════════╗\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ║   Статистика    ║\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ╠═════════════════╣\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ║   Время игры:   ║\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║    00:00:00     ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╠═════════════════╣\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║     Ошибки:     ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ║        0        ║\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ╚═════════════════╝\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
+╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝\n";
+// 
+// 
+// 
 // Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
 	
-	SetConsoleCursorPosition(hConsole, oldPos);
+	ClearConsole();
 
 	std::cout << u8"\
-╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
+╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗\n\
+║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║\n\
+╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝\n\
 ║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
 ╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
 ║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
@@ -79,11 +129,16 @@ void Renderer::drawElementaryField() {
 	SetConsoleCursorPosition(hConsole, oldPos);
 }
 
-void Renderer::drawValueCell() {
+bool Renderer::drawValueCell() {
 
 	PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
 	translatorСonsoleToTableCoords(&consoleCoord);
+
+	if (coordinate.buttonBack) {
+		coordinate.buttonBack = false; // чтобы при повторном заходе не выходило сразу
+		return false;
+	}
 
 	if (coordinate.tableCoord != pastValueCell) {
 		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
@@ -91,7 +146,7 @@ void Renderer::drawValueCell() {
 			pos.Y = consoleCoord.y;
 			SetConsoleCursorPosition(hConsole, pos);
 
-			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
 
 			pastValueCell = coordinate.tableCoord;
 			field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
@@ -113,7 +168,7 @@ void Renderer::drawValueCell() {
 		saved_attributes = csbi.wAttributes;
 
 		if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
-			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
 
 			std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
 
@@ -128,6 +183,8 @@ void Renderer::drawValueCell() {
 	pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 
 	SetConsoleCursorPosition(hConsole, oldPos);
+
+	return true;
 }
 
 PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell) {
@@ -139,8 +196,7 @@ PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell
 }
 
 CommandsMenu Renderer::drawMenu() {
-
-	SetConsoleCursorPosition(hConsole, oldPos);
+	ClearConsole();
 
 	std::cout << u8"\
 ╔══════════════╗\n\
@@ -156,12 +212,14 @@ CommandsMenu Renderer::drawMenu() {
 
 		PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
-		if (consoleCoord.x <= 15) {
-			if (consoleCoord.y >= 0 && consoleCoord.y <= 2) {
+		if (consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
+			if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY 
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY) {
 				result = playGame;
 				exitFromCycl = true;
 			}
-			else if (consoleCoord.y >= 3 && consoleCoord.y <= 5) {
+			else if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT 
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT) {
 				result = exitGame;
 				exitFromCycl = true;
 			}
@@ -174,7 +232,7 @@ CommandsMenu Renderer::drawMenu() {
 }
 
 int Renderer::drawSettingsDifficulty() {
-	SetConsoleCursorPosition(hConsole, oldPos);
+	ClearConsole();
 
 	std::cout << u8"\
 ╔═════════════════╗\n\
@@ -196,27 +254,31 @@ int Renderer::drawSettingsDifficulty() {
 	int result;
 	bool exitFromCycl = false;
 	do {
-
 		PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
-		if (consoleCoord.x <= 19) {
-			if (consoleCoord.y >= 0 && consoleCoord.y <= 2) {
+		if (consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS) {
+			if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY) {
 				result = randomDifficult.random(18,27);
 				exitFromCycl = true;
 			}
-			else if (consoleCoord.y >= 3 && consoleCoord.y <= 5) {
+			else if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM) {
 				result = randomDifficult.random(30, 40);
 				exitFromCycl = true;
 			}
-			else if (consoleCoord.y >= 6 && consoleCoord.y <= 8) {
+			else if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD) {
 				result = randomDifficult.random(41, 50);
 				exitFromCycl = true;
 			}
-			else if (consoleCoord.y >= 9 && consoleCoord.y <= 11) {
+			else if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE 
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE) {
 				result = randomDifficult.random(51, 60);
 				exitFromCycl = true;
 			}
-			else if (consoleCoord.y >= 12 && consoleCoord.y <= 14) {
+			else if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK 
+				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK) {
 				result = -1;
 				exitFromCycl = true;
 			}
