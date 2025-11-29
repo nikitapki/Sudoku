@@ -10,18 +10,8 @@ bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
 	return true;
 }
 
-// Проверка столбца на повторы
-bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
-	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		if (grid[i][coord_x] == value) {
-			return false;
-		}
-	}
-	return true;
-}
-
 // Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
+bool Manager::checkerCombinationsFromBox(int coord_x, int coord_y, int value) {
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
 	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
@@ -34,13 +24,23 @@ bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
 	return true;
 }
 
+// Проверка столбца на повторы
+bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
+	for (int i = 0; i < SIZE_SUDOKU; i++) {
+		if (grid[i][coord_x] == value) {
+			return false;
+		}
+	}
+	return true;
+}
+
 // Контроллер комбинаций
 // Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
 // (значение уже находится в массиве по заданным координатам)
 bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 	return (checkerCombinationsFromRow(coord_y, value)) &&
-		(checkerCombinationsFromRow(coord_y, value)) &&
-		(checkerCombinationsFromRow(coord_y, value));
+		(checkerCombinationsFromColumn(coord_x, value)) &&
+		(checkerCombinationsFromBox(coord_x, coord_y, value));
 }
 
 
