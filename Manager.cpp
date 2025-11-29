@@ -17,11 +17,7 @@ bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 			return false;
 		}
 	}
-	return true;
-}
-
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
+	// Проверка квадрата 3на3 на повторы
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
 	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
