@@ -13,6 +13,12 @@ class Manager
 private:
 	RandomLCG rand;
 
+	bool checkerCombinationsFromRow(int coord_y, int value);
+
+	bool checkerCombinationsFromColumn(int coord_x, int value);
+
+	bool checkerCombinationsFromBox(int coord_y, int coord_x, int value);
+
 	// Функция проверки комбинации
 	// Проверка можно ли поставить указанное значение по указанным координатам
 	bool checkerCombinations(int coord_y, int coord_x, int value);
