@@ -10,62 +10,7 @@ bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
 	return true;
 }
 
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_x, int coord_y, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
 
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
-// Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
-}
-<<<<<<<<< Temporary merge branch 1
- 
-=========
-
->>>>>>>>> Temporary merge branch 2
 // Проверка квадрата 3на3 на повторы
 bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
@@ -96,7 +41,7 @@ bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
 	return (checkerCombinationsFromRow(coord_y, value)) &&
 		(checkerCombinationsFromColumn(coord_x, value)) &&
-		(checkerCombinationsFromBox(coord_x, coord_y, value));
+		(checkerCombinationsFromBox(coord_y, coord_x, value));
 }
 
 
@@ -169,6 +114,10 @@ void Manager::removeCells(int quantityRemoves) {
 }
 
 void Manager::InitializeCounterFixedCells() {
+	for (int i = 0; i < SIZE_COUNTER_IMPUT_NUMS; i++) {
+		gridCells.quantityValues[i] = 0;
+	}
+
 	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 		if (gridCells.field[i].is_fixed) {
 			(gridCells.quantityValues[0])++;
@@ -178,8 +127,8 @@ void Manager::InitializeCounterFixedCells() {
 }
 
 void Manager::counterFixedCells(int valueCell) {
-	gridCells.quantityValues[0] += 1;
-	gridCells.quantityValues[gridCells.field[valueCell].value] += 1;
+	(gridCells.quantityValues[0])++;
+	(gridCells.quantityValues[valueCell])++;
 }
 
 
