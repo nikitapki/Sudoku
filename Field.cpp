@@ -1,22 +1,19 @@
 #include "Field.hpp"
 
-Field::Field() {
-	field = new Cell[sizeSudokuNxN];
+CoordinateTableSudoku Field::translatorIndexInRowCol(int indexSudokuMassive) {
+	CoordinateTableSudoku coordinateCell;
+	coordinateCell.position_x = indexSudokuMassive % SIZE_SUDOKU;
+	coordinateCell.position_y = indexSudokuMassive / SIZE_SUDOKU;
+	return coordinateCell;
 }
 
-void Field::InitializeFullGrid(int massiveCells[][SIZE_SUDOKU]) {
-	for (int i = 0; i < sizeSudokuNxN; i++) {
-		field[i].value = massiveCells[i / SIZE_SUDOKU][i % SIZE_SUDOKU];
+void Field::InitializeQuantityEmptyValues() {
+	memset(quantityValues, 0, sizeof(quantityValues));
+}
+
+void Field::InitializeFieldEmptyValues() {
+	for (int i = 0; i < SIZE_SUDOKU_N_X_N; i++) {
+		field[i].value = 0;
 		field[i].is_fixed = true;
-		field[i].position_y = i / SIZE_SUDOKU;
-		field[i].position_x = i % SIZE_SUDOKU;
-	}
-}
-
-void Field::InitializeGameRound(int massiveCells[][SIZE_SUDOKU]) {
-	for (int i = 0; i < sizeSudokuNxN; i++) {
-		(massiveCells[i / SIZE_SUDOKU][i % SIZE_SUDOKU] == 0) 
-			? field[i].is_fixed = false 
-			: field[i].is_fixed = true;
 	}
 }

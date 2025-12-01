@@ -43,7 +43,7 @@ int* RandomLCG::randomGenerateReverseMassive(int start, int end) {
 	int* massiveNums = new int[lenMassive];
 
 	for (int i = 0; i < lenMassive; i++) {
-		massiveNums[i] = start++;
+   		massiveNums[i] = start++;
 	}
 
 	randomReverseMassive(massiveNums, lenMassive);

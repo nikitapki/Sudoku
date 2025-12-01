@@ -122,6 +122,8 @@ public:
 		saved_attributes = csbi.wAttributes;
 	}
 
+	void initializeCoordinate();
+
 	void drawElementaryField();
 
 	bool drawValueCell();

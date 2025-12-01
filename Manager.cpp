@@ -2,22 +2,30 @@
 
 // Проверка строки на повторы
 bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
+	int idx;
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		if (grid[coord_y][i] == value) {
+		idx = coord_y * SIZE_SUDOKU + i;
+		if (gridCells.field[idx].value == value) {
 			return false;
 		}
 	}
 	return true;
 }
 
-
 // Проверка квадрата 3на3 на повторы
-bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
+bool Manager::checkerCombinationsFromBox(CoordinateTableSudoku coord, int value) {
+	int coord_y = coord.position_y;
+	int coord_x = coord.position_x;
+
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
+
+	int idx;
+
 	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
 		for (int j = offsetCoord_x; j < offsetCoord_x + SIZE_SQUARE_SUDOKU; j++) {
-			if (grid[i][j] == value) {
+			idx = i * SIZE_SUDOKU + j;
+			if (gridCells.field[idx].value == value) {
 				return false;
 			}
 		}
@@ -27,8 +35,10 @@ bool Manager::checkerCombinationsFromBox(int coord_y, int coord_x, int value) {
 
 // Проверка столбца на повторы
 bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
+	int idx;
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		if (grid[i][coord_x] == value) {
+		idx = i * SIZE_SUDOKU + coord_x;
+		if (gridCells.field[idx].value == value) {
 			return false;
 		}
 	}
@@ -38,24 +48,23 @@ bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 // Контроллер комбинаций
 // Проверяет можно ли подставить заданное значение по заданным координатам в таблицу 
 // (значение уже находится в массиве по заданным координатам)
-bool Manager::checkerCombinations(int coord_y, int coord_x, int value) {
-	return (checkerCombinationsFromRow(coord_y, value)) &&
-		(checkerCombinationsFromColumn(coord_x, value)) &&
-		(checkerCombinationsFromBox(coord_y, coord_x, value));
+bool Manager::checkerCombinations(int indexCoordinateTableSudoku, int value) {
+	CoordinateTableSudoku coord = gridCells.translatorIndexInRowCol(indexCoordinateTableSudoku);
+	return 
+		(checkerCombinationsFromRow(coord.position_y, value)) &&
+		(checkerCombinationsFromColumn(coord.position_x, value)) &&
+		(checkerCombinationsFromBox(coord, value));
 }
 
 
 // Функция поиска первой пустой клетки (в которой находится 0)
 // Координаты клетки, записываются по адресу
 // Функция возвращает результат записи. Были ли найдены пустые клетки
-bool Manager::findEmpty(int* coord_y, int* coord_x) {
-	for (int i = 0; i < SIZE_SUDOKU; i++) {
-		for (int j = 0; j < SIZE_SUDOKU; j++) {
-			if (grid[i][j] == 0) {
-				*coord_y = i;
-				*coord_x = j;
-				return true;
-			}
+bool Manager::findEmpty(int* indexCoordinateTableSudoku) {
+	for (int i = 0; i < SIZE_SUDOKU_N_X_N; i++) {
+		if (gridCells.field[i].value == 0) {
+			*indexCoordinateTableSudoku = i;
+			return true;
 		}
 	}
 	return false;
@@ -64,10 +73,10 @@ bool Manager::findEmpty(int* coord_y, int* coord_x) {
 
 // Рекурсивная функция генерации таблицы судоку
 bool Manager::fillGrid() {
-	int coord_y, coord_x;
+	int indexCoordinateTableSudoku;
 
 	// Если нету пустых ячеек возвращает true
-	if (!findEmpty(&coord_y, &coord_x)) {
+	if (!findEmpty(&indexCoordinateTableSudoku)) {
 		return true;
 	}
 
@@ -85,16 +94,17 @@ bool Manager::fillGrid() {
 	
 		// Проверка заполнения таблицы
 		// (подходит ли кандидат, если нет рекурсивно возвращаем false и берем другого кандидата)
-		if (checkerCombinations(coord_y, coord_x, val)) {
-			grid[coord_y][coord_x] = val;
+		if (checkerCombinations(indexCoordinateTableSudoku, val)) {
+			gridCells.field[indexCoordinateTableSudoku].value = val;
 
 			// Рекурсивное возвращение true в случае полного заполнения таблицы
 			if (fillGrid()) {
 				return true;
 			}
 			// Если не удалось заполнить таблицу по выбранному кандидату очищаем установленное значение
-			grid[coord_y][coord_x] = 0;
+			gridCells.field[indexCoordinateTableSudoku].value = 0;
 		}
+		
 	}
 
 	delete[] candidates;
@@ -104,20 +114,17 @@ bool Manager::fillGrid() {
 }
 
 
-// Функция удаления ячеек по заданному количеству (служит как определение сложности судоку)
+// Функция снятия фиксации с ячейки (служит как определение сложности судоку)
 // Реализовано посредствам девятеричной системы счисления и массива индексов
-void Manager::removeCells(int quantityRemoves) {
+void Manager::unFixedCell(int quantityRemoves) {
 	int* massiveIndexesGrid = rand.randomGenerateReverseMassive(1, 81);
 	for (int i = 0; i < quantityRemoves; i++) {
-		grid[(massiveIndexesGrid[i] - 1) / SIZE_SUDOKU][(massiveIndexesGrid[i] - 1) % SIZE_SUDOKU] = 0;
+		gridCells.field[massiveIndexesGrid[i]].is_fixed = false;
 	}
 }
 
-void Manager::InitializeCounterFixedCells() {
-	for (int i = 0; i < SIZE_COUNTER_IMPUT_NUMS; i++) {
-		gridCells.quantityValues[i] = 0;
-	}
-
+// Функция подсчета фиксированных ячеек 
+void Manager::fillCounterFixedCells() {
 	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 		if (gridCells.field[i].is_fixed) {
 			(gridCells.quantityValues[0])++;
@@ -126,6 +133,7 @@ void Manager::InitializeCounterFixedCells() {
 	}
 }
 
+// Функция для увеления показателя в массиве счетчика для указанного значения
 void Manager::counterFixedCells(int valueCell) {
 	(gridCells.quantityValues[0])++;
 	(gridCells.quantityValues[valueCell])++;
@@ -135,25 +143,21 @@ void Manager::counterFixedCells(int valueCell) {
 // Генерация игрового поля
 void Manager::generateNewGame(int quantityRemoves) {
 
-	// Заполнение нулями таблицы
-	for (int i = 0; i < SIZE_SUDOKU; ++i) {
-		memset(grid[i], 0, sizeof(grid[i]));
-	}
+	// инициализируем пустыми значениями поле
+	gridCells.InitializeFieldEmptyValues();
+
+	// инициализируем пустыми значениями счетчик
+	gridCells.InitializeQuantityEmptyValues();
 
 	// Заполняем поле псевдослучайной вариацией игры
 	fillGrid();
 
-	// Инициализирую объект класса Поле полностью заполненной корректной таблицей
-	gridCells.InitializeFullGrid(grid);
-
 	// Удаляем ячейки для подготовки игрового поля
-	removeCells(quantityRemoves);
-
-	// Дополняем объект класса Поле пустыми клетка, чтобы указать фиксированные и свободные ячейки
-	gridCells.InitializeGameRound(grid);
+	// Следовательно убираем с них фиксацию
+	unFixedCell(quantityRemoves);
 
 	// Указываем количество зафиксированных(открытых пользователю) клеток
-	InitializeCounterFixedCells();
+	fillCounterFixedCells();
 }
 
 // Проверка на введенное значение, если равны, то устанавливаем ячейку как фиксированную,

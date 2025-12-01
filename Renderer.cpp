@@ -83,6 +83,8 @@ std::cout << u8"\
 // 
 // Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
+
+	initializeCoordinate();
 	
 	ClearConsole();
 
@@ -307,4 +309,10 @@ void Renderer::ClearConsole()
 	FillConsoleOutputAttribute(hConsole, csbi.wAttributes, consoleSize, home, &charsWritten);
 	// Курсор в (0,0)
 	SetConsoleCursorPosition(hConsole, home);
+}
+
+void Renderer::initializeCoordinate() {
+	coordinate.buttonBack = false;
+	coordinate.sudokuNumbersAvailableToInput = -1;
+	coordinate.tableCoord = -1;
 }

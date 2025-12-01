@@ -17,26 +17,26 @@ private:
 
 	bool checkerCombinationsFromColumn(int coord_x, int value);
 
-	bool checkerCombinationsFromBox(int coord_y, int coord_x, int value);
+	bool checkerCombinationsFromBox(CoordinateTableSudoku coord, int value);
 
 	// Функция проверки комбинации
 	// Проверка можно ли поставить указанное значение по указанным координатам
-	bool checkerCombinations(int coord_y, int coord_x, int value);
+	bool checkerCombinations(int indexCoordinateTableSudoku, int value);
 
 	// Функция поиска пустой клетки в таблице
-	bool findEmpty(int* coord_y, int* coord_x);
+	bool findEmpty(int* indexCoordinateTableSudoku);
 
 	// Сама таблица судоку (временное хранилище в дальнейшем переносится в Field)
-	int grid[SIZE_SUDOKU][SIZE_SUDOKU];
+	//int grid[SIZE_SUDOKU][SIZE_SUDOKU];
 
 	// Заполняет таблицу судоку различными значениями. Генерация рандомных комбинаций игры
 	bool fillGrid();
 
 	// Удаление ячеек для генерации самой игры
-	void removeCells(int quantityRemoves);
+	void unFixedCell(int quantityRemoves);
 
 	// инициализируем счетчик, помещаем в него нашу вариацию игры
-	void InitializeCounterFixedCells();
+	void fillCounterFixedCells();
 
 public:
 	// Хранилище игрового поля

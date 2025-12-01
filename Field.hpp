@@ -5,31 +5,36 @@
 typedef struct Cell{
 	int value;
 	bool is_fixed;
-	int position_x;
-	int position_y;
 } Cell;
 
-class Field
-{
-private:
-	// –азмер пол€ судоку (общий)
-	int sizeSudokuNxN = SIZE_SUDOKU * SIZE_SUDOKU;
+typedef struct CoordinateTableSudoku {
+	int position_x;
+	int position_y;
+} CoordinateTableSudoku;
 
+class Field {
 public:
 	// ћассив структур, хран€щий игровое поле
 	Cell* field;
 
 	//  ол-во каждого значени€, которое можно ввести в судоку (0 инд - общее кол-во, 1-9 инд соотв с значением)
-	int quantityValues[SIZE_COUNTER_IMPUT_NUMS] = { 0 };
+	int quantityValues[SIZE_COUNTER_IMPUT_NUMS];
 
 	//  онструктор пол€ выдел€ет сразу пам€ть под поле
-	Field();
+	Field() {
+		field = new Cell[SIZE_SUDOKU_N_X_N];
 
-	// »нициализаци€ заполненного пол€ фиксированными значени€ми
-	void InitializeFullGrid(int massiveCells[][SIZE_SUDOKU]);
+		InitializeQuantityEmptyValues();
+	}
 
-	// ”становка не фиксированных значений пол€ (с которыми может взаимодействовать пользователь)
-	void InitializeGameRound(int massiveCells[][SIZE_SUDOKU]);
+	// ѕереводчик из одномерных индексных координат в двумерное расположение €чейки
+	CoordinateTableSudoku translatorIndexInRowCol(int indexSudokuMassive);
+
+	// »нициализаци€ пустого массива счетчика фиксированных значений (общий и конкретных)
+	void InitializeQuantityEmptyValues();
+
+	// »нициализаци€ пустого пол€ судоку
+	void InitializeFieldEmptyValues();
 
 	// ƒеструктор очищает выделенную пам€ть
 	~Field() {
