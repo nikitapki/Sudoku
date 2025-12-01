@@ -60,6 +60,11 @@ enum CommandsMenu {
 	exitGame = 2
 };
 
+enum ColorsFromWinAtribute
+{
+	bk_green = BACKGROUND_INTENSITY
+};
+
 // исправить событие уменьшение окна ( в будущем )
 
 typedef struct {
@@ -73,20 +78,9 @@ private:
 	RandomLCG randomDifficult;
 
 	typeCoordinate coordinate{ -1,-1,false };
-
-	// Для отображения позиции курсора
-	HANDLE hConsole;
-	COORD oldPos;
-	COORD pos{ 0,0 };
-
-	// Для отображения цвета
-	COORD coord{ 0,0 };
-	WORD saved_attributes;
+	
 	int pastValueCell = -1; // прошлое значение 
 	int pastValueTableNumbers = -1;// прошлое значение таблицы с возможными значениями для судоку
-
-	// Сохранение изначальной позиции курсора и изначального цвета
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
 
 	MouseHandler* handlerClickes;
 	Manager* field = nullptr;
@@ -102,27 +96,15 @@ public:
 	// Для отрисовки меню
 	Renderer(MouseHandler* handlerClickes) :
 		handlerClickes(handlerClickes) {
-
-		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		GetConsoleScreenBufferInfo(hConsole, &csbi);
-		oldPos = csbi.dwCursorPosition;
-		saved_attributes = csbi.wAttributes;
 	}
 
 	// Для отрисовки игрового поля
 	Renderer(Manager* field, MouseHandler* handlerClickes) :
 		field(field),
 		handlerClickes(handlerClickes) {
-	
-		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		GetConsoleScreenBufferInfo(hConsole, &csbi);
-		oldPos = csbi.dwCursorPosition;
-		saved_attributes = csbi.wAttributes;
 	}
 
-	void initializeCoordinate();
+	void InitializeCoordinate();
 
 	void drawElementaryField();
 
@@ -131,8 +113,6 @@ public:
 	CommandsMenu drawMenu();
 
 	int drawSettingsDifficulty();
-
-	void ClearConsole();
 
 	// Устанавливает базовую точку начала отрисовки 
 	//void setBaseCursore();

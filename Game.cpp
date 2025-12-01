@@ -26,7 +26,7 @@ Game::Game()
 				renderField.drawElementaryField();
 			}
 		}
-		renderField.ClearConsole();
+		handlerClickes.ClearConsole();
 
 	} while (!endGame);
 }

@@ -16,10 +16,10 @@ int MenuController::MenuForStartGame() {
 			}
 		}
 		else {
-			renderMenu.ClearConsole();
+			handlerClicks->ClearConsole();
 			exit(0);
 		}
-		renderMenu.ClearConsole();
+		handlerClicks->ClearConsole();
 	} while (!exitCycl);
 
 	return result;
@@ -34,7 +34,7 @@ int MenuController::MenuForReturnFromGame() {
 		result = MenuForStartGame();
 	}
 
-	renderMenu.ClearConsole();
+	handlerClicks->ClearConsole();
 
 	return result;
 }

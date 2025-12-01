@@ -3,10 +3,14 @@
 #include "Renderer.hpp"
 
 class MenuController {
+private:
+	MouseHandler* handlerClicks;
 public:
 	Renderer renderMenu;
 
-	MenuController(MouseHandler* handler) : renderMenu(handler) { }
+	MenuController(MouseHandler* handler) : renderMenu(handler) { 
+		handlerClicks = handler;
+	}
 
 	enum ModesRenderringMenu
 	{

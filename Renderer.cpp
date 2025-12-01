@@ -84,9 +84,9 @@ std::cout << u8"\
 // Перед вызовом нужно задать значения в таблицу
 void Renderer::drawElementaryField() {
 
-	initializeCoordinate();
+	InitializeCoordinate();
 	
-	ClearConsole();
+	handlerClickes->ClearConsole();
 
 	std::cout << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
 	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
@@ -113,12 +113,12 @@ void Renderer::drawElementaryField() {
 	std::cout << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
 	int coordCell;
+	PhysicCoordinateCell consoleCoord;
 	for (int i = 1; i < SIZE_SUDOKU * 2; i += 2) {
-		
 		for (int j = 3; j < SIZE_SUDOKU * 4; j += 4) {
-			pos.Y = i;
-			pos.X = j;
-			SetConsoleCursorPosition(hConsole, pos);
+			consoleCoord.y = i;
+			consoleCoord.x = j;
+			handlerClickes->setCursorOnCoordinates(consoleCoord);
 			
 			coordCell = ((i - 1) / 2) * SIZE_SUDOKU + ((j - 3) / 4);
 
@@ -127,7 +127,7 @@ void Renderer::drawElementaryField() {
 			}
 		}
 	}
-	SetConsoleCursorPosition(hConsole, oldPos);
+	handlerClickes->setCursorOnOldCoordinates();
 }
 
 bool Renderer::drawValueCell() {
@@ -143,16 +143,14 @@ bool Renderer::drawValueCell() {
 
 	if (coordinate.tableCoord != pastValueCell) {
 		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
-			pos.X = consoleCoord.x;
-			pos.Y = consoleCoord.y;
-			SetConsoleCursorPosition(hConsole, pos);
+			handlerClickes->setCursorOnCoordinates(consoleCoord);
 
-			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
+			handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
 
 			pastValueCell = coordinate.tableCoord;
 			field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
 
-			SetConsoleTextAttribute(hConsole, saved_attributes);
+			handlerClickes->setStandartedColorOnConsole();
 		}
 
 		PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
@@ -160,19 +158,15 @@ bool Renderer::drawValueCell() {
 
 			coordinatesNotPermanent = translatorTableToConsoleCoords(i);
 
-			coord.X = coordinatesNotPermanent.x;
-			coord.Y = coordinatesNotPermanent.y;
-			SetConsoleCursorPosition(hConsole, coord);
+			handlerClickes->setCursorOnCoordinates(coordinatesNotPermanent);
 
-			GetConsoleScreenBufferInfo(hConsole, &csbi);
-			saved_attributes = csbi.wAttributes;
-
-			if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
-				SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
+			if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && 
+				field->gridCells.field[i].is_fixed) {
+				handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
 
 				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
 
-				SetConsoleTextAttribute(hConsole, saved_attributes);
+				handlerClickes->setStandartedColorOnConsole();
 			}
 			else {
 				if (pastValueTableNumbers == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
@@ -183,7 +177,7 @@ bool Renderer::drawValueCell() {
 		pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 	}
 
-	SetConsoleCursorPosition(hConsole, oldPos);
+	handlerClickes->setCursorOnOldCoordinates();
 
 	return true;
 }
@@ -197,7 +191,7 @@ PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell
 }
 
 CommandsMenu Renderer::drawMenu() {
-	ClearConsole();
+	handlerClickes->ClearConsole();
 
 	std::cout << u8"\
 ╔══════════════╗\n\
@@ -227,13 +221,13 @@ CommandsMenu Renderer::drawMenu() {
 		}
 	} while (!exitFromCycl);
 
-	SetConsoleCursorPosition(hConsole, oldPos);
+	handlerClickes->setCursorOnOldCoordinates();
 
 	return result;
 }
 
 int Renderer::drawSettingsDifficulty() {
-	ClearConsole();
+	handlerClickes->ClearConsole();
 
 	std::cout << u8"\
 ╔═════════════════╗\n\
@@ -286,32 +280,12 @@ int Renderer::drawSettingsDifficulty() {
 		}
 	} while (!exitFromCycl);
 
-	SetConsoleCursorPosition(hConsole, oldPos);
+	handlerClickes->setCursorOnOldCoordinates();
 
 	return result;
 }
 
-void Renderer::ClearConsole()
-{
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (hConsole == INVALID_HANDLE_VALUE) return;
-
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) return;
-
-	DWORD consoleSize = csbi.dwSize.X * csbi.dwSize.Y;
-	DWORD charsWritten;
-	COORD home = { 0, 0 };
-
-	// Заполнить всё пробелами
-	FillConsoleOutputCharacter(hConsole, ' ', consoleSize, home, &charsWritten);
-	// Восстановить атрибуты
-	FillConsoleOutputAttribute(hConsole, csbi.wAttributes, consoleSize, home, &charsWritten);
-	// Курсор в (0,0)
-	SetConsoleCursorPosition(hConsole, home);
-}
-
-void Renderer::initializeCoordinate() {
+void Renderer::InitializeCoordinate() {
 	coordinate.buttonBack = false;
 	coordinate.sudokuNumbersAvailableToInput = -1;
 	coordinate.tableCoord = -1;
