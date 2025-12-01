@@ -39,6 +39,7 @@ void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoor
 			consoleCoord->x >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 			coordinate.sudokuNumbersAvailableToInput = consoleCoord->x / 4 + 1;
 			(coordinate.tableCoord)--;
+			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 }
@@ -85,31 +86,29 @@ void Renderer::drawElementaryField() {
 	
 	ClearConsole();
 
-	std::cout << u8"\
-╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣\n\
-║   ║   ║   ║   ║   ║   ║   ║   ║   ║\n\
-╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝\n";
+	std::cout << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
-	std::cout << u8"\
-╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗\n\
-║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║\n\
-╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝\n";
+	std::cout << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗" << std::endl;
+	std::cout << u8"║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║" << std::endl;
+	std::cout << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
 	int coordCell;
 	for (int i = 1; i < SIZE_SUDOKU * 2; i += 2) {
@@ -153,34 +152,34 @@ bool Renderer::drawValueCell() {
 
 			SetConsoleTextAttribute(hConsole, saved_attributes);
 		}
-	}
-	
-	PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
-	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 
-		coordinatesNotPermanent = translatorTableToConsoleCoords(i);
+		PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
+		for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 
-		coord.X = coordinatesNotPermanent.x;
-		coord.Y = coordinatesNotPermanent.y;
-		SetConsoleCursorPosition(hConsole, coord);
+			coordinatesNotPermanent = translatorTableToConsoleCoords(i);
 
-		GetConsoleScreenBufferInfo(hConsole, &csbi);
-		saved_attributes = csbi.wAttributes;
+			coord.X = coordinatesNotPermanent.x;
+			coord.Y = coordinatesNotPermanent.y;
+			SetConsoleCursorPosition(hConsole, coord);
 
-		if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
-			SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
+			GetConsoleScreenBufferInfo(hConsole, &csbi);
+			saved_attributes = csbi.wAttributes;
 
-			std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+			if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
+				SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY);
 
-			SetConsoleTextAttribute(hConsole, saved_attributes);
-		}
-		else {
-			if (pastValueTableNumbers == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
 				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+
+				SetConsoleTextAttribute(hConsole, saved_attributes);
+			}
+			else {
+				if (pastValueTableNumbers == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
+					std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+				}
 			}
 		}
+		pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 	}
-	pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 
 	SetConsoleCursorPosition(hConsole, oldPos);
 
