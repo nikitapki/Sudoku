@@ -13,8 +13,11 @@ void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) 
 }
 
 void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord) {
+	PhysicCoordinateCell local = *consoleCoord;
+	local.x -= BASE_OFFSET_X;
+	local.y -= BASE_OFFSET_Y; 
 
-	if (consoleCoord->y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK && 
+	if (consoleCoord->y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
 		consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
 
 		if (consoleCoord->x >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
@@ -23,21 +26,21 @@ void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoor
 		}
 	}
 
-	if (consoleCoord->y % 2 != 0 && consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU && 
-		consoleCoord->y >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
+	if (local.y % 2 != 0 && consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU &&
+		consoleCoord->y >= MIN_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 		
-		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
-			consoleCoord->x >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.tableCoord = consoleCoord->y / 2 * SIZE_SUDOKU + consoleCoord->x / 4;
+		if (local.x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord->x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+			coordinate.tableCoord = local.y / 2 * SIZE_SUDOKU + local.x / 4;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 
 	if (consoleCoord->y == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
 
-		if (consoleCoord->x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU && 
-			consoleCoord->x >= MIN_X_Y_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.sudokuNumbersAvailableToInput = consoleCoord->x / 4 + 1;
+		if (local.x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord->x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+			coordinate.sudokuNumbersAvailableToInput = local.x / 4 + 1;
 			(coordinate.tableCoord)--;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
@@ -88,36 +91,36 @@ void Renderer::drawElementaryField() {
 	
 	handlerClickes->ClearConsole();
 
-	std::cout << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
+	std::cout << pad << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::cout << pad << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
-	std::cout << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗" << std::endl;
-	std::cout << u8"║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║" << std::endl;
-	std::cout << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
+	std::cout << pad << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗" << std::endl;
+	std::cout << pad << u8"║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║" << std::endl;
+	std::cout << pad << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
 	int coordCell;
 	PhysicCoordinateCell consoleCoord;
 	for (int i = 1; i < SIZE_SUDOKU * 2; i += 2) {
 		for (int j = 3; j < SIZE_SUDOKU * 4; j += 4) {
-			consoleCoord.y = i;
-			consoleCoord.x = j;
+			consoleCoord.y = i + BASE_OFFSET_Y;
+			consoleCoord.x = j + BASE_OFFSET_X;
 			handlerClickes->setCursorOnCoordinates(consoleCoord);
 			
 			coordCell = ((i - 1) / 2) * SIZE_SUDOKU + ((j - 3) / 4);
@@ -156,7 +159,7 @@ bool Renderer::drawValueCell() {
 		PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
 		for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
 
-			coordinatesNotPermanent = translatorTableToConsoleCoords(i);
+			coordinatesNotPermanent = translatorTableToConsoleCoords(i);;
 
 			handlerClickes->setCursorOnCoordinates(coordinatesNotPermanent);
 
@@ -184,8 +187,8 @@ bool Renderer::drawValueCell() {
 
 PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell) {
 	PhysicCoordinateCell coord{ 0 };
-	coord.y = coordinateCell / SIZE_SUDOKU * 2 + 1;
-	coord.x = coordinateCell % SIZE_SUDOKU * 4 + 3;
+	coord.y = coordinateCell / SIZE_SUDOKU * 2 + 1 + BASE_OFFSET_Y;
+	coord.x = coordinateCell % SIZE_SUDOKU * 4 + 3 + BASE_OFFSET_X;
 
 	return coord;
 }
@@ -193,13 +196,12 @@ PhysicCoordinateCell Renderer::translatorTableToConsoleCoords(int coordinateCell
 CommandsMenu Renderer::drawMenu() {
 	handlerClickes->ClearConsole();
 
-	std::cout << u8"\
-╔══════════════╗\n\
-║    Играть    ║\n\
-╚══════════════╝\n\
-╔══════════════╗\n\
-║    Выход     ║\n\
-╚══════════════╝\n";
+	std::cout << pad << u8"╔══════════════╗" << std::endl;
+	std::cout << pad << u8"║    Играть    ║" << std::endl;
+	std::cout << pad << u8"╚══════════════╝" << std::endl;
+	std::cout << pad << u8"╔══════════════╗" << std::endl;
+	std::cout << pad << u8"║    Выход     ║" << std::endl;
+	std::cout << pad << u8"╚══════════════╝" << std::endl;
 
 	CommandsMenu result;
 	bool exitFromCycl = false;
@@ -207,7 +209,8 @@ CommandsMenu Renderer::drawMenu() {
 
 		PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
-		if (consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
+		if (consoleCoord.x >= MIN_X_FROM_CONSOLE_ROW_MENU_BUTTONS &&
+			consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
 			if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY 
 				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY) {
 				result = playGame;
@@ -229,29 +232,29 @@ CommandsMenu Renderer::drawMenu() {
 int Renderer::drawSettingsDifficulty() {
 	handlerClickes->ClearConsole();
 
-	std::cout << u8"\
-╔═════════════════╗\n\
-║   Легкий        ║\n\
-╚═════════════════╝\n\
-╔═════════════════╗\n\
-║   Средний       ║\n\
-╚═════════════════╝\n\
-╔═════════════════╗\n\
-║   Сложный       ║\n\
-╚═════════════════╝\n\
-╔═════════════════╗\n\
-║   Невозможный   ║\n\
-╚═════════════════╝\n\
-╔═════════════════╗\n\
-║   Вернуться     ║\n\
-╚═════════════════╝\n";
+	std::cout << pad << u8"╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   Легкий        ║" << std::endl;
+	std::cout << pad << u8"╚═════════════════╝" << std::endl;
+	std::cout << pad << u8"╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   Средний       ║" << std::endl;
+	std::cout << pad << u8"╚═════════════════╝" << std::endl;
+	std::cout << pad << u8"╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   Сложный       ║" << std::endl;
+	std::cout << pad << u8"╚═════════════════╝" << std::endl;
+	std::cout << pad << u8"╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   Невозможный   ║" << std::endl;
+	std::cout << pad << u8"╚═════════════════╝" << std::endl;
+	std::cout << pad << u8"╔═════════════════╗" << std::endl;
+	std::cout << pad << u8"║   Вернуться     ║" << std::endl;
+	std::cout << pad << u8"╚═════════════════╝" << std::endl;
 
 	int result;
 	bool exitFromCycl = false;
 	do {
 		PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
-		if (consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS) {
+		if (consoleCoord.x >= MIN_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS &&
+			consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS) {
 			if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY
 				&& consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY) {
 				result = randomDifficult.random(18,27);

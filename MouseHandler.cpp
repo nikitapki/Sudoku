@@ -10,7 +10,10 @@ MouseHandler::MouseHandler() {
 
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     GetConsoleScreenBufferInfo(hConsole, &csbi);
+
     oldPos = csbi.dwCursorPosition;
+    oldPos.Y += BASE_OFFSET_Y; // добавляем смещение по Y 
+
     saved_attributes = csbi.wAttributes;
 }
 
