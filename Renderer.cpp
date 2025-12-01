@@ -1,14 +1,15 @@
 ﻿#include "Renderer.hpp"
 
 void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) {
-	int x = consoleCoord->x;
+	PhysicCoordinateCell local = *consoleCoord;
+	local.x -= BASE_OFFSET_X;
 
-	if (consoleCoord->x % 2 == 0) {}
-	else if (consoleCoord->x % 4 == 3) {
+	if (local.x % 2 == 0) {}
+	else if (local.x % 4 == 3) {
 		(consoleCoord->x)--;
 	}
-	else if (consoleCoord->x % 4 == 1) {
-		(consoleCoord->x)--;
+	else if (local.x % 4 == 1) {
+		(consoleCoord->x)++;
 	}
 }
 
@@ -144,6 +145,28 @@ bool Renderer::drawValueCell() {
 		return false;
 	}
 
+	
+	if (coordinate.sudokuNumbersAvailableToInput != pastValueTableNumbers && coordinate.sudokuNumbersAvailableToInput != -1) {
+		// Удаление старого выделения
+		PhysicCoordinateCell coordMiniTable;
+		coordMiniTable.y = Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU;
+		coordMiniTable.x = BASE_OFFSET_X + pastValueTableNumbers * 4 - 2;
+
+		handlerClickes->setCursorOnCoordinates(coordMiniTable);
+
+		std::cout << "\b" << " " << pastValueTableNumbers << " ";
+
+		// Установка нового выделения
+		handlerClickes->setCursorOnCoordinates(consoleCoord);
+
+		handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
+
+		std::cout << "\b" << " " << coordinate.sudokuNumbersAvailableToInput << " ";
+
+		handlerClickes->setStandartedColorOnConsole();
+	}
+	
+
 	if (coordinate.tableCoord != pastValueCell) {
 		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
 			handlerClickes->setCursorOnCoordinates(consoleCoord);
@@ -177,8 +200,8 @@ bool Renderer::drawValueCell() {
 				}
 			}
 		}
-		pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 	}
+	pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 
 	handlerClickes->setCursorOnOldCoordinates();
 

@@ -58,6 +58,9 @@
 #define MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK 12 + BASE_OFFSET_Y // Для кнопки возврата от по Y
 #define MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK 14 + BASE_OFFSET_Y // Для кнопки возврата до по Y
 
+// Максимум в счетчике цифр для ввода 
+#define MAX_NUM_IN_NUMS_MINI_TABLE 9
+
 // временно тут
 enum CommandsMenu {
 	playGame = 1,
@@ -121,7 +124,4 @@ public:
 	CommandsMenu drawMenu();
 
 	int drawSettingsDifficulty();
-
-	// Устанавливает базовую точку начала отрисовки 
-	//void setBaseCursore();
 };
