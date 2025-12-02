@@ -26,9 +26,6 @@ private:
 	// Функция поиска пустой клетки в таблице
 	bool findEmpty(int* indexCoordinateTableSudoku);
 
-	// Сама таблица судоку (временное хранилище в дальнейшем переносится в Field)
-	//int grid[SIZE_SUDOKU][SIZE_SUDOKU];
-
 	// Заполняет таблицу судоку различными значениями. Генерация рандомных комбинаций игры
 	bool fillGrid();
 
@@ -42,6 +39,9 @@ public:
 	// Хранилище игрового поля
 	Field gridCells;
 
+	int pastValueCell = -1; // прошлое значение 
+	int pastValueTableNumbers = -1;// прошлое значение таблицы с возможными значениями для судоку
+
 	// Генерация игрового поля
 	void generateNewGame(int quantityRemoves);
 
@@ -50,4 +50,10 @@ public:
 
 	// счетчик фиксированных значений
 	void counterFixedCells(int value);
+
+	// Функция проверки соответствия чисел на поле. Подходит ли введенное с скрытым
+	bool checkerMatchingNums(int inputValue, int indexTableValue);
+
+	// Функция сравнение чисел и возврат булевого значения равны они или нет
+	bool compareNums(int num1, int num2);
 };

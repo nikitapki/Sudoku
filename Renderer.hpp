@@ -85,9 +85,6 @@ private:
 	RandomLCG randomDifficult;
 
 	typeCoordinate coordinate{ -1,-1,false };
-	
-	int pastValueCell = -1; // прошлое значение 
-	int pastValueTableNumbers = -1;// прошлое значение таблицы с возможными значениями для судоку
 
 	MouseHandler* handlerClickes;
 	Manager* field = nullptr;
@@ -99,6 +96,13 @@ private:
 	void translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
 
 	PhysicCoordinateCell translatorTableToConsoleCoords(int coordinateCell);
+
+
+	void highlightMiniTableNumber(PhysicCoordinateCell consoleCoord);
+
+	void highlightFieldCellsForNumber();
+
+	bool tryPlaceValueInCell(PhysicCoordinateCell consoleCoord);
 
 public:
 	

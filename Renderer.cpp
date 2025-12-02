@@ -134,6 +134,71 @@ void Renderer::drawElementaryField() {
 	handlerClickes->setCursorOnOldCoordinates();
 }
 
+void Renderer::highlightMiniTableNumber(PhysicCoordinateCell consoleCoord) {
+	// Удаление старого выделения
+	if (field->pastValueTableNumbers != -1) {
+		PhysicCoordinateCell coordMiniTable;
+		coordMiniTable.y = Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU;
+		coordMiniTable.x = BASE_OFFSET_X + field->pastValueTableNumbers * 4 - 2;
+
+		handlerClickes->setCursorOnCoordinates(coordMiniTable);
+
+		std::cout << "\b" << " " << field->pastValueTableNumbers << " ";
+	}
+
+	// Установка нового выделения
+	handlerClickes->setCursorOnCoordinates(consoleCoord);
+
+	handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
+
+	std::cout << "\b" << " " << coordinate.sudokuNumbersAvailableToInput << " ";
+
+	handlerClickes->setStandartedColorOnConsole();
+}
+
+void Renderer::highlightFieldCellsForNumber() {
+	PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
+	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
+
+		coordinatesNotPermanent = translatorTableToConsoleCoords(i);;
+
+		handlerClickes->setCursorOnCoordinates(coordinatesNotPermanent);
+
+		if (field->compareNums(coordinate.sudokuNumbersAvailableToInput, field->gridCells.field[i].value) &&
+			field->gridCells.field[i].is_fixed) {
+			handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
+
+			std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+
+			handlerClickes->setStandartedColorOnConsole();
+		}
+		else {
+			if (field->compareNums(field->pastValueTableNumbers, field->gridCells.field[i].value)
+				&& field->gridCells.field[i].is_fixed) {
+				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+			}
+		}
+	}
+}
+
+bool Renderer::tryPlaceValueInCell(PhysicCoordinateCell consoleCoord) {
+	if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
+		handlerClickes->setCursorOnCoordinates(consoleCoord);
+
+		handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
+
+		field->pastValueCell = coordinate.tableCoord;
+		field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
+
+		handlerClickes->setStandartedColorOnConsole();
+
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 bool Renderer::drawValueCell() {
 
 	PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
@@ -146,62 +211,19 @@ bool Renderer::drawValueCell() {
 	}
 
 	
-	if (coordinate.sudokuNumbersAvailableToInput != pastValueTableNumbers && coordinate.sudokuNumbersAvailableToInput != -1) {
-		// Удаление старого выделения
-		PhysicCoordinateCell coordMiniTable;
-		coordMiniTable.y = Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU;
-		coordMiniTable.x = BASE_OFFSET_X + pastValueTableNumbers * 4 - 2;
-
-		handlerClickes->setCursorOnCoordinates(coordMiniTable);
-
-		std::cout << "\b" << " " << pastValueTableNumbers << " ";
-
-		// Установка нового выделения
-		handlerClickes->setCursorOnCoordinates(consoleCoord);
-
-		handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
-
-		std::cout << "\b" << " " << coordinate.sudokuNumbersAvailableToInput << " ";
-
-		handlerClickes->setStandartedColorOnConsole();
+	else if (!field->compareNums(coordinate.sudokuNumbersAvailableToInput, field->pastValueTableNumbers)) {
+		highlightMiniTableNumber(consoleCoord);
+		highlightFieldCellsForNumber();
 	}
 	
 
-	if (coordinate.tableCoord != pastValueCell) {
-		if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
-			handlerClickes->setCursorOnCoordinates(consoleCoord);
-
-			handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
-
-			pastValueCell = coordinate.tableCoord;
-			field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
-
-			handlerClickes->setStandartedColorOnConsole();
-		}
-
-		PhysicCoordinateCell coordinatesNotPermanent; // не постоянные координаты
-		for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
-
-			coordinatesNotPermanent = translatorTableToConsoleCoords(i);;
-
-			handlerClickes->setCursorOnCoordinates(coordinatesNotPermanent);
-
-			if (coordinate.sudokuNumbersAvailableToInput == field->gridCells.field[i].value && 
-				field->gridCells.field[i].is_fixed) {
-				handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
-
-				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
-
-				handlerClickes->setStandartedColorOnConsole();
-			}
-			else {
-				if (pastValueTableNumbers == field->gridCells.field[i].value && field->gridCells.field[i].is_fixed) {
-					std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
-				}
-			}
+	else if (!(field->compareNums(coordinate.tableCoord, field->pastValueCell))) {
+		
+		if (tryPlaceValueInCell(consoleCoord)) {
+			highlightFieldCellsForNumber();
 		}
 	}
-	pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
+	field->pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
 
 	handlerClickes->setCursorOnOldCoordinates();
 
@@ -315,4 +337,6 @@ void Renderer::InitializeCoordinate() {
 	coordinate.buttonBack = false;
 	coordinate.sudokuNumbersAvailableToInput = -1;
 	coordinate.tableCoord = -1;
+	field->pastValueCell = -1;
+	field->pastValueTableNumbers = -1;
 }

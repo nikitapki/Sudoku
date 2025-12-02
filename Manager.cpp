@@ -171,3 +171,13 @@ bool Manager::checkInputValueInCell(int coordinateCell, int inputValue) {
 	
 	return result;
 }
+
+// Функция проверки соответствия чисел на поле. Подходит ли введенное с скрытым
+bool Manager::checkerMatchingNums(int inputValue, int indexTableValue) {
+	return (gridCells.field[indexTableValue].value == inputValue);
+}
+
+// Функция сравнение чисел и возврат булевого значения равны они или нет
+bool Manager::compareNums(int num1, int num2) {
+	return (num1 == num2);
+}
