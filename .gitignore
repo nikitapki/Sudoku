@@ -3,6 +3,16 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Android Studio
+.idea/
+*.iml
+.gradle/
+local.properties
+/build/
+.captures/
+.externalNativeBuild/
+.cxx/
+
 # User-specific files
 *.rsuser
 *.suo
