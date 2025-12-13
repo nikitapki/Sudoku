@@ -3,6 +3,23 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Android/Gradle
+Sudoku_project/.gradle/
+Sudoku_project/build/
+Sudoku_project/app/build/
+Sudoku_project/local.properties
+
+# Android Studio / IDE
+Sudoku_project/.idea/
+Sudoku_project/*.iml
+
+# Временные/кеши компиляции
+**/build/
+**/.gradle/
+**/.idea/
+
+
+
 # User-specific files
 *.rsuser
 *.suo
