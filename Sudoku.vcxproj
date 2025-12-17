@@ -127,7 +127,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MenuController.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomLCG.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -139,7 +138,6 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="MenuController.hpp" />
     <ClInclude Include="MouseHandler.hpp" />
-    <ClInclude Include="Player.hpp" />
     <ClInclude Include="RandomLCG.hpp" />
     <ClInclude Include="Manager.hpp" />
     <ClInclude Include="Renderer.hpp" />

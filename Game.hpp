@@ -4,7 +4,6 @@
 #include "Manager.hpp"
 #include "Field.hpp"
 #include "Renderer.hpp"
-#include "Player.hpp"
 #include "MouseHandler.hpp"
 #include "MenuController.hpp"
 

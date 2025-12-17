@@ -15,14 +15,14 @@ typedef struct CoordinateTableSudoku {
 class Field {
 public:
 	// Массив структур, хранящий игровое поле
-	Cell* field;
+	std::unique_ptr<Cell[]> field;
 
 	// Кол-во каждого значения, которое можно ввести в судоку (0 инд - общее кол-во, 1-9 инд соотв с значением)
 	int quantityValues[SIZE_COUNTER_IMPUT_NUMS];
 
-	// Конструктор поля выделяет сразу память под поле
+	// Конструктор поля выделяет сразу память под поле и очищает память за собой и отмечает указате
 	Field() {
-		field = new Cell[SIZE_SUDOKU_N_X_N];
+		field = std::make_unique<Cell[]>(SIZE_SUDOKU_N_X_N);
 
 		InitializeQuantityEmptyValues();
 	}
@@ -35,9 +35,4 @@ public:
 
 	// Инициализация пустого поля судоку
 	void InitializeFieldEmptyValues();
-
-	// Деструктор очищает выделенную память
-	~Field() {
-		delete[] field;
-	}
 };

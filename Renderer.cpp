@@ -1,46 +1,46 @@
 ﻿#include "Renderer.hpp"
 
-void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord) {
-	PhysicCoordinateCell local = *consoleCoord;
+void Renderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell& consoleCoord) {
+	PhysicCoordinateCell local = consoleCoord;
 	local.x -= BASE_OFFSET_X;
 
 	if (local.x % 2 == 0) {}
 	else if (local.x % 4 == 3) {
-		(consoleCoord->x)--;
+		consoleCoord.x--;
 	}
 	else if (local.x % 4 == 1) {
-		(consoleCoord->x)++;
+		consoleCoord.x++;
 	}
 }
 
-void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord) {
-	PhysicCoordinateCell local = *consoleCoord;
+void Renderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& consoleCoord) {
+	PhysicCoordinateCell local = consoleCoord;
 	local.x -= BASE_OFFSET_X;
 	local.y -= BASE_OFFSET_Y; 
 
-	if (consoleCoord->y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-		consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+	if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
+		consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
 
-		if (consoleCoord->x >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-			consoleCoord->x <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+		if (consoleCoord.x >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
+			consoleCoord.x <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
 			coordinate.buttonBack = true;
 		}
 	}
 
-	if (local.y % 2 != 0 && consoleCoord->y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU &&
-		consoleCoord->y >= MIN_Y_FROM_CONSOLE_TABLES_SUDOKU) {
+	if (local.y % 2 != 0 && consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU &&
+		consoleCoord.y >= MIN_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 		
-		if (local.x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
-			consoleCoord->x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+		if (local.x % 4 != 0 && consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord.x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
 			coordinate.tableCoord = local.y / 2 * SIZE_SUDOKU + local.x / 4;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 
-	if (consoleCoord->y == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
+	if (consoleCoord.y == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
 
-		if (local.x % 4 != 0 && consoleCoord->x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
-			consoleCoord->x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+		if (local.x % 4 != 0 && consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord.x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
 			coordinate.sudokuNumbersAvailableToInput = local.x / 4 + 1;
 			(coordinate.tableCoord)--;
 			correctionPosOnFieldFromDraw(consoleCoord);
@@ -203,7 +203,7 @@ bool Renderer::drawValueCell() {
 
 	PhysicCoordinateCell consoleCoord = handlerClickes->clickToConsole();
 
-	translatorСonsoleToTableCoords(&consoleCoord);
+	translatorСonsoleToTableCoords(consoleCoord);
 
 	if (coordinate.buttonBack) {
 		coordinate.buttonBack = false; // чтобы при повторном заходе не выходило сразу

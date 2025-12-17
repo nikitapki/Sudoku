@@ -1,9 +1,4 @@
 #include "MenuController.hpp"
-enum ModesRenderringMenu
-{
-	startProgram = 0,
-	returnFromStartedGame = 1
-};
 
 int MenuController::MenuForStartGame() {
 	int result = -1;

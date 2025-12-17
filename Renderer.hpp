@@ -86,14 +86,14 @@ private:
 
 	typeCoordinate coordinate{ -1,-1,false };
 
-	MouseHandler* handlerClickes;
+	std::shared_ptr<MouseHandler> handlerClickes;
 	Manager* field = nullptr;
 
 	std::string pad; // подушка для смещенной отрисовки
 
-	void correctionPosOnFieldFromDraw(PhysicCoordinateCell* consoleCoord);
+	void correctionPosOnFieldFromDraw(PhysicCoordinateCell& consoleCoord);
 
-	void translatorСonsoleToTableCoords(PhysicCoordinateCell* consoleCoord);
+	void translatorСonsoleToTableCoords(PhysicCoordinateCell& consoleCoord);
 
 	PhysicCoordinateCell translatorTableToConsoleCoords(int coordinateCell);
 
@@ -107,13 +107,13 @@ private:
 public:
 	
 	// Для отрисовки меню
-	Renderer(MouseHandler* handlerClickes) :
+	Renderer(std::shared_ptr<MouseHandler> handlerClickes) :
 		handlerClickes(handlerClickes) {
 		pad.assign(BASE_OFFSET_X, ' ');
 	}
 
 	// Для отрисовки игрового поля
-	Renderer(Manager* field, MouseHandler* handlerClickes) :
+	Renderer(Manager* field, std::shared_ptr<MouseHandler> handlerClickes) :
 		field(field),
 		handlerClickes(handlerClickes) {
 		pad.assign(BASE_OFFSET_X, ' ');

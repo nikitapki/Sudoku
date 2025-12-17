@@ -4,11 +4,11 @@
 
 class MenuController {
 private:
-	MouseHandler* handlerClicks;
+	std::shared_ptr<MouseHandler> handlerClicks;
 public:
 	Renderer renderMenu;
 
-	MenuController(MouseHandler* handler) : renderMenu(handler) { 
+	MenuController(std::shared_ptr<MouseHandler> handler) : renderMenu(handler) {
 		handlerClicks = handler;
 	}
 

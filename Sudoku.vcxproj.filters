@@ -42,9 +42,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Исходные файлы\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="Config.hpp">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.hpp">
-      <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.hpp">
       <Filter>Файлы заголовков\View</Filter>
