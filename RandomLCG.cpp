@@ -47,5 +47,6 @@ std::unique_ptr<int[]> RandomLCG::randomGenerateReverseMassive(int start, int en
 	}
 
 	randomReverseMassive(massiveNums.get(), lenMassive);
+
 	return massiveNums;
 }

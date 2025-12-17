@@ -1,16 +1,15 @@
 #pragma once
 
-#include "Renderer.hpp"
+#include "MenuRenderer.hpp"
 
 class MenuController {
 private:
 	std::shared_ptr<MouseHandler> handlerClicks;
+	MenuRenderer renderMenu;
 public:
-	Renderer renderMenu;
-
-	MenuController(std::shared_ptr<MouseHandler> handler) : renderMenu(handler) {
-		Renderer from_copy = handler;
-		renderMenu = from_copy; // копирование для лабораторной номер 5 (в будущем убрать)
+	MenuController(std::shared_ptr<MouseHandler> handler)
+		: handlerClicks(std::move(handler)),
+		renderMenu(handlerClicks) {
 	}
 
 	enum ModesRenderringMenu

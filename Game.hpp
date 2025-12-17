@@ -3,7 +3,7 @@
 #include "Config.hpp"
 #include "Manager.hpp"
 #include "Field.hpp"
-#include "Renderer.hpp"
+#include "GameRenderer.hpp"
 #include "MouseHandler.hpp"
 #include "MenuController.hpp"
 
@@ -16,7 +16,7 @@ private:
 	std::shared_ptr<Manager> field;
 	std::shared_ptr<MouseHandler> handlerClickes;
 
-	Renderer renderField;
+	GameRenderer renderField;
 	MenuController menu;
 
 //	using Clock = std::chrono::steady_clock;

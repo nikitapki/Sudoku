@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Config.hpp"
+#include <array>
 
 typedef struct Cell{
 	int value;
@@ -14,17 +15,16 @@ typedef struct CoordinateTableSudoku {
 
 class Field {
 public:
-	// Массив структур, хранящий игровое поле
-	std::unique_ptr<Cell[]> field;
+	// Массив (контейнер) структур, хранящий игровое поле
+	std::array<Cell, SIZE_SUDOKU_N_X_N> field;
 
 	// Кол-во каждого значения, которое можно ввести в судоку (0 инд - общее кол-во, 1-9 инд соотв с значением)
 	int quantityValues[SIZE_COUNTER_IMPUT_NUMS];
 
 	// Конструктор поля выделяет сразу память под поле и очищает память за собой и отмечает указате
 	Field() {
-		field = std::make_unique<Cell[]>(SIZE_SUDOKU_N_X_N);
-
 		InitializeQuantityEmptyValues();
+		InitializeFieldEmptyValues();
 	}
 
 	// Переводчик из одномерных индексных координат в двумерное расположение ячейки
