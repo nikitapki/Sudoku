@@ -114,7 +114,9 @@ bool Manager::fillGrid() {
 // ‘ункци€ сн€ти€ фиксации с €чейки (служит как определение сложности судоку)
 // –еализовано посредствам дев€теричной системы счислени€ и массива индексов
 void Manager::unFixedCell(int quantityRemoves) {
-	std::unique_ptr<int[]> massiveIndexesGrid{ rand.randomGenerateReverseMassive(1, 81) };
+	// генераци€ случайных индексов, значени€ хран€щиес€ на которых будут доступны к изменению
+	std::unique_ptr<int[]> massiveIndexesGrid{ rand.randomGenerateReverseMassive(0, 80) };
+
 	for (int i = 0; i < quantityRemoves; i++) {
 		gridCells.field[massiveIndexesGrid[i]].is_fixed = false;
 	}
@@ -180,7 +182,7 @@ bool Manager::compareNums(int num1, int num2) {
 }
 
 Cell& cell(Manager& m, int idx) {
-	return m.gridCells.field[idx];
+	return m.gridCells.field.at(idx);
 }
 
 int filledCount(const Manager& m) {
