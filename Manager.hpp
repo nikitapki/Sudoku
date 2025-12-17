@@ -31,9 +31,15 @@ private:
 	// инициализируем счетчик, помещаем в него нашу вариацию игры
 	void fillCounterFixedCells();
 
-public:
 	// Хранилище игрового поля
 	Field gridCells;
+	
+public:
+	// Дроужественная функция для обращения к ячейке приватного поля судоку
+	friend Cell& cell(Manager& m, int idx);
+
+	// Дроужественная функция для установки общего количества правильно установленных чисел в игре
+	friend int filledCount(const Manager& m);
 
 	int pastValueCell = -1; // прошлое значение 
 	int pastValueTableNumbers = -1;// прошлое значение таблицы с возможными значениями для судоку

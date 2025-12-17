@@ -9,7 +9,8 @@ public:
 	Renderer renderMenu;
 
 	MenuController(std::shared_ptr<MouseHandler> handler) : renderMenu(handler) {
-		handlerClicks = handler;
+		Renderer from_copy = handler;
+		renderMenu = from_copy; // копирование для лабораторной номер 5 (в будущем убрать)
 	}
 
 	enum ModesRenderringMenu

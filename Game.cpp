@@ -18,7 +18,7 @@ Game::Game()
 
 		while (!endRound) {
 			if (renderField.drawValueCell()) {
-				if (field->gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
+				if (filledCount(*field) == SIZE_SUDOKU * SIZE_SUDOKU) {
 					endRound = true;
 				}
 			}

@@ -126,8 +126,8 @@ void Renderer::drawElementaryField() {
 			
 			coordCell = ((i - 1) / 2) * SIZE_SUDOKU + ((j - 3) / 4);
 
-			if (field->gridCells.field[coordCell].is_fixed) {
-				std::cout << "\b" << field->gridCells.field[coordCell].value;
+			if (cell(*field, coordCell).is_fixed) {
+				std::cout << "\b" << cell(*field, coordCell).value;
 			}
 		}
 	}
@@ -164,18 +164,18 @@ void Renderer::highlightFieldCellsForNumber() {
 
 		handlerClickes->setCursorOnCoordinates(coordinatesNotPermanent);
 
-		if (field->compareNums(coordinate.sudokuNumbersAvailableToInput, field->gridCells.field[i].value) &&
-			field->gridCells.field[i].is_fixed) {
+		if (field->compareNums(coordinate.sudokuNumbersAvailableToInput, cell(*field, i).value) &&
+			cell(*field, i).is_fixed) {
 			handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
 
-			std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+			std::cout << "\b\b" << " " << cell(*field, i).value << " ";
 
 			handlerClickes->setStandartedColorOnConsole();
 		}
 		else {
-			if (field->compareNums(field->pastValueTableNumbers, field->gridCells.field[i].value)
-				&& field->gridCells.field[i].is_fixed) {
-				std::cout << "\b\b" << " " << field->gridCells.field[i].value << " ";
+			if (field->compareNums(field->pastValueTableNumbers, cell(*field, i).value) && 
+				cell(*field, i).is_fixed) {
+				std::cout << "\b\b" << " " << cell(*field, i).value << " ";
 			}
 		}
 	}
@@ -188,7 +188,7 @@ bool Renderer::tryPlaceValueInCell(PhysicCoordinateCell consoleCoord) {
 		handlerClickes->setColorOnConsole(BACKGROUND_INTENSITY);
 
 		field->pastValueCell = coordinate.tableCoord;
-		field->counterFixedCells(field->gridCells.field[coordinate.tableCoord].value);
+		field->counterFixedCells(cell(*field, coordinate.tableCoord).value);
 
 		handlerClickes->setStandartedColorOnConsole();
 

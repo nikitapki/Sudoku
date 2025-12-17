@@ -178,3 +178,11 @@ bool Manager::checkerMatchingNums(int inputValue, int indexTableValue) {
 bool Manager::compareNums(int num1, int num2) {
 	return (num1 == num2);
 }
+
+Cell& cell(Manager& m, int idx) {
+	return m.gridCells.field[idx];
+}
+
+int filledCount(const Manager& m) {
+	return m.gridCells.quantityValues[0];
+}
