@@ -87,7 +87,7 @@ private:
 	typeCoordinate coordinate{ -1,-1,false };
 
 	std::shared_ptr<MouseHandler> handlerClickes;
-	Manager* field = nullptr;
+	std::shared_ptr <Manager> field = nullptr;
 
 	std::string pad; // подушка для смещенной отрисовки
 
@@ -113,7 +113,7 @@ public:
 	}
 
 	// Для отрисовки игрового поля
-	Renderer(Manager* field, std::shared_ptr<MouseHandler> handlerClickes) :
+	Renderer(std::shared_ptr <Manager> field, std::shared_ptr<MouseHandler> handlerClickes) :
 		field(field),
 		handlerClickes(handlerClickes) {
 		pad.assign(BASE_OFFSET_X, ' ');

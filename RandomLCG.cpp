@@ -36,17 +36,16 @@ void RandomLCG::randomReverseMassive(int* massiveNums, int lenMassive) {
 }
 
 // √енерирует массив чисел в указанном диапазоне включительно
-int* RandomLCG::randomGenerateReverseMassive(int start, int end) {
+std::unique_ptr<int[]> RandomLCG::randomGenerateReverseMassive(int start, int end) {
 
 	int lenMassive = end - start + 1; // вычисл€ю длину массива
 
-	int* massiveNums = new int[lenMassive];
+	std::unique_ptr<int[]> massiveNums = std::make_unique<int[]>(lenMassive);
 
 	for (int i = 0; i < lenMassive; i++) {
    		massiveNums[i] = start++;
 	}
 
-	randomReverseMassive(massiveNums, lenMassive);
-
+	randomReverseMassive(massiveNums.get(), lenMassive);
 	return massiveNums;
 }

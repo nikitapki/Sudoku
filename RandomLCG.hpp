@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ctime>
+#include "Config.hpp"
 
 class RandomLCG
 {
@@ -25,5 +26,5 @@ public:
 
 	void randomReverseMassive(int* massiveNums, int lenMassive);
 
-	int* randomGenerateReverseMassive(int start, int end);
+	std::unique_ptr<int[]> randomGenerateReverseMassive(int start, int end);
 };

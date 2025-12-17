@@ -7,19 +7,20 @@
 #include "MouseHandler.hpp"
 #include "MenuController.hpp"
 
-#include <chrono>
+//#include <chrono>
 
 // Не забыть убрать is_selected от прошлой игры, чтобы не выделялась ячейка сразу
 
 class Game {
 private:
-	Manager field;
+	std::shared_ptr<Manager> field;
+	std::shared_ptr<MouseHandler> handlerClickes;
+
 	Renderer renderField;
-	MouseHandler handlerClickes;
 	MenuController menu;
 
-	using Clock = std::chrono::steady_clock;
-	Clock::time_point roundStart;
+//	using Clock = std::chrono::steady_clock;
+//	Clock::time_point roundStart;
 
 public:
 	Game();

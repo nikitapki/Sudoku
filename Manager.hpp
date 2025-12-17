@@ -4,10 +4,6 @@
 #include "Config.hpp"
 #include "Field.hpp"
 
-// временно
-#include <iostream>
-#include <iomanip>
-
 class Manager
 {
 private:
@@ -24,7 +20,7 @@ private:
 	bool checkerCombinations(int indexCoordinateTableSudoku, int value);
 
 	// Функция поиска пустой клетки в таблице
-	bool findEmpty(int* indexCoordinateTableSudoku);
+	bool findEmpty(int& indexCoordinateTableSudoku);
 
 	// Заполняет таблицу судоку различными значениями. Генерация рандомных комбинаций игры
 	bool fillGrid();

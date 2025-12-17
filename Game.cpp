@@ -2,31 +2,32 @@
 
 // : render(field) - инициализация render полем(объектом класса) field
 Game::Game() 
-	: field(), 
-	handlerClickes(),
-	renderField(&field, &handlerClickes),
-	menu(&handlerClickes) {
+	: field(std::make_shared<Manager>()),
+	handlerClickes(std::make_shared<MouseHandler>()),
+	renderField(field, handlerClickes),
+	menu(handlerClickes) {
 
-	bool endRound = false, endGame = false;
+	bool endGame = false;
 	do {
-		field.generateNewGame(menu.controlMenu(menu.startProgram));
+		bool endRound = false;
+		field->generateNewGame(menu.controlMenu(menu.startProgram));
 
-		roundStart = Clock::now();      // запомнили момент старта раунда
+		//roundStart = Clock::now();      // запомнили момент старта раунда
 
 		renderField.drawElementaryField();
 
 		while (!endRound) {
 			if (renderField.drawValueCell()) {
-				if (field.gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
+				if (field->gridCells.quantityValues[0] == SIZE_SUDOKU * SIZE_SUDOKU) {
 					endRound = true;
 				}
 			}
 			else {
-				field.generateNewGame(menu.controlMenu(menu.returnFromStartedGame));
+				field->generateNewGame(menu.controlMenu(menu.returnFromStartedGame));
 				renderField.drawElementaryField();
 			}
 		}
-		handlerClickes.ClearConsole();
+		handlerClickes->ClearConsole();
 
 	} while (!endGame);
 }

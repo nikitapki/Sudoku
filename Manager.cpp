@@ -60,10 +60,10 @@ bool Manager::checkerCombinations(int indexCoordinateTableSudoku, int value) {
 // Функция поиска первой пустой клетки (в которой находится 0)
 // Координаты клетки, записываются по адресу
 // Функция возвращает результат записи. Были ли найдены пустые клетки
-bool Manager::findEmpty(int* indexCoordinateTableSudoku) {
+bool Manager::findEmpty(int& indexCoordinateTableSudoku) {
 	for (int i = 0; i < SIZE_SUDOKU_N_X_N; i++) {
 		if (gridCells.field[i].value == 0) {
-			*indexCoordinateTableSudoku = i;
+			indexCoordinateTableSudoku = i;
 			return true;
 		}
 	}
@@ -76,16 +76,16 @@ bool Manager::fillGrid() {
 	int indexCoordinateTableSudoku;
 
 	// Если нету пустых ячеек возвращает true
-	if (!findEmpty(&indexCoordinateTableSudoku)) {
+	if (!findEmpty(indexCoordinateTableSudoku)) {
 		return true;
 	}
 
 	// Кандидаты для подстановки в поле судоку
 	// При добавлении возможности выбора размера поля судоку стоит изменить 
-	int *candidates = rand.randomGenerateReverseMassive(1, 9);
+	std::unique_ptr<int[]> candidates = rand.randomGenerateReverseMassive(1, 9);
 
 	// Перемешивание чисел в массиве
-	rand.randomReverseMassive(candidates, SIZE_SUDOKU);
+	rand.randomReverseMassive(candidates.get(), SIZE_SUDOKU);
 
 	// Циклически перебираем всех кандидатов и если во время перебора не было возвращено true,
 	// возвращаем false и рекурсией возвращаемся к подбору другого кандидата и другой комбинации таблицы
@@ -107,9 +107,6 @@ bool Manager::fillGrid() {
 		
 	}
 
-	delete[] candidates;
-	candidates = NULL;
-
 	return false;
 }
 
@@ -117,7 +114,7 @@ bool Manager::fillGrid() {
 // Функция снятия фиксации с ячейки (служит как определение сложности судоку)
 // Реализовано посредствам девятеричной системы счисления и массива индексов
 void Manager::unFixedCell(int quantityRemoves) {
-	int* massiveIndexesGrid = rand.randomGenerateReverseMassive(1, 81);
+	std::unique_ptr<int[]> massiveIndexesGrid{ rand.randomGenerateReverseMassive(1, 81) };
 	for (int i = 0; i < quantityRemoves; i++) {
 		gridCells.field[massiveIndexesGrid[i]].is_fixed = false;
 	}
