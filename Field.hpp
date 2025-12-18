@@ -13,8 +13,21 @@ typedef struct CoordinateTableSudoku {
 	int position_y;
 } CoordinateTableSudoku;
 
+// перегрузка оператора ==
+inline bool operator==(const CoordinateTableSudoku& a, const CoordinateTableSudoku& b) {
+	return a.position_x == b.position_x && a.position_y == b.position_y;
+}
+
+// перегрузка оператора !=
+inline bool operator!=(const CoordinateTableSudoku& a, const CoordinateTableSudoku& b) {
+	return !(a == b);
+}
+
 class Field {
 public:
+	// перегрузка оператора []
+	//Cell& operator[](int idx) { return field[idx]; }
+
 	// Массив (контейнер) структур, хранящий игровое поле
 	std::array<Cell, SIZE_SUDOKU_N_X_N> field;
 
@@ -25,6 +38,11 @@ public:
 	Field() {
 		InitializeQuantityEmptyValues();
 		InitializeFieldEmptyValues();
+	}
+
+	// Конструктор копирования ПРИМЕР (УБРАТЬ)
+	Field(const Field& other) {
+		*this = other; 
 	}
 
 	// Переводчик из одномерных индексных координат в двумерное расположение ячейки

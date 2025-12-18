@@ -35,6 +35,13 @@ private:
 	Field gridCells;
 	
 public:
+
+
+	Manager() {
+		Field copy = gridCells; // пример создания копии поля судоку ( в будущем убрать )
+	}
+
+
 	// Дроужественная функция для обращения к ячейке приватного поля судоку
 	friend Cell& cell(Manager& m, int idx);
 
