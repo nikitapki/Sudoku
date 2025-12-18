@@ -1,10 +1,10 @@
 package Core;
 public class CoordinateTableSudoku {
-    public int position_x;
-    public int position_y;
+    public int pos_x;
+    public int pos_y;
 
-    public CoordinateTableSudoku(int x, int y) {
-        this.position_x = x;
-        this.position_y = y;
+    public CoordinateTableSudoku(int pos_x, int pos_y) {
+        this.pos_x = pos_x;
+        this.pos_y = pos_y;
     }
 }

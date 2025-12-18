@@ -1,5 +1,5 @@
 package Core;
-public class Config {
+public final class Config {
 public static final int SIZE_SUDOKU = 9; // размер NxN судоку
 public static final int SIZE_SQUARE_SUDOKU = 3; // размер nxn малого квадрата судоку
 public static final int SIZE_COUNTER_IMPUT_NUMS = SIZE_SUDOKU + 1; // Размер поля судоку (общий)

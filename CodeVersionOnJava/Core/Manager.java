@@ -10,11 +10,15 @@ public class Manager {
     public int pastValueCell = -1;
     public int pastValueTableNumbers = -1;
 
+    public static int Utilit_toIndex(int row0, int col0) {
+        return row0 * Config.SIZE_SUDOKU + col0;
+    }
+
     // Проверка значения в строке
     private boolean checkerCombinationsFromRow(int coord_y, int value) {
         int idx;
         for (int i = 0; i < Config.SIZE_SUDOKU; i++) {
-            idx = coord_y * Config.SIZE_SUDOKU + i;
+            idx = Utilit_toIndex(coord_y, i);
             if (gridCells.field[idx].value == value) {
                 return false;
             }
@@ -26,7 +30,7 @@ public class Manager {
     private boolean checkerCombinationsFromColumn(int coord_x, int value) {
         int idx;
         for (int i = 0; i < Config.SIZE_SUDOKU; i++) {
-            idx = i * Config.SIZE_SUDOKU + coord_x;
+            idx = Utilit_toIndex(i, coord_x);
             if (gridCells.field[idx].value == value) {
                 return false;
             }
@@ -36,13 +40,13 @@ public class Manager {
 
     // Проверка значения в квадрате 3x3
     private boolean checkerCombinationsFromBox(CoordinateTableSudoku coord, int value) {
-        int offsetY = coord.position_y - coord.position_y % Config.SIZE_SQUARE_SUDOKU;
-        int offsetX = coord.position_x - coord.position_x % Config.SIZE_SQUARE_SUDOKU;
+        int offsetY = coord.pos_y - coord.pos_y % Config.SIZE_SQUARE_SUDOKU;
+        int offsetX = coord.pos_x - coord.pos_x % Config.SIZE_SQUARE_SUDOKU;
 
         int idx;
         for (int i = offsetY; i < offsetY + Config.SIZE_SQUARE_SUDOKU; i++) {
             for (int j = offsetX; j < offsetX + Config.SIZE_SQUARE_SUDOKU; j++) {
-                idx = i * Config.SIZE_SUDOKU + j;
+                idx = Utilit_toIndex(i, j);
                 if (gridCells.field[idx].value == value) {
                     return false;
                 }
@@ -55,8 +59,8 @@ public class Manager {
     private boolean checkerCombinations(int indexCoordinateTableSudoku, int value) {
         CoordinateTableSudoku coord =
                 gridCells.translatorIndexInRowCol(indexCoordinateTableSudoku);
-        return checkerCombinationsFromRow(coord.position_y, value)
-                && checkerCombinationsFromColumn(coord.position_x, value)
+        return checkerCombinationsFromRow(coord.pos_y, value)
+                && checkerCombinationsFromColumn(coord.pos_x, value)
                 && checkerCombinationsFromBox(coord, value);
     }
 

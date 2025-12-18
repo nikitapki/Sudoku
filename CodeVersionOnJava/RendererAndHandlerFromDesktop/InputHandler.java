@@ -1,8 +1,8 @@
 package RendererAndHandlerFromDesktop;
 
-import java.util.Scanner;
-
 import Core.Config;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class InputHandler {
     private final Scanner in = new Scanner(System.in);
@@ -43,13 +43,13 @@ public class InputHandler {
         while (true) {
             System.out.println(prompt);
             System.out.print("> ");
-            if (in.hasNextInt()) {
+            try {
                 int v = in.nextInt();
                 if (v >= min && v <= max) {
                     return v;
                 }
                 System.out.println("Введите число от " + min + " до " + max + ".");
-            } else {
+            } catch (InputMismatchException e) {
                 System.out.println("Нужно ввести целое число.");
                 in.next(); // сброс неверного ввода
             }
