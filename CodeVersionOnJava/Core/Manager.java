@@ -144,6 +144,13 @@ public class Manager {
     public boolean checkInputValueInCell(int coordinateCell, int inputValue) {
         boolean result = true;
 
+        if (coordinateCell < 0 || coordinateCell >= Config.SIZE_SUDOKU_N_X_N) {
+            throw new IndexOutOfBoundsException("Координата клетки вне диапазона 0..80");
+        }
+        if (inputValue < 1 || inputValue > 9) {
+            throw new IllegalArgumentException("Число должно быть 1..9");
+        }
+
         if (gridCells.field[coordinateCell].is_fixed
                 || gridCells.field[coordinateCell].value != inputValue) {
             result = false;

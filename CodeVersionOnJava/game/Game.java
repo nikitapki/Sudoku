@@ -1,12 +1,11 @@
 package game;
-import java.time.Duration;
-import java.time.Instant;
-
 import Core.Config;
 import Core.Manager;
 import RendererAndHandlerFromDesktop.InputHandler;
 import RendererAndHandlerFromDesktop.MenuController;
 import RendererAndHandlerFromDesktop.RendererDesktop;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Game {
 
@@ -67,19 +66,19 @@ public class Game {
                 }
 
                 // попытка поставить число
-                if (renderer.tryPlaceValueInCell(cellIdx, num)) {
-                    // перерисовка после успешного хода
-                    renderer.drawElementaryField();
+                try {
+                    if (renderer.tryPlaceValueInCell(cellIdx, num)) {
+                        renderer.drawElementaryField();
 
-                    // проверка: все клетки заполнены
-                    if (field.gridCells.quantityValues[0] ==
-                            Config.SIZE_SUDOKU * Config.SIZE_SUDOKU) {
-                        endRound = true;
+                        if (field.gridCells.quantityValues[0] ==
+                                Config.SIZE_SUDOKU * Config.SIZE_SUDOKU) {
+                                endRound = true;
+                        }
+                    } else {
+                        System.out.println("Нельзя поставить это число в эту клетку.");
                     }
-
-                } else {
-                    // неверный ход
-                    System.out.println("Нельзя поставить это число в эту клетку.");
+                } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+                    System.out.println("Ошибка: " + e.getMessage());
                 }
             }
 
