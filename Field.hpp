@@ -7,8 +7,13 @@
 
 class Field {
 public:
-	// перегрузка оператора []
-	//Cell& operator[](int idx) { return field[idx]; }
+	// ВРЕМЕННО. Перегрузка оператора присваивания
+	// -----------------------
+	Field& operator=(const Field& base) {
+		this->field = base.field;   // копируем базовую часть (81 клетка)
+		return *this;
+	}
+	// -----------------------
 
 	// Массив (контейнер) структур, хранящий игровое поле
 	std::array<Cell, SIZE_SUDOKU_N_X_N> field;
@@ -23,9 +28,9 @@ public:
 	}
 
 	// Конструктор копирования ПРИМЕР (УБРАТЬ)
-	Field(const Field& other) {
-		*this = other; 
-	}
+	// -----------------------
+	Field(const Field& other) = delete; 
+	// -----------------------
 
 	// Переводчик из одномерных индексных координат в двумерное расположение ячейки
 	CoordinateTableSudoku translatorIndexInRowCol(int indexSudokuMassive);

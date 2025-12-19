@@ -17,3 +17,10 @@ void Field::InitializeFieldEmptyValues() {
 		field[i].setIs_fixed(true);
 	}
 }
+
+// Временно
+// ---------------
+Field::Field(const Field& other) {
+	*this = other;
+}
+// ---------------

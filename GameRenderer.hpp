@@ -43,4 +43,21 @@ public:
     void InitializeCoordinate();
     void drawElementaryField();
     bool drawValueCell(); // true = ход обработан, false = нажата "назад"
+    
+
+
+    // ВРЕМЕННО. 
+    // ----------------------
+    void draw(int num) override {
+        Screen::draw(num*2); // вызов функции родителя
+        Screen::draw(11.5); // используем перегруженную функцию родителя
+        std::cout << "456\n";
+    }
+
+    void drawAbstract() {
+        // тут действия абстрактного метода
+    }
+
+    // ----------------------
+
 };
