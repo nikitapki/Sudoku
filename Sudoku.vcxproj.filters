@@ -92,5 +92,8 @@
     <ClInclude Include="GameCoordinate.hpp">
       <Filter>Файлы заголовков\View</Filter>
     </ClInclude>
+    <ClInclude Include="CoordinateTableSudoku.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

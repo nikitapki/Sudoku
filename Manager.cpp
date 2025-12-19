@@ -14,8 +14,8 @@ bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
 
 // ѕроверка квадрата 3на3 на повторы
 bool Manager::checkerCombinationsFromBox(CoordinateTableSudoku coord, int value) {
-	int coord_y = coord.position_y;
-	int coord_x = coord.position_x;
+	int coord_y = coord.getPosition_y();
+	int coord_x = coord.getPosition_x();
 
 	int offsetCoord_y = coord_y - coord_y % SIZE_SQUARE_SUDOKU; // offset - смещение 
 	int offsetCoord_x = coord_x - coord_x % SIZE_SQUARE_SUDOKU;
@@ -51,8 +51,8 @@ bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 bool Manager::checkerCombinations(int indexCoordinateTableSudoku, int value) {
 	CoordinateTableSudoku coord = gridCells.translatorIndexInRowCol(indexCoordinateTableSudoku);
 	return 
-		(checkerCombinationsFromRow(coord.position_y, value)) &&
-		(checkerCombinationsFromColumn(coord.position_x, value)) &&
+		(checkerCombinationsFromRow(coord.getPosition_y(), value)) &&
+		(checkerCombinationsFromColumn(coord.getPosition_x(), value)) &&
 		(checkerCombinationsFromBox(coord, value));
 }
 

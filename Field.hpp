@@ -2,26 +2,12 @@
 
 #include "Config.hpp"
 #include <array>
+#include "CoordinateTableSudoku.hpp"
 
 typedef struct Cell{
 	int value;
 	bool is_fixed;
 } Cell;
-
-typedef struct CoordinateTableSudoku {
-	int position_x;
-	int position_y;
-} CoordinateTableSudoku;
-
-// перегрузка оператора ==
-inline bool operator==(const CoordinateTableSudoku& a, const CoordinateTableSudoku& b) {
-	return a.position_x == b.position_x && a.position_y == b.position_y;
-}
-
-// перегрузка оператора !=
-inline bool operator!=(const CoordinateTableSudoku& a, const CoordinateTableSudoku& b) {
-	return !(a == b);
-}
 
 class Field {
 public:

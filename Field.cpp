@@ -2,8 +2,8 @@
 
 CoordinateTableSudoku Field::translatorIndexInRowCol(int indexSudokuMassive) {
 	CoordinateTableSudoku coordinateCell;
-	coordinateCell.position_x = indexSudokuMassive % SIZE_SUDOKU;
-	coordinateCell.position_y = indexSudokuMassive / SIZE_SUDOKU;
+	coordinateCell.setPosition_x(indexSudokuMassive % SIZE_SUDOKU);
+	coordinateCell.setPosition_y(indexSudokuMassive / SIZE_SUDOKU);
 	return coordinateCell;
 }
 

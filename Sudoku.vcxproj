@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
+    <ClInclude Include="CoordinateTableSudoku.hpp" />
     <ClInclude Include="Field.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameCoordinate.hpp" />
