@@ -129,16 +129,15 @@
     <ClCompile Include="MenuController.cpp" />
     <ClCompile Include="MenuRenderer.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
-    <ClCompile Include="PhysicCoordinateCell.cpp" />
     <ClCompile Include="RandomLCG.cpp" />
     <ClCompile Include="Manager.cpp" />
-    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Sudoku.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="Field.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameCoordinate.hpp" />
     <ClInclude Include="GameRenderer.hpp" />
     <ClInclude Include="MenuController.hpp" />
     <ClInclude Include="MenuRenderer.hpp" />

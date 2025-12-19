@@ -23,7 +23,7 @@ void GameRenderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& console
 
 		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
 			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
-			coordinate.buttonBack = true;
+			coordinate.setButtonBack(true);
 		}
 	}
 
@@ -32,7 +32,7 @@ void GameRenderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& console
 
 		if (local.getX() % 4 != 0 && consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
 			consoleCoord.getX() >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.tableCoord = local.getY() / 2 * SIZE_SUDOKU + local.getX() / 4;
+			coordinate.setTableCoord(local.getY() / 2 * SIZE_SUDOKU + local.getX() / 4);
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
@@ -41,7 +41,7 @@ void GameRenderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& console
 
 		if (local.getX() % 4 != 0 && consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
 			consoleCoord.getX() >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.sudokuNumbersAvailableToInput = local.getX() / 4 + 1;
+			coordinate.setSudokuNumbersAvailableToInput(local.getX() / 4 + 1);
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
@@ -158,7 +158,7 @@ void GameRenderer::highlightMiniTableNumber(PhysicCoordinateCell consoleCoord) {
 
 	handler->setColorOnConsole(BACKGROUND_INTENSITY);
 
-	std::cout << "\b" << " " << coordinate.sudokuNumbersAvailableToInput << " ";
+	std::cout << "\b" << " " << coordinate.getSudokuNumbersAvailableToInput() << " ";
 
 	handler->setStandartedColorOnConsole();
 }
@@ -171,7 +171,7 @@ void GameRenderer::highlightFieldCellsForNumber() {
 
 		handler->setCursorOnCoordinates(coordinatesNotPermanent);
 
-		if (field->compareNums(coordinate.sudokuNumbersAvailableToInput, cell(*field, i).value) &&
+		if (field->compareNums(coordinate.getSudokuNumbersAvailableToInput(), cell(*field, i).value) &&
 			cell(*field, i).is_fixed) {
 			handler->setColorOnConsole(BACKGROUND_INTENSITY);
 
@@ -189,17 +189,17 @@ void GameRenderer::highlightFieldCellsForNumber() {
 }
 
 bool GameRenderer::tryPlaceValueInCell(PhysicCoordinateCell consoleCoord) {
-	if (coordinate.tableCoord < 0 || coordinate.tableCoord >= SIZE_SUDOKU_N_X_N) {
+	if (coordinate.getTableCoord() < 0 || coordinate.getTableCoord() >= SIZE_SUDOKU_N_X_N) {
 		return false;
 	}
 
-	if (field->checkInputValueInCell(coordinate.tableCoord, coordinate.sudokuNumbersAvailableToInput)) {
+	if (field->checkInputValueInCell(coordinate.getTableCoord(), coordinate.getSudokuNumbersAvailableToInput())) {
 		handler->setCursorOnCoordinates(consoleCoord);
 
 		handler->setColorOnConsole(BACKGROUND_INTENSITY);
 
-		field->pastValueCell = coordinate.tableCoord;
-		field->counterFixedCells(cell(*field, coordinate.tableCoord).value);
+		field->pastValueCell = coordinate.getTableCoord();
+		field->counterFixedCells(cell(*field, coordinate.getTableCoord()).value);
 
 		handler->setStandartedColorOnConsole();
 
@@ -216,25 +216,25 @@ bool GameRenderer::drawValueCell() {
 
 	translatorСonsoleToTableCoords(consoleCoord);
 
-	if (coordinate.buttonBack) {
-		coordinate.buttonBack = false; // чтобы при повторном заходе не выходило сразу
+	if (coordinate.getButtonBack()) {
+		coordinate.setButtonBack(false); // чтобы при повторном заходе не выходило сразу
 		return false;
 	}
 
 
-	else if (!field->compareNums(coordinate.sudokuNumbersAvailableToInput, field->pastValueTableNumbers)) {
+	else if (!field->compareNums(coordinate.getSudokuNumbersAvailableToInput(), field->pastValueTableNumbers)) {
 		highlightMiniTableNumber(consoleCoord);
 		highlightFieldCellsForNumber();
 	}
 
 
-	else if (!(field->compareNums(coordinate.tableCoord, field->pastValueCell))) {
+	else if (!(field->compareNums(coordinate.getTableCoord(), field->pastValueCell))) {
 
 		if (tryPlaceValueInCell(consoleCoord)) {
 			highlightFieldCellsForNumber();
 		}
 	}
-	field->pastValueTableNumbers = coordinate.sudokuNumbersAvailableToInput;
+	field->pastValueTableNumbers = coordinate.getSudokuNumbersAvailableToInput();
 
 	handler->setCursorOnOldCoordinates();
 
@@ -242,9 +242,7 @@ bool GameRenderer::drawValueCell() {
 }
 
 void GameRenderer::InitializeCoordinate() {
-	coordinate.buttonBack = false;
-	coordinate.sudokuNumbersAvailableToInput = -1;
-	coordinate.tableCoord = -1;
+	coordinate.initialiseCoordinate();
 	field->pastValueCell = -1;
 	field->pastValueTableNumbers = -1;
 }

@@ -48,16 +48,10 @@
     <ClCompile Include="MenuController.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
-    <ClCompile Include="Screen.cpp">
-      <Filter>Исходные файлы\View</Filter>
-    </ClCompile>
     <ClCompile Include="MenuRenderer.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
     <ClCompile Include="GameRenderer.cpp">
-      <Filter>Исходные файлы\View</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicCoordinateCell.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
   </ItemGroup>
@@ -93,6 +87,9 @@
       <Filter>Файлы заголовков\View</Filter>
     </ClInclude>
     <ClInclude Include="PhysicCoordinateCell.hpp">
+      <Filter>Файлы заголовков\View</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCoordinate.hpp">
       <Filter>Файлы заголовков\View</Filter>
     </ClInclude>
   </ItemGroup>

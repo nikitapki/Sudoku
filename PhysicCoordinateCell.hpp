@@ -2,6 +2,8 @@
 
 #include "Config.hpp"
 
+// при желании можно добавить перегрузку операторов
+
 class PhysicCoordinateCell {
 private:
 	SHORT x;

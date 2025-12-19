@@ -3,6 +3,8 @@
 #include "Screen.hpp"
 #include "Manager.hpp"
 #include "RandomLCG.hpp"
+#include "GameCoordinate.hpp"
+
 
 // для отрисовки судоку
 
@@ -18,12 +20,6 @@
 #define MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK 61 + BASE_OFFSET_X // Для кнопки возврата до по X
 #define MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK 0 + BASE_OFFSET_Y // Для кнопки возврата от по Y
 #define MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK 2 + BASE_OFFSET_Y // Для кнопки возврата до по Y
-
-struct GameCoordinate {
-    int tableCoord = -1;
-    int sudokuNumbersAvailableToInput = -1;
-    bool buttonBack = false;
-};
 
 class GameRenderer : public Screen {
 private:
