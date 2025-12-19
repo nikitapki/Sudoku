@@ -19,7 +19,7 @@ MouseHandler::MouseHandler() {
 
 PhysicCoordinateCell MouseHandler::clickToConsole() {
 
-    PhysicCoordinateCell clickToField{ 0,0 };
+    PhysicCoordinateCell clickToField;
 
 	while (true) {
         ReadConsoleInput(hStdin, irInBuf, SIZE_BUF, &cNumRead);
@@ -31,8 +31,8 @@ PhysicCoordinateCell MouseHandler::clickToConsole() {
                 bool isLeftClick = (mer.dwEventFlags == 0) && (mer.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED);
 
                 if (isLeftClick) {
-                    clickToField.x = mer.dwMousePosition.X;
-                    clickToField.y = mer.dwMousePosition.Y;
+                    clickToField.setX(mer.dwMousePosition.X);
+                    clickToField.setY(mer.dwMousePosition.Y);
                     return clickToField;
                 }
             }
@@ -55,8 +55,8 @@ void MouseHandler::ClearConsole() {
 }
 
 void MouseHandler::setCursorOnCoordinates(PhysicCoordinateCell coord) {
-    pos.X = coord.x;
-    pos.Y = coord.y;
+    pos.X = coord.getX();
+    pos.Y = coord.getY();
     SetConsoleCursorPosition(hConsole, pos);
 }
 

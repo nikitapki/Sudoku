@@ -1,11 +1,7 @@
 #pragma once
 
 #include "Config.hpp"
-
-typedef struct {
-	SHORT x;
-	SHORT y;
-} PhysicCoordinateCell;
+#include "PhysicCoordinateCell.hpp"
 
 class MouseHandler {
 private:

@@ -2,55 +2,55 @@
 
 void GameRenderer::correctionPosOnFieldFromDraw(PhysicCoordinateCell& consoleCoord) {
 	PhysicCoordinateCell local = consoleCoord;
-	local.x -= BASE_OFFSET_X;
+	local.calculationMinusX(BASE_OFFSET_X);
 
-	if (local.x % 2 == 0) {}
-	else if (local.x % 4 == 3) {
-		consoleCoord.x--;
+	if (local.getX() % 2 == 0) {}
+	else if (local.getX() % 4 == 3) {
+		consoleCoord.calculationMinusX(1);
 	}
-	else if (local.x % 4 == 1) {
-		consoleCoord.x++;
+	else if (local.getX() % 4 == 1) {
+		consoleCoord.calculationPlusX(1);
 	}
 }
 
 void GameRenderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& consoleCoord) {
 	PhysicCoordinateCell local = consoleCoord;
-	local.x -= BASE_OFFSET_X;
-	local.y -= BASE_OFFSET_Y;
+	local.calculationMinusX(BASE_OFFSET_X);
+	local.calculationMinusY(BASE_OFFSET_Y);
 
-	if (consoleCoord.y >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-		consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+	if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
+		consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
 
-		if (consoleCoord.x >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-			consoleCoord.x <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
+			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
 			coordinate.buttonBack = true;
 		}
 	}
 
-	if (local.y % 2 != 0 && consoleCoord.y <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU &&
-		consoleCoord.y >= MIN_Y_FROM_CONSOLE_TABLES_SUDOKU) {
+	if (local.getY() % 2 != 0 && consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU &&
+		consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_TABLES_SUDOKU) {
 
-		if (local.x % 4 != 0 && consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
-			consoleCoord.x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.tableCoord = local.y / 2 * SIZE_SUDOKU + local.x / 4;
+		if (local.getX() % 4 != 0 && consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord.getX() >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+			coordinate.tableCoord = local.getY() / 2 * SIZE_SUDOKU + local.getX() / 4;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 
-	if (consoleCoord.y == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
+	if (consoleCoord.getY() == Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU) {
 
-		if (local.x % 4 != 0 && consoleCoord.x <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
-			consoleCoord.x >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
-			coordinate.sudokuNumbersAvailableToInput = local.x / 4 + 1;
+		if (local.getX() % 4 != 0 && consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU &&
+			consoleCoord.getX() >= MIN_X_FROM_CONSOLE_TABLES_SUDOKU) {
+			coordinate.sudokuNumbersAvailableToInput = local.getX() / 4 + 1;
 			correctionPosOnFieldFromDraw(consoleCoord);
 		}
 	}
 }
 
 PhysicCoordinateCell GameRenderer::translatorTableToConsoleCoords(int coordinateCell) {
-	PhysicCoordinateCell coord{ 0 };
-	coord.y = coordinateCell / SIZE_SUDOKU * 2 + 1 + BASE_OFFSET_Y;
-	coord.x = coordinateCell % SIZE_SUDOKU * 4 + 3 + BASE_OFFSET_X;
+	PhysicCoordinateCell coord;
+	coord.setY(coordinateCell / SIZE_SUDOKU * 2 + 1 + BASE_OFFSET_Y);
+	coord.setX(coordinateCell % SIZE_SUDOKU * 4 + 3 + BASE_OFFSET_X);
 
 	return coord;
 }
@@ -127,8 +127,8 @@ void GameRenderer::drawElementaryField() {
 	PhysicCoordinateCell consoleCoord;
 	for (int i = 1; i < SIZE_SUDOKU * 2; i += 2) {
 		for (int j = 3; j < SIZE_SUDOKU * 4; j += 4) {
-			consoleCoord.y = i + BASE_OFFSET_Y;
-			consoleCoord.x = j + BASE_OFFSET_X;
+			consoleCoord.setY(i + BASE_OFFSET_Y);
+			consoleCoord.setX(j + BASE_OFFSET_X);
 			handler->setCursorOnCoordinates(consoleCoord);
 
 			coordCell = ((i - 1) / 2) * SIZE_SUDOKU + ((j - 3) / 4);
@@ -145,8 +145,8 @@ void GameRenderer::highlightMiniTableNumber(PhysicCoordinateCell consoleCoord) {
 	// Удаление старого выделения
 	if (field->pastValueTableNumbers != -1) {
 		PhysicCoordinateCell coordMiniTable;
-		coordMiniTable.y = Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU;
-		coordMiniTable.x = BASE_OFFSET_X + field->pastValueTableNumbers * 4 - 2;
+		coordMiniTable.setY(Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU);
+		coordMiniTable.setX(BASE_OFFSET_X + field->pastValueTableNumbers * 4 - 2);
 
 		handler->setCursorOnCoordinates(coordMiniTable);
 
