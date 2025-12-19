@@ -13,7 +13,7 @@ void Field::InitializeQuantityEmptyValues() {
 
 void Field::InitializeFieldEmptyValues() {
 	for (int i = 0; i < SIZE_SUDOKU_N_X_N; i++) {
-		field[i].value = 0;
-		field[i].is_fixed = true;
+		field[i].setValue(0);
+		field[i].setIs_fixed(true);
 	}
 }

@@ -133,8 +133,8 @@ void GameRenderer::drawElementaryField() {
 
 			coordCell = ((i - 1) / 2) * SIZE_SUDOKU + ((j - 3) / 4);
 
-			if (cell(*field, coordCell).is_fixed) {
-				std::cout << "\b" << cell(*field, coordCell).value;
+			if (cell(*field, coordCell).getIs_fixed()) {
+				std::cout << "\b" << cell(*field, coordCell).getValue();
 			}
 		}
 	}
@@ -171,18 +171,18 @@ void GameRenderer::highlightFieldCellsForNumber() {
 
 		handler->setCursorOnCoordinates(coordinatesNotPermanent);
 
-		if (field->compareNums(coordinate.getSudokuNumbersAvailableToInput(), cell(*field, i).value) &&
-			cell(*field, i).is_fixed) {
+		if (field->compareNums(coordinate.getSudokuNumbersAvailableToInput(), cell(*field, i).getValue()) &&
+			cell(*field, i).getIs_fixed()) {
 			handler->setColorOnConsole(BACKGROUND_INTENSITY);
 
-			std::cout << "\b\b" << " " << cell(*field, i).value << " ";
+			std::cout << "\b\b" << " " << cell(*field, i).getValue() << " ";
 
 			handler->setStandartedColorOnConsole();
 		}
 		else {
-			if (field->compareNums(field->pastValueTableNumbers, cell(*field, i).value) &&
-				cell(*field, i).is_fixed) {
-				std::cout << "\b\b" << " " << cell(*field, i).value << " ";
+			if (field->compareNums(field->pastValueTableNumbers, cell(*field, i).getValue()) &&
+				cell(*field, i).getIs_fixed()) {
+				std::cout << "\b\b" << " " << cell(*field, i).getValue() << " ";
 			}
 		}
 	}
@@ -199,7 +199,7 @@ bool GameRenderer::tryPlaceValueInCell(PhysicCoordinateCell consoleCoord) {
 		handler->setColorOnConsole(BACKGROUND_INTENSITY);
 
 		field->pastValueCell = coordinate.getTableCoord();
-		field->counterFixedCells(cell(*field, coordinate.getTableCoord()).value);
+		field->counterFixedCells(cell(*field, coordinate.getTableCoord()).getValue());
 
 		handler->setStandartedColorOnConsole();
 

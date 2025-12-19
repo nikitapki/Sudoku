@@ -95,5 +95,8 @@
     <ClInclude Include="CoordinateTableSudoku.hpp">
       <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Cell.hpp">
+      <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

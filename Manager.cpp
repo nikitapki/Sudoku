@@ -5,7 +5,7 @@ bool Manager::checkerCombinationsFromRow(int coord_y, int value) {
 	int idx;
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
 		idx = coord_y * SIZE_SUDOKU + i;
-		if (gridCells.field[idx].value == value) {
+		if (gridCells.field[idx].getValue() == value) {
 			return false;
 		}
 	}
@@ -25,7 +25,7 @@ bool Manager::checkerCombinationsFromBox(CoordinateTableSudoku coord, int value)
 	for (int i = offsetCoord_y; i < offsetCoord_y + SIZE_SQUARE_SUDOKU; i++) {
 		for (int j = offsetCoord_x; j < offsetCoord_x + SIZE_SQUARE_SUDOKU; j++) {
 			idx = i * SIZE_SUDOKU + j;
-			if (gridCells.field[idx].value == value) {
+			if (gridCells.field[idx].getValue() == value) {
 				return false;
 			}
 		}
@@ -38,7 +38,7 @@ bool Manager::checkerCombinationsFromColumn(int coord_x, int value) {
 	int idx;
 	for (int i = 0; i < SIZE_SUDOKU; i++) {
 		idx = i * SIZE_SUDOKU + coord_x;
-		if (gridCells.field[idx].value == value) {
+		if (gridCells.field[idx].getValue() == value) {
 			return false;
 		}
 	}
@@ -62,7 +62,7 @@ bool Manager::checkerCombinations(int indexCoordinateTableSudoku, int value) {
 // Функция возвращает результат записи. Были ли найдены пустые клетки
 bool Manager::findEmpty(int& indexCoordinateTableSudoku) {
 	for (int i = 0; i < SIZE_SUDOKU_N_X_N; i++) {
-		if (gridCells.field[i].value == 0) {
+		if (gridCells.field[i].getValue() == 0) {
 			indexCoordinateTableSudoku = i;
 			return true;
 		}
@@ -95,14 +95,14 @@ bool Manager::fillGrid() {
 		// Проверка заполнения таблицы
 		// (подходит ли кандидат, если нет рекурсивно возвращаем false и берем другого кандидата)
 		if (checkerCombinations(indexCoordinateTableSudoku, val)) {
-			gridCells.field[indexCoordinateTableSudoku].value = val;
+			gridCells.field[indexCoordinateTableSudoku].setValue(val);
 
 			// Рекурсивное возвращение true в случае полного заполнения таблицы
 			if (fillGrid()) {
 				return true;
 			}
 			// Если не удалось заполнить таблицу по выбранному кандидату очищаем установленное значение
-			gridCells.field[indexCoordinateTableSudoku].value = 0;
+			gridCells.field[indexCoordinateTableSudoku].setValue(0);
 		}
 		
 	}
@@ -118,16 +118,16 @@ void Manager::unFixedCell(int quantityRemoves) {
 	std::unique_ptr<int[]> massiveIndexesGrid{ rand.randomGenerateReverseMassive(0, 80) };
 
 	for (int i = 0; i < quantityRemoves; i++) {
-		gridCells.field[massiveIndexesGrid[i]].is_fixed = false;
+		gridCells.field[massiveIndexesGrid[i]].setIs_fixed(false);
 	}
 }
 
 // Функция подсчета фиксированных ячеек 
 void Manager::fillCounterFixedCells() {
 	for (int i = 0; i < SIZE_SUDOKU * SIZE_SUDOKU; i++) {
-		if (gridCells.field[i].is_fixed) {
+		if (gridCells.field[i].getIs_fixed()) {
 			(gridCells.quantityValues[0])++;
-			(gridCells.quantityValues[gridCells.field[i].value])++;
+			(gridCells.quantityValues[gridCells.field[i].getValue()])++;
 		}
 	}
 }
@@ -164,16 +164,18 @@ void Manager::generateNewGame(int quantityRemoves) {
 bool Manager::checkInputValueInCell(int coordinateCell, int inputValue) {
 	bool result = true;
 
-	(gridCells.field[coordinateCell].is_fixed || gridCells.field[coordinateCell].value != inputValue) 
-		? result = false 
-		: gridCells.field[coordinateCell].is_fixed = true;
+	if (gridCells.field[coordinateCell].getIs_fixed() || gridCells.field[coordinateCell].getValue() != inputValue) {
+		result = false;
+	} else {
+		gridCells.field[coordinateCell].setIs_fixed(true);
+	}
 	
 	return result;
 }
 
 // Функция проверки соответствия чисел на поле. Подходит ли введенное с скрытым
 bool Manager::checkerMatchingNums(int inputValue, int indexTableValue) {
-	return (gridCells.field[indexTableValue].value == inputValue);
+	return (gridCells.field[indexTableValue].getValue() == inputValue);
 }
 
 // Функция сравнение чисел и возврат булевого значения равны они или нет

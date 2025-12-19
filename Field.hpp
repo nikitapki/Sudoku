@@ -3,11 +3,7 @@
 #include "Config.hpp"
 #include <array>
 #include "CoordinateTableSudoku.hpp"
-
-typedef struct Cell{
-	int value;
-	bool is_fixed;
-} Cell;
+#include "Cell.hpp"
 
 class Field {
 public:
