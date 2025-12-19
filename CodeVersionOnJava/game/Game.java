@@ -4,6 +4,7 @@ import Core.Manager;
 import RendererAndHandlerFromDesktop.InputHandler;
 import RendererAndHandlerFromDesktop.MenuController;
 import RendererAndHandlerFromDesktop.RendererDesktop;
+import RendererAndHandlerFromDesktop.RendererScreen;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -23,6 +24,18 @@ public class Game {
         boolean endGame = false;
 
         while (!endGame) {
+
+            
+            // ВРЕМЕННО. Динамимически демонстрируем вызов. Показываю, что переменная 
+            // базового типа вызывает версию производного типа
+            // Если сделать две одинаковые функции не переопределять их и сделать статическими,
+            // то у нас нужно будет 2 разных объекта (родителя и дочернего). 
+            // Из-за статика или финиша нельзя переопределять.
+            // ------------------------------
+            RendererScreen baseRef1 = new RendererDesktop(field);
+            baseRef1.renderFrame();  // вызовет RendererDesktop.drawHeader/drawFooter/drawElementaryField
+            // ------------------------------
+
 
             // выбор сложности через главное меню
             int diffChoice = menu.controlMenu(MenuController.START_PROGRAM);
