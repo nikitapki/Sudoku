@@ -3,9 +3,10 @@ package RendererAndHandlerFromDesktop;
 import Core.Cell;
 import Core.Config;
 import Core.Manager;
-import RendererAndHandlerFromDesktop.RendererDesktop.CoordinateState;
 
 public class RendererDesktop extends RendererScreen {
+
+
 
     // ВРЕМЕННО. Переопределенный метод из родителя
     // ------------------------------
@@ -20,6 +21,7 @@ public class RendererDesktop extends RendererScreen {
         System.out.println("Тест переопределения с заменой 456 456");
     }
     // ------------------------------
+
 
 
     enum CommandsMenu {
@@ -45,12 +47,14 @@ public class RendererDesktop extends RendererScreen {
         field.pastValueTableNumbers = -1;
     }
 
+
+
     // ВРЕМЕННО. Переопределение двух виртуальных функций
     // ------------------------------
-     @Override
-        protected void drawName() {
-            System.out.println("Sudoku 9x9");
-        }
+    @Override
+    protected void drawName() {
+        System.out.println("Sudoku 9x9");
+    }
 
     @Override
     protected void drawLable() {
@@ -58,16 +62,22 @@ public class RendererDesktop extends RendererScreen {
     }
     // ------------------------------
 
+
+
     @Override
     public void drawElementaryField() {
         initializeCoordinate();
         // clearConsole(); 
         
+
+
         // ВРЕМЕННО. Тест переопределенного метода
         // ------------------------------
         beforeDraw();
         drawPrint();
         // ------------------------------
+
+
 
         System.out.println(pad + "    1   2   3   4   5   6   7   8   9  ");
         System.out.println(pad + "  ╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗");

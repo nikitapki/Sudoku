@@ -3,7 +3,7 @@ package RendererAndHandlerFromDesktop;
 import Core.Config;
 import Core.Manager;
 
-public abstract class RendererScreen {
+public abstract class RendererScreen implements Renderer {
     protected final Manager field;
     protected final String pad;
 
@@ -18,11 +18,6 @@ public abstract class RendererScreen {
         return sb.toString();
     }
 
-    public void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
     // ВРЕМЕННО. Методы, которые наследник сможет переопределить
     // ------------------------------
     public void beforeDraw() {
@@ -33,6 +28,8 @@ public abstract class RendererScreen {
         System.out.println("Тест переопределения с заменой 123 123");
     }
     // ------------------------------
+
+
 
     // ВРЕМЕННО. Демонстрация вызова виртуальных функций в невиртуальной (той, которую нельзя переопределить)
     // ------------------------------
@@ -52,8 +49,20 @@ public abstract class RendererScreen {
     }
     // ------------------------------
 
+    // Переопределяю методы из Renderer (интерфейса) в абстрактный класс для дальнейшего
+    // переопределения в классах-наследниках
+    @Override
+    public void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    @Override
     public abstract void drawElementaryField();
+    @Override
     public abstract void drawMenu();
+    @Override
     public abstract void drawSettingsDifficulty();
+    @Override
     public abstract boolean tryPlaceValueInCell(int tableCoord, int num);
 }
