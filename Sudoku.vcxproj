@@ -149,7 +149,6 @@
     <ClInclude Include="RandomLCG.hpp" />
     <ClInclude Include="Manager.hpp" />
     <ClInclude Include="Screen.hpp" />
-    <ClInclude Include="SudokuRule.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

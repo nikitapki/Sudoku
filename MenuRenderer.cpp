@@ -3,12 +3,14 @@
 CommandsMenu MenuRenderer::drawMenu() {
 	handler->ClearConsole();
 
-	std::cout << pad << u8"╔══════════════╗" << std::endl;
-	std::cout << pad << u8"║    Играть    ║" << std::endl;
-	std::cout << pad << u8"╚══════════════╝" << std::endl;
-	std::cout << pad << u8"╔══════════════╗" << std::endl;
-	std::cout << pad << u8"║    Выход     ║" << std::endl;
-	std::cout << pad << u8"╚══════════════╝" << std::endl;
+	std::wstring padW = L"                                          ";
+
+	std::wcout << padW << L"╔══════════════╗" << std::endl;
+	std::wcout << padW << L"║    Играть    ║" << std::endl;
+	std::wcout << padW << L"╚══════════════╝" << std::endl;
+	std::wcout << padW << L"╔══════════════╗" << std::endl;
+	std::wcout << padW << L"║    Выход     ║" << std::endl;
+	std::wcout << padW << L"╚══════════════╝" << std::endl;
 
 	CommandsMenu result;
 	bool exitFromCycl = false;
@@ -39,21 +41,23 @@ CommandsMenu MenuRenderer::drawMenu() {
 int MenuRenderer::drawSettingsDifficulty() {
 	handler->ClearConsole();
 
-	std::cout << pad << u8"╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   Легкий        ║" << std::endl;
-	std::cout << pad << u8"╚═════════════════╝" << std::endl;
-	std::cout << pad << u8"╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   Средний       ║" << std::endl;
-	std::cout << pad << u8"╚═════════════════╝" << std::endl;
-	std::cout << pad << u8"╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   Сложный       ║" << std::endl;
-	std::cout << pad << u8"╚═════════════════╝" << std::endl;
-	std::cout << pad << u8"╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   Невозможный   ║" << std::endl;
-	std::cout << pad << u8"╚═════════════════╝" << std::endl;
-	std::cout << pad << u8"╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   Вернуться     ║" << std::endl;
-	std::cout << pad << u8"╚═════════════════╝" << std::endl;
+	std::wstring padW = L"                                          ";
+
+	std::wcout << padW << L"╔═════════════════╗" << std::endl;
+	std::wcout << padW << L"║   Легкий        ║" << std::endl;
+	std::wcout << padW << L"╚═════════════════╝" << std::endl;
+	std::wcout << padW << L"╔═════════════════╗" << std::endl;
+	std::wcout << padW << L"║   Средний       ║" << std::endl;
+	std::wcout << padW << L"╚═════════════════╝" << std::endl;
+	std::wcout << padW << L"╔═════════════════╗" << std::endl;
+	std::wcout << padW << L"║   Сложный       ║" << std::endl;
+	std::wcout << padW << L"╚═════════════════╝" << std::endl;
+	std::wcout << padW << L"╔═════════════════╗" << std::endl;
+	std::wcout << padW << L"║   Невозможный   ║" << std::endl;
+	std::wcout << padW << L"╚═════════════════╝" << std::endl;
+	std::wcout << padW << L"╔═════════════════╗" << std::endl;
+	std::wcout << padW << L"║   Вернуться     ║" << std::endl;
+	std::wcout << padW << L"╚═════════════════╝" << std::endl;
 
 	int result;
 	bool exitFromCycl = false;
