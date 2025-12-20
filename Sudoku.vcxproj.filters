@@ -98,5 +98,8 @@
     <ClInclude Include="Cell.hpp">
       <Filter>Файлы заголовков\Core</Filter>
     </ClInclude>
+    <ClInclude Include="SudokuRule.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

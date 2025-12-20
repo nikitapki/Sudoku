@@ -99,29 +99,31 @@ void GameRenderer::drawElementaryField() {
 
 	handler->ClearConsole();
 
-	std::cout << pad << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
-	std::cout << pad << u8"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
-	std::cout << pad << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
+	std::wstring padW = L"                                          ";
 
-	std::cout << pad << u8"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗" << std::endl;
-	std::cout << pad << u8"║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║" << std::endl;
-	std::cout << pad << u8"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
+	std::wcout << padW <<  L"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗     ╔═════════════════╗" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║     ║   Вернуться     ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣     ╚═════════════════╝" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╠═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╬═══╣" << std::endl;
+	std::wcout << padW <<  L"║   ║   ║   ║   ║   ║   ║   ║   ║   ║" << std::endl;
+	std::wcout << padW <<  L"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
+
+	std::wcout << padW <<  L"╔═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╦═══╗" << std::endl;
+	std::wcout << padW <<  L"║ 1 ║ 2 ║ 3 ║ 4 ║ 5 ║ 6 ║ 7 ║ 8 ║ 9 ║" << std::endl;
+	std::wcout << padW <<  L"╚═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╩═══╝" << std::endl;
 
 	int coordCell;
 	PhysicCoordinateCell consoleCoord;
