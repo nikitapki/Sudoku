@@ -45,7 +45,7 @@
     <ClCompile Include="MouseHandler.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
-    <ClCompile Include="MenuController.cpp">
+    <ClCompile Include="GameRenderer.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
     <ClCompile Include="MenuRenderer.cpp">
