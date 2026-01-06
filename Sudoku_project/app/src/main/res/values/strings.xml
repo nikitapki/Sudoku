@@ -15,4 +15,5 @@
     <string name="SEVEN_FROM_CLICK_MENU">7</string>
     <string name="EIGHT_FROM_CLICK_MENU">8</string>
     <string name="NINE_FROM_CLICK_MENU">9</string>
+    <string name="its_null">0</string>
 </resources>

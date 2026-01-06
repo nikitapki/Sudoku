@@ -2,6 +2,7 @@ package com.example.sudoku;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -119,7 +120,7 @@ public class GameActivity extends AppCompatActivity {
                 // выделить новую
                 activeButton = (Button) v;
                 activeButton.setSelected(true);
-                activeButton.setBackgroundColor(0xFF66BB6A); // твой зелёный
+                activeButton.setBackgroundColor(0xFF66BB6A); // зелёный
 
                 // логика выбора числа
                 selectedNumber = activeButton.getText().toString();
@@ -172,7 +173,6 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 cells[i][j] = findViewById(ids[i][j]);
-                cells[i][j].setBackgroundColor(Color.BLACK);
                 cells[i][j].setOnClickListener(cellClickListener);
             }
         }
@@ -236,7 +236,11 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
 
-                cells[r][c].setBackgroundColor(color);
+                GradientDrawable gd = new GradientDrawable();
+                gd.setColor(color);
+                gd.setStroke(1, 0xFFFFFFFF); // обводка
+                cells[r][c].setBackground(gd);
+
             }
         }
     }
