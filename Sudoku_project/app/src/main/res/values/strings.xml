@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Судоку</string>
     <string name="button_play">Играть</string>
+    <string name="button_info">Информация</string>
     <string name="button_difficult_easy">Легкo</string>
     <string name="button_difficult_medium">Нормальнo</string>
     <string name="button_difficult_hard">Сложнo</string>

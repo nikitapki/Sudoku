@@ -2,7 +2,6 @@ package com.example.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
         Button btnPlay = findViewById(R.id.buttonPlay);
         btnPlay.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, DifficultyActivity.class);
+            startActivity(intent);
+        });
+
+        Button btnInfo = findViewById(R.id.buttonInfo);
+        btnInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, InfoActivity.class);
             startActivity(intent);
         });
     }

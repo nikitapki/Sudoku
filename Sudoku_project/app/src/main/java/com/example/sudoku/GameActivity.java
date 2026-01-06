@@ -1,10 +1,8 @@
 package com.example.sudoku;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +16,7 @@ import com.example.sudoku.core.Manager;
 
 public class GameActivity extends AppCompatActivity {
 
-    private TextView[][] cells = new TextView[Config.SIZE_SUDOKU][Config.SIZE_SUDOKU];
+    private final TextView[][] cells = new TextView[Config.SIZE_SUDOKU][Config.SIZE_SUDOKU];
 
     private String selectedNumber = null;
     private int selectedRow = -1;
