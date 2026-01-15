@@ -4,7 +4,7 @@ int MenuController::MenuForStartGame() {
 	int result = -1;
 	bool exitCycl = false;
 	do {
-		if (renderMenu.drawMenu() == playGame) {
+		if (renderMenu.drawMenu() == CommandsMenu::playGame) {
 			result = renderMenu.drawSettingsDifficulty();
 			if (result != -1) {
 				exitCycl = true;

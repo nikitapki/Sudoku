@@ -1,6 +1,5 @@
 #include "Game.hpp"
 
-// : render(field) - инициализация render полем(объектом класса) field
 Game::Game() 
 	: field(std::make_shared<Manager>()),
 	handlerClickes(std::make_shared<MouseHandler>()),
@@ -11,8 +10,6 @@ Game::Game()
 	do {
 		bool endRound = false;
 		field->generateNewGame(menu.controlMenu(menu.startProgram));
-
-		//roundStart = Clock::now();      // запомнили момент старта раунда
 
 		renderField.drawElementaryField();
 

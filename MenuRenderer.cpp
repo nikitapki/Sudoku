@@ -22,12 +22,12 @@ CommandsMenu MenuRenderer::drawMenu() {
 			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
 			if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY
 				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY) {
-				result = playGame;
+				result = CommandsMenu::playGame;
 				exitFromCycl = true;
 			}
 			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT
 				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT) {
-				result = exitGame;
+				result = CommandsMenu::exitGame;
 				exitFromCycl = true;
 			}
 		}

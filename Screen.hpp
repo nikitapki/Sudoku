@@ -11,4 +11,6 @@ protected:
 public:
     Screen(std::shared_ptr<MouseHandler> h)
         : handler(std::move(h)), pad(BASE_OFFSET_X, ' ') { }
+
+    virtual ~Screen() = default;
 };
