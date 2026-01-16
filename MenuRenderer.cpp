@@ -18,6 +18,8 @@ CommandsMenu MenuRenderer::drawMenu() {
 
 		PhysicCoordinateCell consoleCoord = handler->clickToConsole();
 
+		processClickForMainManu(consoleCoord.getX(), consoleCoord.getY());
+
 		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_ROW_MENU_BUTTONS &&
 			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
 			if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY

@@ -135,17 +135,27 @@
     <ClCompile Include="Sudoku.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfigButtons.hpp" />
+    <ClInclude Include="DifficultyBackButton.hpp" />
     <ClInclude Include="Cell.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="CoordinateTableSudoku.hpp" />
+    <ClInclude Include="DifficultyEasyButton.hpp" />
+    <ClInclude Include="DifficultyHardButton.hpp" />
+    <ClInclude Include="DifficultyImposibleButton.hpp" />
+    <ClInclude Include="DifficultyMediumButton.hpp" />
+    <ClInclude Include="ExitButton.hpp" />
     <ClInclude Include="Field.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameBackOnMainMenuButton.hpp" />
     <ClInclude Include="GameCoordinate.hpp" />
     <ClInclude Include="GameRenderer.hpp" />
+    <ClInclude Include="IButton.hpp" />
     <ClInclude Include="MenuController.hpp" />
     <ClInclude Include="MenuRenderer.hpp" />
     <ClInclude Include="MouseHandler.hpp" />
     <ClInclude Include="PhysicCoordinateCell.hpp" />
+    <ClInclude Include="PlayButton.hpp" />
     <ClInclude Include="RandomLCG.hpp" />
     <ClInclude Include="Manager.hpp" />
     <ClInclude Include="Screen.hpp" />

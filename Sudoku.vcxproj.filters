@@ -25,6 +25,24 @@
     <Filter Include="Исходные файлы\View">
       <UniqueIdentifier>{69cf2e41-6c59-4655-bb22-be7b0723bdbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\View\Interfaces">
+      <UniqueIdentifier>{eb7b6255-5983-43ba-bc07-529fe5fcd23a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\View\Buttons">
+      <UniqueIdentifier>{731ad8ae-78c6-450f-8fa4-f9461d1478c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\View\Buttons\Menu">
+      <UniqueIdentifier>{137d0d47-e69c-433a-b520-b4d5173c5463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\View\Buttons\Difficulty">
+      <UniqueIdentifier>{3ec4f794-4bc4-4713-ae9e-a1a7d6d93c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\View\Buttons\Game">
+      <UniqueIdentifier>{6e769e68-7cfc-47ab-84c8-0c3fdfe66d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\View\ConfigForButtons">
+      <UniqueIdentifier>{d2ba90f6-f211-4cac-83d6-dd94af8ba441}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sudoku.cpp">
@@ -100,6 +118,36 @@
     </ClInclude>
     <ClInclude Include="Cell.hpp">
       <Filter>Файлы заголовков\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IButton.hpp">
+      <Filter>Файлы заголовков\View\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyEasyButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Difficulty</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyHardButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Difficulty</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyImposibleButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Difficulty</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyMediumButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Difficulty</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyBackButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Difficulty</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBackOnMainMenuButton.hpp">
+      <Filter>Файлы заголовков\View\Buttons\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigButtons.hpp">
+      <Filter>Файлы заголовков\View\ConfigForButtons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
