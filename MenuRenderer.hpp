@@ -44,23 +44,5 @@ public:
 
     CommandsMenu drawMenu();
 
-    void processClickForMainManu(int x, int y) {
-        for (std::unique_ptr<IButton>& button : buttonsMainMenu) {
-            if (button->contains(x, y)) {
-                button->onClick();  // Делегирую клик в главном меню
-                break;
-            }
-        }
-    }
-
-    void processClickForDifficultyMenu(int x, int y) {
-        for (std::unique_ptr<IButton>& button : buttonsDifficultyMenu) {
-            if (button->contains(x, y)) {
-                button->onClick();  // Делегирую клик в меню выбора сложности
-                break;
-            }
-        }
-    }
-
     int drawSettingsDifficulty(); // возвращает quantityRemoves или -1
 };

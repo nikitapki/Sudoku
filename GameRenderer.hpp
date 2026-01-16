@@ -4,6 +4,8 @@
 #include "Manager.hpp"
 #include "RandomLCG.hpp"
 #include "GameCoordinate.hpp"
+#include <vector>
+#include "GameBackOnMainMenuButton.hpp"
 
 
 // для отрисовки судоку
@@ -16,16 +18,13 @@ constexpr int MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU = 36 + BASE_OFFSET_X; // Для 
 
 constexpr int Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU = 20 + BASE_OFFSET_Y; // Для выбора значений, доступных для игры по Y
 
-//constexpr int MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 43 + BASE_OFFSET_X; // Для кнопки возврата от по X
-//constexpr int MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 61 + BASE_OFFSET_X; // Для кнопки возврата до по X
-//constexpr int MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 0 + BASE_OFFSET_Y; // Для кнопки возврата от по Y
-//constexpr int MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 2 + BASE_OFFSET_Y; // Для кнопки возврата до по Y
-
 class GameRenderer : public Screen {
 private:
     RandomLCG randomDifficult;
     GameCoordinate coordinate;
     std::shared_ptr<Manager> field;
+
+    std::vector<std::unique_ptr<IButton>> gameButton;
 
     void correctionPosOnFieldFromDraw(PhysicCoordinateCell& consoleCoord);
     void translatorСonsoleToTableCoords(PhysicCoordinateCell& consoleCoord);
@@ -38,6 +37,9 @@ private:
 public:
     GameRenderer(std::shared_ptr<Manager> f, std::shared_ptr<MouseHandler> handler)
         : Screen(std::move(handler)), field(std::move(f)) {
+
+        gameButton.push_back(std::make_unique<GameBackOnMainMenuButton>());
+
     }  // вызов базового класса
 
     void InitializeCoordinate();
