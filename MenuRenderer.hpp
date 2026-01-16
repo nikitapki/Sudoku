@@ -2,37 +2,18 @@
 
 #include "Screen.hpp"
 #include "RandomLCG.hpp"
+#include <vector>
 
-// для отрисовки меню
+#include "IButton.hpp"
 
-constexpr int MIN_X_FROM_CONSOLE_ROW_MENU_BUTTONS = 0 + BASE_OFFSET_X; // Максимальная длина кнопок
-constexpr int MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS = 15 + BASE_OFFSET_X; // Максимальная длина кнопок
+#include "PlayButton.hpp"
+#include "ExitButton.hpp"
 
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY = 0 + BASE_OFFSET_Y; // Для кнопки начала игры от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY = 2 + BASE_OFFSET_Y; // Для кнопки начала игры до по Y
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT = 3 + BASE_OFFSET_Y; // Для кнопки выхода от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT = 5 + BASE_OFFSET_Y; // Для кнопки выхода до по Y
-
-// для отрисовки меню выбора сложности
-
-constexpr int MIN_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS = 0 + BASE_OFFSET_X; // Максимальная длина кнопок
-constexpr int MAX_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS = 19 + BASE_OFFSET_X; // Максимальная длина кнопок
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY = 0 + BASE_OFFSET_Y; // Для кнопки легкая сложность от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY = 2 + BASE_OFFSET_Y; // Для кнопки легкая сложность до по Y
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM = 3 + BASE_OFFSET_Y; // Для кнопки средняя сложность от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM = 5 + BASE_OFFSET_Y; // Для кнопки средняя сложность до по Y
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD = 6 + BASE_OFFSET_Y; // Для кнопки сложная сложность от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD = 8 + BASE_OFFSET_Y; // Для кнопки сложная сложность до по Y
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE = 9 + BASE_OFFSET_Y; // Для кнопки невозможная сложность от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE = 11 + BASE_OFFSET_Y; // Для кнопки невозможная сложность до по Y
-
-constexpr int MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK = 12 + BASE_OFFSET_Y; // Для кнопки возврата от по Y
-constexpr int MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK = 14 + BASE_OFFSET_Y; // Для кнопки возврата до по Y
+#include "DifficultyEasyButton.hpp"
+#include "DifficultyMediumButton.hpp"
+#include "DifficultyHardButton.hpp"
+#include "DifficultyImposibleButton.hpp"
+#include "DifficultyBackButton.hpp"
 
 enum class CommandsMenu {
     playGame = 1,
@@ -41,14 +22,45 @@ enum class CommandsMenu {
 
 class MenuRenderer : public Screen {
 private:
+    std::vector<std::unique_ptr<IButton>> buttonsMainMenu;
+    std::vector<std::unique_ptr<IButton>> buttonsDifficultyMenu;
+
     RandomLCG randomDifficult;
 
 public:
     MenuRenderer(std::shared_ptr<MouseHandler> handler)
         : Screen(std::move(handler)) {
+        
+        buttonsMainMenu.push_back(std::make_unique<PlayButton>());
+        buttonsMainMenu.push_back(std::make_unique<ExitButton>());
+
+        buttonsDifficultyMenu.push_back(std::make_unique<DifficultyEasyButton>());
+        buttonsDifficultyMenu.push_back(std::make_unique<DifficultyMediumButton>());
+        buttonsDifficultyMenu.push_back(std::make_unique<DifficultyHardButton>());
+        buttonsDifficultyMenu.push_back(std::make_unique<DifficultyImpossibleButton>());
+        buttonsDifficultyMenu.push_back(std::make_unique<DifficultyBackButton>());
+
     }   // вызов конструктора базового класса
 
     CommandsMenu drawMenu();
+
+    void processClickForMainManu(int x, int y) {
+        for (std::unique_ptr<IButton>& button : buttonsMainMenu) {
+            if (button->contains(x, y)) {
+                button->onClick();  // Делегирую клик в главном меню
+                break;
+            }
+        }
+    }
+
+    void processClickForDifficultyMenu(int x, int y) {
+        for (std::unique_ptr<IButton>& button : buttonsDifficultyMenu) {
+            if (button->contains(x, y)) {
+                button->onClick();  // Делегирую клик в меню выбора сложности
+                break;
+            }
+        }
+    }
 
     int drawSettingsDifficulty(); // возвращает quantityRemoves или -1
 };
