@@ -1,102 +1,78 @@
 ﻿#include "MenuRenderer.hpp"
 
 CommandsMenu MenuRenderer::drawMenu() {
-	handler->ClearConsole();
+    handler->ClearConsole();
 
-	std::wstring padW = L"                                          ";
+    std::wstring padW = L"                                          ";
+    std::wcout << padW << L"╔══════════════╗" << std::endl;
+    std::wcout << padW << L"║    Играть    ║" << std::endl;
+    std::wcout << padW << L"╚══════════════╝" << std::endl;
+    std::wcout << padW << L"╔══════════════╗" << std::endl;
+    std::wcout << padW << L"║    Выход     ║" << std::endl;
+    std::wcout << padW << L"╚══════════════╝" << std::endl;
 
-	std::wcout << padW << L"╔══════════════╗" << std::endl;
-	std::wcout << padW << L"║    Играть    ║" << std::endl;
-	std::wcout << padW << L"╚══════════════╝" << std::endl;
-	std::wcout << padW << L"╔══════════════╗" << std::endl;
-	std::wcout << padW << L"║    Выход     ║" << std::endl;
-	std::wcout << padW << L"╚══════════════╝" << std::endl;
+    while (true) {
+        PhysicCoordinateCell coord = handler->clickToConsole();
 
-	CommandsMenu result;
-	bool exitFromCycl = false;
-	do {
-
-		PhysicCoordinateCell consoleCoord = handler->clickToConsole();
-
-		processClickForMainManu(consoleCoord.getX(), consoleCoord.getY());
-
-		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_ROW_MENU_BUTTONS &&
-			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_MENU_BUTTONS) {
-			if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_PLAY) {
-				result = CommandsMenu::playGame;
-				exitFromCycl = true;
-			}
-			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_EXIT) {
-				result = CommandsMenu::exitGame;
-				exitFromCycl = true;
-			}
-		}
-	} while (!exitFromCycl);
-
-	handler->setCursorOnOldCoordinates();
-
-	return result;
+        // Обработка кликов по кнопкам
+        for (std::unique_ptr<IButton>& button : buttonsMainMenu) {
+            if (button->contains(coord.getX(), coord.getY())) {
+                //button->onClick();
+                if (dynamic_cast<PlayButton*>(button.get())) {
+                    return CommandsMenu::playGame;
+                }
+                if (dynamic_cast<ExitButton*>(button.get())) {
+                    return CommandsMenu::exitGame;
+                }
+            }
+        }
+    }
 }
 
 int MenuRenderer::drawSettingsDifficulty() {
-	handler->ClearConsole();
+    handler->ClearConsole();
 
-	std::wstring padW = L"                                          ";
+    std::wstring padW = L"                                          ";
+    std::wcout << padW << L"╔═════════════════╗" << std::endl;
+    std::wcout << padW << L"║   Легкий        ║" << std::endl;
+    std::wcout << padW << L"╚═════════════════╝" << std::endl;
+    std::wcout << padW << L"╔═════════════════╗" << std::endl;
+    std::wcout << padW << L"║   Средний       ║" << std::endl;
+    std::wcout << padW << L"╚═════════════════╝" << std::endl;
+    std::wcout << padW << L"╔═════════════════╗" << std::endl;
+    std::wcout << padW << L"║   Сложный       ║" << std::endl;
+    std::wcout << padW << L"╚═════════════════╝" << std::endl;
+    std::wcout << padW << L"╔═════════════════╗" << std::endl;
+    std::wcout << padW << L"║   Невозможный   ║" << std::endl;
+    std::wcout << padW << L"╚═════════════════╝" << std::endl;
+    std::wcout << padW << L"╔═════════════════╗" << std::endl;
+    std::wcout << padW << L"║   Вернуться     ║" << std::endl;
+    std::wcout << padW << L"╚═════════════════╝" << std::endl;
 
-	std::wcout << padW << L"╔═════════════════╗" << std::endl;
-	std::wcout << padW << L"║   Легкий        ║" << std::endl;
-	std::wcout << padW << L"╚═════════════════╝" << std::endl;
-	std::wcout << padW << L"╔═════════════════╗" << std::endl;
-	std::wcout << padW << L"║   Средний       ║" << std::endl;
-	std::wcout << padW << L"╚═════════════════╝" << std::endl;
-	std::wcout << padW << L"╔═════════════════╗" << std::endl;
-	std::wcout << padW << L"║   Сложный       ║" << std::endl;
-	std::wcout << padW << L"╚═════════════════╝" << std::endl;
-	std::wcout << padW << L"╔═════════════════╗" << std::endl;
-	std::wcout << padW << L"║   Невозможный   ║" << std::endl;
-	std::wcout << padW << L"╚═════════════════╝" << std::endl;
-	std::wcout << padW << L"╔═════════════════╗" << std::endl;
-	std::wcout << padW << L"║   Вернуться     ║" << std::endl;
-	std::wcout << padW << L"╚═════════════════╝" << std::endl;
+    while (true) {
+        PhysicCoordinateCell coord = handler->clickToConsole();
 
-	int result;
-	bool exitFromCycl = false;
-	do {
-		PhysicCoordinateCell consoleCoord = handler->clickToConsole();
+        // Обработка кликов по уровням сложности
+        for (std::unique_ptr<IButton>& button: buttonsDifficultyMenu) {
+            if (button->contains(coord.getX(), coord.getY())) {
+                //button->onClick();
 
-		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS &&
-			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_ROW_MENU_SETTINGS_DIFFICULTIES_BUTTONS) {
-			if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_EASY) {
-				result = randomDifficult.random(18, 27);
-				exitFromCycl = true;
-			}
-			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_MEDIUM) {
-				result = randomDifficult.random(30, 40);
-				exitFromCycl = true;
-			}
-			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_HARD) {
-				result = randomDifficult.random(41, 50);
-				exitFromCycl = true;
-			}
-			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_DIFFICULT_IMPOSIBLE) {
-				result = randomDifficult.random(51, 60);
-				exitFromCycl = true;
-			}
-			else if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK
-				&& consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_MENU_BUTTON_BACK) {
-				result = -1;
-				exitFromCycl = true;
-			}
-		}
-	} while (!exitFromCycl);
-
-	handler->setCursorOnOldCoordinates();
-
-	return result;
+                if (dynamic_cast<DifficultyEasyButton*>(button.get())) {
+                    return randomDifficult.random(18, 27);
+                }
+                else if (dynamic_cast<DifficultyMediumButton*>(button.get())) {
+                    return randomDifficult.random(30, 40);
+                }
+                else if (dynamic_cast<DifficultyHardButton*>(button.get())) {
+                    return randomDifficult.random(41, 50);
+                }
+                else if (dynamic_cast<DifficultyImpossibleButton*>(button.get())) {
+                    return randomDifficult.random(51, 60);
+                }
+                else if (dynamic_cast<DifficultyBackButton*>(button.get())) {
+                    return -1;
+                }
+            }
+        }
+    }
 }

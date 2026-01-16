@@ -23,7 +23,7 @@ int MenuController::MenuForStartGame() {
 int MenuController::MenuForReturnFromGame() {
 	int result = -1;
 	bool exitCycl = false;
-	
+
 	result = renderMenu.drawSettingsDifficulty();
 	if (result == -1) {
 		result = MenuForStartGame();

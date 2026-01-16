@@ -18,11 +18,9 @@ void GameRenderer::translatorСonsoleToTableCoords(PhysicCoordinateCell& console
 	local.calculationMinusX(BASE_OFFSET_X);
 	local.calculationMinusY(BASE_OFFSET_Y);
 
-	if (consoleCoord.getY() >= MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-		consoleCoord.getY() <= MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
-
-		if (consoleCoord.getX() >= MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK &&
-			consoleCoord.getX() <= MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK) {
+	for (std::unique_ptr<IButton>& button : gameButton) {
+		if (button->contains(consoleCoord.getX(), consoleCoord.getY())) {
+			//button->onClick();
 			coordinate.setButtonBack(true);
 		}
 	}
