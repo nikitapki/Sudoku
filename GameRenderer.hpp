@@ -8,18 +8,18 @@
 
 // для отрисовки судоку
 
-static constexpr int MIN_X_FROM_CONSOLE_TABLES_SUDOKU = 1 + BASE_OFFSET_X; // Для полей и значений доступных для выбора от по X
-static constexpr int MIN_Y_FROM_CONSOLE_TABLES_SUDOKU = 1 + BASE_OFFSET_Y; // Для полей и значений доступных для выбора от по Y
+constexpr int MIN_X_FROM_CONSOLE_TABLES_SUDOKU = 1 + BASE_OFFSET_X; // Для полей и значений доступных для выбора от по X
+constexpr int MIN_Y_FROM_CONSOLE_TABLES_SUDOKU = 1 + BASE_OFFSET_Y; // Для полей и значений доступных для выбора от по Y
 
-static constexpr int MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU = 17 + BASE_OFFSET_Y; // Для поля игры до по Y
-static constexpr int MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU = 36 + BASE_OFFSET_X; // Для поля игры до по X
+constexpr int MAX_Y_FROM_CONSOLE_COLUMN_TABLE_SUDOKU = 17 + BASE_OFFSET_Y; // Для поля игры до по Y
+constexpr int MAX_X_FROM_CONSOLE_ROW_TABLES_SUDOKU = 36 + BASE_OFFSET_X; // Для поля игры до по X
 
-static constexpr int Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU = 20 + BASE_OFFSET_Y; // Для выбора значений, доступных для игры по Y
+constexpr int Y_FROM_CONSOLE_COLUMN_TABLE_NUMS_SUDOKU = 20 + BASE_OFFSET_Y; // Для выбора значений, доступных для игры по Y
 
-static constexpr int MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 43 + BASE_OFFSET_X; // Для кнопки возврата от по X
-static constexpr int MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 61 + BASE_OFFSET_X; // Для кнопки возврата до по X
-static constexpr int MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 0 + BASE_OFFSET_Y; // Для кнопки возврата от по Y
-static constexpr int MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 2 + BASE_OFFSET_Y; // Для кнопки возврата до по Y
+constexpr int MIN_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 43 + BASE_OFFSET_X; // Для кнопки возврата от по X
+constexpr int MAX_X_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 61 + BASE_OFFSET_X; // Для кнопки возврата до по X
+constexpr int MIN_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 0 + BASE_OFFSET_Y; // Для кнопки возврата от по Y
+constexpr int MAX_Y_FROM_CONSOLE_COLUMN_SUDOKU_BUTTON_BACK = 2 + BASE_OFFSET_Y; // Для кнопки возврата до по Y
 
 class GameRenderer : public Screen {
 private:

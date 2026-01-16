@@ -54,6 +54,9 @@
     <ClCompile Include="GameRenderer.cpp">
       <Filter>Исходные файлы\View</Filter>
     </ClCompile>
+    <ClCompile Include="MenuController.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.hpp">
@@ -97,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Cell.hpp">
       <Filter>Файлы заголовков\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="SudokuRule.hpp">
-      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
