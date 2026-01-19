@@ -1,0 +1,80 @@
+Index: ../Player.hpp
+===================================================================
+diff --git a/../Player.hpp b/../Player.hpp
+deleted file mode 100644
+--- a/../Player.hpp	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
++++ /dev/null	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
+@@ -1,8 +0,0 @@
+-#pragma once
+-
+-class Player
+-{
+-public:
+-	
+-
+-};
+\ No newline at end of file
+Index: ../Player.cpp
+===================================================================
+diff --git a/../Player.cpp b/../Player.cpp
+deleted file mode 100644
+--- a/../Player.cpp	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
++++ /dev/null	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
+@@ -1,1 +0,0 @@
+-#include "Player.hpp"
+Index: ../Sudoku.vcxproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <ItemGroup Label=\"ProjectConfigurations\">\r\n    <ProjectConfiguration Include=\"Debug|Win32\">\r\n      <Configuration>Debug</Configuration>\r\n      <Platform>Win32</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"Release|Win32\">\r\n      <Configuration>Release</Configuration>\r\n      <Platform>Win32</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"Debug|x64\">\r\n      <Configuration>Debug</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n    <ProjectConfiguration Include=\"Release|x64\">\r\n      <Configuration>Release</Configuration>\r\n      <Platform>x64</Platform>\r\n    </ProjectConfiguration>\r\n  </ItemGroup>\r\n  <PropertyGroup Label=\"Globals\">\r\n    <VCProjectVersion>17.0</VCProjectVersion>\r\n    <Keyword>Win32Proj</Keyword>\r\n    <ProjectGuid>{9d2bc011-e2b3-49d8-9b6f-407633880a9f}</ProjectGuid>\r\n    <RootNamespace>Sudoku</RootNamespace>\r\n    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.Default.props\" />\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|Win32'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <UseDebugLibraries>true</UseDebugLibraries>\r\n    <PlatformToolset>v143</PlatformToolset>\r\n    <CharacterSet>Unicode</CharacterSet>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|Win32'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <UseDebugLibraries>false</UseDebugLibraries>\r\n    <PlatformToolset>v143</PlatformToolset>\r\n    <WholeProgramOptimization>true</WholeProgramOptimization>\r\n    <CharacterSet>Unicode</CharacterSet>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <UseDebugLibraries>true</UseDebugLibraries>\r\n    <PlatformToolset>v143</PlatformToolset>\r\n    <CharacterSet>Unicode</CharacterSet>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\" Label=\"Configuration\">\r\n    <ConfigurationType>Application</ConfigurationType>\r\n    <UseDebugLibraries>false</UseDebugLibraries>\r\n    <PlatformToolset>v143</PlatformToolset>\r\n    <WholeProgramOptimization>true</WholeProgramOptimization>\r\n    <CharacterSet>Unicode</CharacterSet>\r\n  </PropertyGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.props\" />\r\n  <ImportGroup Label=\"ExtensionSettings\">\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"Shared\">\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\" Condition=\"'$(Configuration)|$(Platform)'=='Debug|Win32'\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\" Condition=\"'$(Configuration)|$(Platform)'=='Release|Win32'\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\" Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <ImportGroup Label=\"PropertySheets\" Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">\r\n    <Import Project=\"$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props\" Condition=\"exists('$(UserRootDir)\\Microsoft.Cpp.$(Platform).user.props')\" Label=\"LocalAppDataPlatform\" />\r\n  </ImportGroup>\r\n  <PropertyGroup Label=\"UserMacros\" />\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|Win32'\">\r\n    <ClCompile>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <SDLCheck>true</SDLCheck>\r\n      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>\r\n      <ConformanceMode>true</ConformanceMode>\r\n    </ClCompile>\r\n    <Link>\r\n      <SubSystem>Console</SubSystem>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n    </Link>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|Win32'\">\r\n    <ClCompile>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <FunctionLevelLinking>true</FunctionLevelLinking>\r\n      <IntrinsicFunctions>true</IntrinsicFunctions>\r\n      <SDLCheck>true</SDLCheck>\r\n      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>\r\n      <ConformanceMode>true</ConformanceMode>\r\n    </ClCompile>\r\n    <Link>\r\n      <SubSystem>Console</SubSystem>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n    </Link>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Debug|x64'\">\r\n    <ClCompile>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <SDLCheck>true</SDLCheck>\r\n      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>\r\n      <ConformanceMode>true</ConformanceMode>\r\n    </ClCompile>\r\n    <Link>\r\n      <SubSystem>Console</SubSystem>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n    </Link>\r\n  </ItemDefinitionGroup>\r\n  <ItemDefinitionGroup Condition=\"'$(Configuration)|$(Platform)'=='Release|x64'\">\r\n    <ClCompile>\r\n      <WarningLevel>Level3</WarningLevel>\r\n      <FunctionLevelLinking>true</FunctionLevelLinking>\r\n      <IntrinsicFunctions>true</IntrinsicFunctions>\r\n      <SDLCheck>true</SDLCheck>\r\n      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>\r\n      <ConformanceMode>true</ConformanceMode>\r\n    </ClCompile>\r\n    <Link>\r\n      <SubSystem>Console</SubSystem>\r\n      <GenerateDebugInformation>true</GenerateDebugInformation>\r\n    </Link>\r\n  </ItemDefinitionGroup>\r\n  <ItemGroup>\r\n    <ClCompile Include=\"Field.cpp\" />\r\n    <ClCompile Include=\"Game.cpp\" />\r\n    <ClCompile Include=\"MenuController.cpp\" />\r\n    <ClCompile Include=\"MouseHandler.cpp\" />\r\n    <ClCompile Include=\"Player.cpp\" />\r\n    <ClCompile Include=\"RandomLCG.cpp\" />\r\n    <ClCompile Include=\"Manager.cpp\" />\r\n    <ClCompile Include=\"Renderer.cpp\" />\r\n    <ClCompile Include=\"Sudoku.cpp\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClInclude Include=\"Config.hpp\" />\r\n    <ClInclude Include=\"Field.hpp\" />\r\n    <ClInclude Include=\"Game.hpp\" />\r\n    <ClInclude Include=\"MenuController.hpp\" />\r\n    <ClInclude Include=\"MouseHandler.hpp\" />\r\n    <ClInclude Include=\"Player.hpp\" />\r\n    <ClInclude Include=\"RandomLCG.hpp\" />\r\n    <ClInclude Include=\"Manager.hpp\" />\r\n    <ClInclude Include=\"Renderer.hpp\" />\r\n  </ItemGroup>\r\n  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.targets\" />\r\n  <ImportGroup Label=\"ExtensionTargets\">\r\n  </ImportGroup>\r\n</Project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Sudoku.vcxproj b/../Sudoku.vcxproj
+--- a/../Sudoku.vcxproj	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
++++ b/../Sudoku.vcxproj	(date 1765643618043)
+@@ -127,7 +127,6 @@
+     <ClCompile Include="Game.cpp" />
+     <ClCompile Include="MenuController.cpp" />
+     <ClCompile Include="MouseHandler.cpp" />
+-    <ClCompile Include="Player.cpp" />
+     <ClCompile Include="RandomLCG.cpp" />
+     <ClCompile Include="Manager.cpp" />
+     <ClCompile Include="Renderer.cpp" />
+@@ -139,7 +138,6 @@
+     <ClInclude Include="Game.hpp" />
+     <ClInclude Include="MenuController.hpp" />
+     <ClInclude Include="MouseHandler.hpp" />
+-    <ClInclude Include="Player.hpp" />
+     <ClInclude Include="RandomLCG.hpp" />
+     <ClInclude Include="Manager.hpp" />
+     <ClInclude Include="Renderer.hpp" />
+Index: ../Sudoku.vcxproj.filters
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project ToolsVersion=\"4.0\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\">\r\n  <ItemGroup>\r\n    <Filter Include=\"Исходные файлы\">\r\n      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>\r\n      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>\r\n    </Filter>\r\n    <Filter Include=\"Файлы заголовков\">\r\n      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>\r\n      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>\r\n    </Filter>\r\n    <Filter Include=\"Файлы ресурсов\">\r\n      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>\r\n      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>\r\n    </Filter>\r\n    <Filter Include=\"Исходные файлы\\Core\">\r\n      <UniqueIdentifier>{d307d1ac-82b8-4361-9db0-ac0b971001b9}</UniqueIdentifier>\r\n    </Filter>\r\n    <Filter Include=\"Файлы заголовков\\Core\">\r\n      <UniqueIdentifier>{994dabcc-00be-41c3-9e50-be69637e3459}</UniqueIdentifier>\r\n    </Filter>\r\n    <Filter Include=\"Файлы заголовков\\View\">\r\n      <UniqueIdentifier>{41fd25aa-d68f-44f0-b8e1-e158cba019d5}</UniqueIdentifier>\r\n    </Filter>\r\n    <Filter Include=\"Исходные файлы\\View\">\r\n      <UniqueIdentifier>{69cf2e41-6c59-4655-bb22-be7b0723bdbd}</UniqueIdentifier>\r\n    </Filter>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClCompile Include=\"Sudoku.cpp\">\r\n      <Filter>Исходные файлы</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"Field.cpp\">\r\n      <Filter>Исходные файлы\\Core</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"Manager.cpp\">\r\n      <Filter>Исходные файлы\\Core</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"RandomLCG.cpp\">\r\n      <Filter>Исходные файлы\\Core</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"Game.cpp\">\r\n      <Filter>Исходные файлы\\Core</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"Player.cpp\">\r\n      <Filter>Исходные файлы\\Core</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"Renderer.cpp\">\r\n      <Filter>Исходные файлы\\View</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"MouseHandler.cpp\">\r\n      <Filter>Исходные файлы\\View</Filter>\r\n    </ClCompile>\r\n    <ClCompile Include=\"MenuController.cpp\">\r\n      <Filter>Исходные файлы\\View</Filter>\r\n    </ClCompile>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <ClInclude Include=\"Field.hpp\">\r\n      <Filter>Файлы заголовков\\Core</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"Manager.hpp\">\r\n      <Filter>Файлы заголовков\\Core</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"RandomLCG.hpp\">\r\n      <Filter>Файлы заголовков\\Core</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"Game.hpp\">\r\n      <Filter>Файлы заголовков\\Core</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"Config.hpp\">\r\n      <Filter>Файлы заголовков</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"Player.hpp\">\r\n      <Filter>Файлы заголовков\\Core</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"Renderer.hpp\">\r\n      <Filter>Файлы заголовков\\View</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"MouseHandler.hpp\">\r\n      <Filter>Файлы заголовков\\View</Filter>\r\n    </ClInclude>\r\n    <ClInclude Include=\"MenuController.hpp\">\r\n      <Filter>Файлы заголовков\\View</Filter>\r\n    </ClInclude>\r\n  </ItemGroup>\r\n</Project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Sudoku.vcxproj.filters b/../Sudoku.vcxproj.filters
+--- a/../Sudoku.vcxproj.filters	(revision df31c0b574841469b2b79b4eec9a987bac9bde56)
++++ b/../Sudoku.vcxproj.filters	(date 1765643617425)
+@@ -42,9 +42,6 @@
+     <ClCompile Include="Game.cpp">
+       <Filter>Исходные файлы\Core</Filter>
+     </ClCompile>
+-    <ClCompile Include="Player.cpp">
+-      <Filter>Исходные файлы\Core</Filter>
+-    </ClCompile>
+     <ClCompile Include="Renderer.cpp">
+       <Filter>Исходные файлы\View</Filter>
+     </ClCompile>
+@@ -70,9 +67,6 @@
+     </ClInclude>
+     <ClInclude Include="Config.hpp">
+       <Filter>Файлы заголовков</Filter>
+-    </ClInclude>
+-    <ClInclude Include="Player.hpp">
+-      <Filter>Файлы заголовков\Core</Filter>
+     </ClInclude>
+     <ClInclude Include="Renderer.hpp">
+       <Filter>Файлы заголовков\View</Filter>

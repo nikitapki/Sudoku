@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="EIGHT_FROM_CLICK_MENU">8</string>
+    <string name="FIVE_FROM_CLICK_MENU">5</string>
+    <string name="FOUR_FROM_CLICK_MENU">4</string>
+    <string name="NINE_FROM_CLICK_MENU">9</string>
+    <string name="ONE_FROM_CLICK_MENU">1</string>
+    <string name="SEVEN_FROM_CLICK_MENU">7</string>
+    <string name="SIX_FROM_CLICK_MENU">6</string>
+    <string name="THREE_FROM_CLICK_MENU">3</string>
+    <string name="TWO_FROM_CLICK_MENU">2</string>
+    <string name="app_name">Судоку</string>
+    <string name="button_difficult_ReturnBack">Вернуться</string>
+    <string name="button_difficult_easy">Легкo</string>
+    <string name="button_difficult_hard">Сложнo</string>
+    <string name="button_difficult_impossible">Невозможнo</string>
+    <string name="button_difficult_medium">Нормальнo</string>
+    <string name="button_info">Информация</string>
+    <string name="button_play">Играть</string>
+    <string name="its_null">0</string>
+    <style name="Base.Theme.Sudoku" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Sudoku" parent="Base.Theme.Sudoku"/>
+</resources>

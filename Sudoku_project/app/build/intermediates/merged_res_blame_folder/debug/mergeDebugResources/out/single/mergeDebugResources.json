@@ -1,0 +1,130 @@
+[
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.sudoku.app-debug-34:/layout_activity_info.xml.flat",
+        "source": "com.example.sudoku.app-main-36:/layout/activity_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-hdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\layout_activity_game.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\layout\\activity_game.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_cell_normal.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\cell_normal.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_cell_same_number.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\cell_same_number.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\layout_activity_info.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\layout\\activity_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\layout_activity_difficult.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\layout\\activity_difficult.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_border_textview.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\border_textview.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\xml_activity_main_scene.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\xml\\activity_main_scene.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_cell_highlight.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\cell_highlight.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_cell_selected.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\cell_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\79628\\.gradle\\daemon\\8.13\\com.example.sudoku.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
+    }
+]

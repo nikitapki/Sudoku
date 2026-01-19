@@ -1,0 +1,6 @@
+com.example.sudoku.test.app-core-1.7.0-0 C:\Users\79628\.gradle\caches\8.13\transforms\0ed88f87e9f70eb2b817c6e9dae77a01\transformed\core-1.7.0\res
+com.example.sudoku.test.app-androidTest-1 C:\Users\79628\source\repos\Sudoku\Sudoku_project\app\build\generated\res\resValues\androidTest\debug
+com.example.sudoku.test.app-updated_navigation_xml-2 C:\Users\79628\source\repos\Sudoku\Sudoku_project\app\build\generated\updated_navigation_xml\debugAndroidTest
+com.example.sudoku.test.app-mergeDebugAndroidTestResources-3 C:\Users\79628\source\repos\Sudoku\Sudoku_project\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.sudoku.test.app-mergeDebugAndroidTestResources-4 C:\Users\79628\source\repos\Sudoku\Sudoku_project\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.sudoku.test.app-debugAndroidTest-5 C:\Users\79628\source\repos\Sudoku\Sudoku_project\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
